@@ -16,12 +16,6 @@
     <category>dashboard</category>
     <bugs>https://github.com/poulou0/nextcloud-homeassistant-integration.git</bugs>
     <dependencies>
-        <nextcloud min-version="24" max-version="24"/>
+        <nextcloud min-version="24" max-version="27"/>
     </dependencies>
-    <navigations>
-        <navigation>
-            <name>Hass Integration</name>
-            <route>hassintegration.page.index</route>
-        </navigation>
-    </navigations>
 </info>
