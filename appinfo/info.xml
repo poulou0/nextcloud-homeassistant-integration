@@ -18,10 +18,4 @@
     <dependencies>
         <nextcloud min-version="24" max-version="24"/>
     </dependencies>
-    <navigations>
-        <navigation>
-            <name>Hass Integration</name>
-            <route>hassintegration.page.index</route>
-        </navigation>
-    </navigations>
 </info>
