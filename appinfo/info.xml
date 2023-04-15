@@ -18,4 +18,8 @@
     <dependencies>
         <nextcloud min-version="24" max-version="27"/>
     </dependencies>
+	<settings>
+		<admin>OCA\HassIntegration\Settings\AdminSettings</admin>
+		<admin-section>OCA\HassIntegration\Sections\HAssAdmin</admin-section>
+	</settings>
 </info>

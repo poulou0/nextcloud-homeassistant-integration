@@ -1,0 +1,13 @@
+#hassintegration label {
+	clear: both;
+}
+
+#base_url,
+#long_lived_access_token {
+	width: 100%;
+	max-width: 400px;
+}
+
+#long_lived_access_token {
+	min-height: 120px;
+}
