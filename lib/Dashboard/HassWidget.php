@@ -2,7 +2,7 @@
 
 namespace OCA\HassIntegration\Dashboard;
 
-use OCA\HassIntegration\Service\GifService;
+use OCA\CatGifsDashboard\Service\HassIntegrationService;
 use OCP\AppFramework\Services\IInitialState;
 use OCP\Dashboard\IAPIWidget;
 use OCP\IL10N;
@@ -12,16 +12,16 @@ use OCP\Util;
 
 class HassWidget implements IAPIWidget {
 	private $l10n;
-	private $gifService;
+	private $hassIntegrationService;
 	private $initialStateService;
 	private $userId;
 
 	public function __construct(IL10N $l10n,
-								GifService $gifService,
+								HassIntegrationService $hassIntegrationService,
 								IInitialState $initialStateService,
 								?string $userId) {
 		$this->l10n = $l10n;
-		$this->gifService = $gifService;
+		$this->hassIntegrationService = $hassIntegrationService;
 		$this->initialStateService = $initialStateService;
 		$this->userId = $userId;
 	}
@@ -57,6 +57,6 @@ class HassWidget implements IAPIWidget {
 	}
 
 	public function getItems(string $userId, ?string $since = null, int $limit = 7): array {
-		return $this->gifService->getWidgetItems($userId);
+		return $this->hassIntegrationService->getWidgetItems($userId);
 	}
 }
