@@ -1,6 +1,7 @@
 <?php
 namespace OCA\HassIntegration\Sections;
 
+use OCA\HassIntegration\AppInfo\Application;
 use OCP\IL10N;
 use OCP\IURLGenerator;
 use OCP\Settings\IIconSection;
@@ -16,7 +17,7 @@ class HAssAdmin implements IIconSection {
 	}
 
 	public function getIcon(): string {
-		return $this->urlGenerator->imagePath('core', 'actions/settings-dark.svg');
+		return $this->urlGenerator->imagePath(Application::APP_ID, 'app.svg');
 	}
 
 	public function getID(): string {

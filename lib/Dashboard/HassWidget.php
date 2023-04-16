@@ -6,7 +6,6 @@ use OCA\HassIntegration\Service\HassIntegrationService;
 use OCP\AppFramework\Services\IInitialState;
 use OCP\Dashboard\IAPIWidget;
 use OCP\IL10N;
-
 use OCA\HassIntegration\AppInfo\Application;
 use OCP\Util;
 

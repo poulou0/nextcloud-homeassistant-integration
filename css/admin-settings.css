@@ -2,12 +2,26 @@
 	clear: both;
 }
 
-#base_url,
-#long_lived_access_token {
+#hassintegration input,
+#hassintegration textarea {
 	width: 100%;
 	max-width: 400px;
 }
 
-#long_lived_access_token {
+#hassintegration textarea {
 	min-height: 120px;
+}
+#hassintegration textarea#hass_template {
+	max-width: none;
+	min-height: 300px;
+}
+
+#hassintegration li {
+	list-style: circle;
+	margin-left: 15px;
+}
+
+#hassintegration .msg {
+	padding-top: 0;
+	padding-bottom: 0;
 }

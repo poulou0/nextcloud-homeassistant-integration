@@ -19,6 +19,7 @@ webpackConfig.stats = {
 const appId = 'hassintegration'
 webpackConfig.entry = {
 	hassWidget: { import: path.join(__dirname, 'src', 'hassWidget.js'), filename: appId + '-hassWidget.js' },
+	adminSettings: { import: path.join(__dirname, 'src', 'admin-settings.js'), filename: 'admin-settings.js' },
 }
 
 // this enables eslint and stylelint during compilation
