@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
  */
 function saveSetting(settingName) {
 	const settingValue = document.querySelector(`#${settingName}`).value
-	OCP.AppConfig.setValue('hassintegration', settingName, settingValue, {
+	OCP.AppConfig.setValue('integration_homeassistant', settingName, settingValue, {
 		success() {
 			showSuccess(`Saved '${settingName.replaceAll('_', ' ').replaceAll('hass ', '')}'!`)
 		},

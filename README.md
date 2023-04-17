@@ -3,7 +3,9 @@ SPDX-FileCopyrightText: Poulou <pouloutidis.d@gmail.com>
 SPDX-License-Identifier: CC0-1.0
 -->
 
-# Hass Integration
+![Home Assistant Integration, dasboard widget screenshot](img/screenshot1.jpg)
+
+# Home Assistant Integration
 Place this app in **nextcloud/apps/**
 
 ## Building the app

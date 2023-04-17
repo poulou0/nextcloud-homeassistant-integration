@@ -7,7 +7,7 @@ use OCP\IURLGenerator;
 use OCP\Settings\IIconSection;
 
 class HAssAdmin implements IIconSection {
-	public const SETTINGS_SECTION = 'hassintegration';
+	public const SETTINGS_SECTION = 'integration_homeassistant';
 	private IL10N $l;
 	private IURLGenerator $urlGenerator;
 
@@ -17,7 +17,7 @@ class HAssAdmin implements IIconSection {
 	}
 
 	public function getIcon(): string {
-		return $this->urlGenerator->imagePath(Application::APP_ID, 'app.svg');
+		return $this->urlGenerator->imagePath(Application::APP_ID, 'logo-dark.svg');
 	}
 
 	public function getID(): string {

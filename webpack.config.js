@@ -16,7 +16,7 @@ webpackConfig.stats = {
 	modules: false,
 }
 
-const appId = 'hassintegration'
+const appId = 'integration_homeassistant'
 webpackConfig.entry = {
 	hassWidget: { import: path.join(__dirname, 'src', 'hassWidget.js'), filename: appId + '-hassWidget.js' },
 	adminSettings: { import: path.join(__dirname, 'src', 'admin-settings.js'), filename: 'admin-settings.js' },

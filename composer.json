@@ -1,6 +1,6 @@
 {
-	"name": "nextcloud/hassintegration",
-	"description": "A dashboard widget to control home-assistant instance",
+	"name": "nextcloud/integration_homeassistant",
+	"description": "A dashboard widget for a home-assistant instance",
 	"type": "project",
 	"license": "AGPL-3.0-or-later",
 	"authors": [

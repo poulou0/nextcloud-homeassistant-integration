@@ -2,11 +2,13 @@
 /** @var $l \OCP\IL10N */
 /** @var $_ array */
 
-script('hassintegration', 'admin-settings');
-style('hassintegration', 'admin-settings');
+use OCA\HassIntegration\AppInfo\Application;
+
+script(Application::APP_ID, 'admin-settings');
+style(Application::APP_ID, 'admin-settings');
 ?>
 
-<div id="hassintegration" class="section">
+<div id="integration_homeassistant" class="section">
 	<h2><?php p($l->t('Home assistant integration')); ?></h2>
 
 	<div><?php p($l->t('Base url')); ?></div>

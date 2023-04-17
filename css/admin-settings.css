@@ -1,27 +1,28 @@
-#hassintegration label {
+#integration_homeassistant label {
 	clear: both;
 }
 
-#hassintegration input,
-#hassintegration textarea {
+#integration_homeassistant input,
+#integration_homeassistant textarea {
 	width: 100%;
 	max-width: 400px;
 }
 
-#hassintegration textarea {
+#integration_homeassistant textarea {
 	min-height: 120px;
 }
-#hassintegration textarea#hass_template {
+
+#integration_homeassistant textarea#hass_template {
 	max-width: none;
 	min-height: 300px;
 }
 
-#hassintegration li {
+#integration_homeassistant li {
 	list-style: circle;
 	margin-left: 15px;
 }
 
-#hassintegration .msg {
+#integration_homeassistant .msg {
 	padding-top: 0;
 	padding-bottom: 0;
 }

@@ -3,7 +3,7 @@ Upstream-Name: Hass Integration
 Upstream-Contact: Poulou <pouloutidis.d@gmail.com>
 Source: https://github.com/nextcloud/profiler
 
-Files: package-lock.json package.json composer.json composer.lock css/*.css lib/*/*.php js/* src/*.js templates/*.php
+Files: package-lock.json package.json composer.json composer.lock lib/*/* css/* js/* src/* templates/* img/*
 Copyright: Poulou <pouloutidis.d@gmail.com>
 License: AGPL-3.0-or-later
 

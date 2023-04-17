@@ -8,7 +8,7 @@ import { loadState } from '@nextcloud/initial-state'
  */
 function renderWidget(el) {
 	const paragraph = document.createElement('p')
-	paragraph.innerHTML = loadState('hassintegration', 'dashboard-widget-items')
+	paragraph.innerHTML = loadState('integration_homeassistant', 'dashboard-widget-items')
 	el.append(paragraph)
 }
 

@@ -5,16 +5,17 @@
     SPDX-FileCopyrightText: Poulou <pouloutidis.d@gmail.com>
     SPDX-License-Identifier: CC0-1.0
     -->
-    <id>hassintegration</id>
-    <name>Hass Integration</name>
-    <summary>A dashboard widget to control home-assistant instance</summary>
-    <description><![CDATA[A dashboard widget to control home-assistant instance]]></description>
+    <id>integration_homeassistant</id>
+    <name>Home Assistant integration</name>
+    <summary>A dashboard widget for a home-assistant instance</summary>
+	<screenshot>https://github.com/poulou0/nextcloud-homeassistant-integration/img/screenshot1.jpg</screenshot>
+    <description><![CDATA[A dashboard widget for a home-assistant instance]]></description>
     <version>0.0.1</version>
     <licence>agpl</licence>
     <author mail="pouloutidis.d@gmail.com" homepage="https://poulou.gr">Poulou</author>
     <namespace>HassIntegration</namespace>
     <category>dashboard</category>
-    <bugs>https://github.com/poulou0/nextcloud-homeassistant-integration.git</bugs>
+    <bugs>https://github.com/poulou0/nextcloud-homeassistant-integration/issues</bugs>
     <dependencies>
         <nextcloud min-version="24" max-version="27"/>
     </dependencies>

@@ -12,7 +12,7 @@ use OCP\AppFramework\Bootstrap\IBootContext;
 use OCP\AppFramework\Bootstrap\IBootstrap;
 
 class Application extends App implements IBootstrap {
-	public const APP_ID = 'hassintegration';
+	public const APP_ID = 'integration_homeassistant';
 
 	public function __construct(array $urlParams = []) {
 		parent::__construct(self::APP_ID, $urlParams);

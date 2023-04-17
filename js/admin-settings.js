@@ -15097,7 +15097,7 @@ document.addEventListener('DOMContentLoaded', function () {
  */
 function saveSetting(settingName) {
   const settingValue = document.querySelector(`#${settingName}`).value;
-  OCP.AppConfig.setValue('hassintegration', settingName, settingValue, {
+  OCP.AppConfig.setValue('integration_homeassistant', settingName, settingValue, {
     success() {
       (0,_nextcloud_dialogs__WEBPACK_IMPORTED_MODULE_0__.showSuccess)(`Saved '${settingName.replaceAll('_', ' ').replaceAll('hass ', '')}'!`);
     },
