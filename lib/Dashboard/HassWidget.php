@@ -7,20 +7,24 @@ use OCP\AppFramework\Services\IInitialState;
 use OCP\Dashboard\IAPIWidget;
 use OCP\IL10N;
 use OCA\HassIntegration\AppInfo\Application;
+use OCP\IConfig;
 use OCP\Util;
 
 class HassWidget implements IAPIWidget {
 	private $l10n;
 	private $hassIntegrationService;
+	private IConfig $config;
 	private $initialStateService;
 	private $userId;
 
 	public function __construct(IL10N $l10n,
 								HassIntegrationService $hassIntegrationService,
+								IConfig $config,
 								IInitialState $initialStateService,
 								?string $userId) {
 		$this->l10n = $l10n;
 		$this->hassIntegrationService = $hassIntegrationService;
+		$this->config = $config;
 		$this->initialStateService = $initialStateService;
 		$this->userId = $userId;
 	}
@@ -48,7 +52,9 @@ class HassWidget implements IAPIWidget {
 	public function load(): void {
 		if ($this->userId !== null) {
 			$items = $this->getItems($this->userId);
-			$this->initialStateService->provideInitialState('dashboard-widget-items', $items);
+			$interval = (int) $this->config->getAppValue(Application::APP_ID, 'hass_template_refresh_interval', 30);
+			$this->initialStateService->provideInitialState('dashboard-template-widget', $items);
+			$this->initialStateService->provideInitialState('dashboard-template-widget-refresh-interval', $interval);
 		}
 
 		Util::addScript(Application::APP_ID, Application::APP_ID . '-hassWidget');
@@ -56,6 +62,6 @@ class HassWidget implements IAPIWidget {
 	}
 
 	public function getItems(string $userId, ?string $since = null, int $limit = 7): array {
-		return $this->hassIntegrationService->getWidgetItems($userId);
+		return $this->hassIntegrationService->getWidgetItems();
 	}
 }

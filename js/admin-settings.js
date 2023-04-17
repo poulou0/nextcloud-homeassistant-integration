@@ -15087,6 +15087,7 @@ document.addEventListener('DOMContentLoaded', function () {
   document.querySelector('#base_url').addEventListener('change', inputHandler);
   document.querySelector('#long_lived_access_token').addEventListener('change', inputHandler);
   document.querySelector('#hass_template').addEventListener('change', inputHandler);
+  document.querySelector('#hass_template_refresh_interval').addEventListener('change', inputHandler);
 });
 
 /**

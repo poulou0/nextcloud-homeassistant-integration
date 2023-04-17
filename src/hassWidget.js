@@ -1,19 +1,16 @@
 import { loadState } from '@nextcloud/initial-state'
-
-/**
- * Append to the rendering of the widget.
- *
- * @param {Element} el The DOM element of the widget.
- * @return {void}
- */
-function renderWidget(el) {
-	const paragraph = document.createElement('p')
-	paragraph.innerHTML = loadState('integration_homeassistant', 'dashboard-widget-items')
-	el.append(paragraph)
-}
+import axios from '@nextcloud/axios'
+import { generateUrl } from '@nextcloud/router'
 
 document.addEventListener('DOMContentLoaded', () => {
 	OCA.Dashboard.register('hass-widget', (el, { widget }) => {
-		renderWidget(el)
+		el.innerHTML = loadState('integration_homeassistant', 'dashboard-template-widget')
+		el.parentElement.style.overflow = 'auto'
+		const refreshInterval = parseInt(loadState('integration_homeassistant', 'dashboard-template-widget-refresh-interval'))
+		if (refreshInterval > 0) {
+			setInterval(async () => {
+				el.innerHTML = (await axios.get(generateUrl('/apps/integration_homeassistant/template-widget'))).data[0]
+			}, refreshInterval * 1000)
+		}
 	})
 })

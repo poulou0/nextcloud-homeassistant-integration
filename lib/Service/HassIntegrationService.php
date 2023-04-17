@@ -17,7 +17,7 @@ class HassIntegrationService {
 		$this->clientService = $clientService;
 	}
 
-	public function getWidgetItems(string $userId): array {
+	public function getWidgetItems(): array {
 		$baseURL = $this->config->getAppValue(Application::APP_ID, 'base_url', '');
 		if(substr($baseURL, -1) == '/') {
 			$baseURL = substr($baseURL, 0, -1);

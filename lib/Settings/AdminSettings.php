@@ -25,6 +25,7 @@ class AdminSettings implements ISettings {
 			'base_url' => $this->config->getAppValue(Application::APP_ID, 'base_url', ''),
 			'long_lived_access_token' => $this->config->getAppValue(Application::APP_ID, 'long_lived_access_token', ''),
 			'hass_template' => $this->config->getAppValue(Application::APP_ID, 'hass_template', ''),
+			'hass_template_refresh_interval' => $this->config->getAppValue(Application::APP_ID, 'hass_template_refresh_interval', 30),
 		], '');
 	}
 
