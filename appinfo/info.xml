@@ -8,7 +8,6 @@
     <id>integration_homeassistant</id>
     <name>Home Assistant integration</name>
     <summary>A dashboard widget for a home-assistant instance</summary>
-	<screenshot>https://github.com/poulou0/nextcloud-homeassistant-integration/img/screenshot1.jpg</screenshot>
     <description><![CDATA[A dashboard widget for a home-assistant instance]]></description>
     <version>0.0.1</version>
     <licence>agpl</licence>

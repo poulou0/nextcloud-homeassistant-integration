@@ -23,9 +23,7 @@
     "@nextcloud/axios": "^2.3.0",
     "@nextcloud/dialogs": "^4.0.1",
     "@nextcloud/initial-state": "^2.0.0",
-    "@nextcloud/router": "^2.0.1",
-    "css-loader": "^6.7.3",
-    "style-loader": "^3.3.2"
+    "@nextcloud/router": "^2.0.1"
   },
   "browserslist": [
     "extends @nextcloud/browserslist-config"
