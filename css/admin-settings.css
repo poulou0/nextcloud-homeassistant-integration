@@ -22,7 +22,6 @@
 	margin-left: 15px;
 }
 
-#integration_homeassistant .msg {
-	padding-top: 0;
-	padding-bottom: 0;
+#integration_homeassistant .icon {
+	vertical-align: text-bottom;
 }
