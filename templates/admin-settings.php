@@ -22,11 +22,11 @@ style(Application::APP_ID, 'admin-settings');
 	</div>
 	<textarea id="long_lived_access_token"><?php p($_['long_lived_access_token']) ?></textarea>
 
-	<div><?php p($l->t('Widget refresh interval (in seconds)')); ?></div>
-	<input id="hass_template_refresh_interval" value="<?php p($_['hass_template_refresh_interval']) ?>" placeholder="0" type="number" min="0" step="1" />
+	<div><?php p($l->t('Template widget refresh interval (in seconds)')); ?></div>
+	<input id="template_widget_refresh_interval" value="<?php p($_['template_widget_refresh_interval']) ?>" placeholder="0" type="number" min="0" step="1" />
 
-	<div><?php p($l->t('Template dashboard widget')); ?></div>
-	<textarea id="hass_template"><?php p($_['hass_template']) ?></textarea>
+	<div><?php p($l->t('Template widget')); ?></div>
+	<textarea id="template_widget"><?php p($_['template_widget']) ?></textarea>
 	<p>Templates are rendered using the Jinja2 template engine with some Home Assistant specific extensions.</p>
 	<ul>
 		<li><a target="_blank" rel="noreferrer" href="https://jinja.palletsprojects.com/en/latest/templates/">Jinja2 template documentation</a></li>

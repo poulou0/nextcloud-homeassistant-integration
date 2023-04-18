@@ -8,7 +8,7 @@ use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http\DataResponse;
 use OCP\IRequest;
 
-class TemplateController extends Controller
+class TemplateWidgetController extends Controller
 {
 	/**
 	 * @var string|null
@@ -29,7 +29,7 @@ class TemplateController extends Controller
 	 * @param int $fileId
 	 * @return DataResponse
 	 */
-	public function getWidget() {
+	public function get() {
 
 		return new DataResponse($this->hassIntegrationService->getWidgetItems(), Http::STATUS_OK);
 	}

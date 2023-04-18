@@ -12,7 +12,7 @@
 	min-height: 120px;
 }
 
-#integration_homeassistant textarea#hass_template {
+#integration_homeassistant textarea#template_widget {
 	max-width: none;
 	min-height: 300px;
 }

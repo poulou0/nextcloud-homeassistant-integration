@@ -23,7 +23,7 @@ class HassIntegrationService {
 			$baseURL = substr($baseURL, 0, -1);
 		}
 		$longLivedAccessToken = $this->config->getAppValue(Application::APP_ID, 'long_lived_access_token', '');
-		$template = $this->config->getAppValue(Application::APP_ID, 'hass_template', '');
+		$template = $this->config->getAppValue(Application::APP_ID, 'template_widget', '');
 
 		$client = $this->clientService->newClient();
 		$response = $client->post($baseURL . '/api/template', [

@@ -13,6 +13,6 @@ declare(strict_types=1);
  */
 return [
 	'routes' => [
-		['name' => 'template#getWidget', 'url' => '/template-widget', 'verb' => 'GET'],
+		['name' => 'templateWidget#get', 'url' => '/template-widget', 'verb' => 'GET'],
 	],
 ];

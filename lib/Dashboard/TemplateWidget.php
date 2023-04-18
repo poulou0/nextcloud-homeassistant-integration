@@ -10,7 +10,7 @@ use OCA\HassIntegration\AppInfo\Application;
 use OCP\IConfig;
 use OCP\Util;
 
-class HassWidget implements IAPIWidget {
+class TemplateWidget implements IAPIWidget {
 	private $l10n;
 	private $hassIntegrationService;
 	private IConfig $config;
@@ -52,12 +52,12 @@ class HassWidget implements IAPIWidget {
 	public function load(): void {
 		if ($this->userId !== null) {
 			$items = $this->getItems($this->userId);
-			$interval = (int) $this->config->getAppValue(Application::APP_ID, 'hass_template_refresh_interval', 30);
+			$interval = (int) $this->config->getAppValue(Application::APP_ID, 'template_widget_refresh_interval', 30);
 			$this->initialStateService->provideInitialState('dashboard-template-widget', $items);
 			$this->initialStateService->provideInitialState('dashboard-template-widget-refresh-interval', $interval);
 		}
 
-		Util::addScript(Application::APP_ID, Application::APP_ID . '-hassWidget');
+		Util::addScript(Application::APP_ID, Application::APP_ID . '-templateWidget');
 		Util::addStyle(Application::APP_ID, 'dashboard');
 	}
 
