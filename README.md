@@ -8,6 +8,45 @@ SPDX-License-Identifier: CC0-1.0
 # Home Assistant Integration
 Place this app in **nextcloud/apps/**
 
+## Development environment
+
+### Nextcloud dev
+> https://github.com/juliushaertl/nextcloud-docker-dev#simple-master-setup
+```shell
+cd ~/Projects
+git clone https://github.com/juliushaertl/nextcloud-docker-dev
+cd nextcloud-docker-dev
+./bootstrap.sh
+sudo sh -c "echo '127.0.0.1 nextcloud.local' >> /etc/hosts"
+docker-compose up nextcloud proxy
+```
+
+### App dev
+
+```shell
+sudo apt install php php-xml php-curl composer
+```
+```shell
+cd ~/Projects/nextcloud-docker-dev
+git clone git@github.com:poulou0/nextcloud-homeassistant-integration.git workspace/server/apps-extra/integration_homeassistant/
+cd workspace/server/apps-extra/integration_homeassistant/
+make
+```
+
+## Publish to App Store
+
+First get an account for the [App Store](http://apps.nextcloud.com/) then run:
+
+    make && make appstore
+
+The archive is located in build/artifacts/appstore and can then be uploaded to the App Store.
+
+Post it here according to the instructions: https://apps.nextcloud.com/developer/apps/releases/new
+
+```shell
+openssl dgst -sha512 -sign ~/.nextcloud/certificates/integration_homeassistant.key ~/Projects/nextcloud-docker-devworkspace/server/apps-extra/integration_homeassistant/build/artifacts/appstore/integration_homeassistant.tar.gz | openssl base64
+```
+
 ## Building the app
 
 The app can be built by using the provided Makefile by running:
@@ -31,15 +70,6 @@ The make command will install or update Composer dependencies if a composer.json
     "build": "node node_modules/gulp-cli/bin/gulp.js"
 }
 ```
-
-
-## Publish to App Store
-
-First get an account for the [App Store](http://apps.nextcloud.com/) then run:
-
-    make && make appstore
-
-The archive is located in build/artifacts/appstore and can then be uploaded to the App Store.
 
 ## Running tests
 You can use the provided Makefile to run all tests by using:

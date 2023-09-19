@@ -9,7 +9,7 @@
     <name>Home Assistant integration</name>
     <summary>A dashboard widget for a home-assistant instance</summary>
     <description><![CDATA[A dashboard widget for a home-assistant instance]]></description>
-    <version>0.0.2</version>
+    <version>0.0.3</version>
     <licence>agpl</licence>
     <author mail="pouloutidis.d@gmail.com" homepage="https://poulou.gr">Poulou</author>
     <namespace>HassIntegration</namespace>
@@ -18,7 +18,7 @@
     <bugs>https://github.com/poulou0/nextcloud-homeassistant-integration/issues</bugs>
 	<screenshot>https://github.com/poulou0/nextcloud-homeassistant-integration/raw/main/img/screenshot1.jpg</screenshot>
     <dependencies>
-        <nextcloud min-version="24" max-version="27"/>
+        <nextcloud min-version="24" max-version="28"/>
     </dependencies>
 	<settings>
 		<admin>OCA\HassIntegration\Settings\AdminSettings</admin>

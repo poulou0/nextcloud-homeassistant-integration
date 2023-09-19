@@ -1,7 +1,7 @@
 {
   "name": "integration_homeassistant",
   "description": "A dashboard widget for a home-assistant instance",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": "Poulou <pouloutidis.d@gmail.com>",
   "contributors": [],
   "bugs": {
