@@ -1,5 +1,5 @@
 <!--
-SPDX-FileCopyrightText: Poulou <pouloutidis.d@gmail.com>
+SPDX-FileCopyrightText: Poulou <poulou.0@gmail.com>
 SPDX-License-Identifier: CC0-1.0
 -->
 

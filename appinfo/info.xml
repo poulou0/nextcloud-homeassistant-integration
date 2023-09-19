@@ -2,7 +2,7 @@
 <info xmlns:xsi= "http://www.w3.org/2001/XMLSchema-instance"
       xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
     <!--
-    SPDX-FileCopyrightText: Poulou <pouloutidis.d@gmail.com>
+    SPDX-FileCopyrightText: Poulou <poulou.0@gmail.com>
     SPDX-License-Identifier: CC0-1.0
     -->
     <id>integration_homeassistant</id>
@@ -11,7 +11,7 @@
     <description><![CDATA[A dashboard widget for a home-assistant instance]]></description>
     <version>0.0.3</version>
     <licence>agpl</licence>
-    <author mail="pouloutidis.d@gmail.com" homepage="https://poulou.gr">Poulou</author>
+    <author mail="poulou.0@gmail.com" homepage="https://poulou.gr">Poulou</author>
     <namespace>HassIntegration</namespace>
     <category>dashboard</category>
 	<website>https://github.com/poulou0/nextcloud-homeassistant-integration</website>

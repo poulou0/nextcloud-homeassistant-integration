@@ -2,7 +2,7 @@
   "name": "integration_homeassistant",
   "description": "A dashboard widget for a home-assistant instance",
   "version": "0.0.3",
-  "author": "Poulou <pouloutidis.d@gmail.com>",
+  "author": "Poulou <poulou.0@gmail.com>",
   "contributors": [],
   "bugs": {
     "url": "https://github.com/poulou0/nextcloud-homeassistant-integration.git"
