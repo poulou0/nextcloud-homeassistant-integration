@@ -21,9 +21,9 @@
   },
   "dependencies": {
     "@nextcloud/axios": "^2.3.0",
-    "@nextcloud/dialogs": "^4.0.1",
+    "@nextcloud/dialogs": "^5.0.3",
     "@nextcloud/initial-state": "^2.0.0",
-    "@nextcloud/password-confirmation": "^4.0.4",
+    "@nextcloud/password-confirmation": "^5.0.1",
     "@nextcloud/router": "^2.0.1"
   },
   "browserslist": [
@@ -36,21 +36,21 @@
   "devDependencies": {
     "@babel/core": "^7.21.4",
     "@nextcloud/babel-config": "^1.0.0",
-    "@nextcloud/browserslist-config": "^2.2.0",
+    "@nextcloud/browserslist-config": "^3.0.0",
     "@nextcloud/eslint-config": "^8.2.1",
     "@nextcloud/eslint-plugin": "^2.0.0",
     "@nextcloud/stylelint-config": "^2.1.2",
-    "@nextcloud/webpack-vue-config": "^5.5.0",
+    "@nextcloud/webpack-vue-config": "^6.0.0",
     "babel-loader": "^9.1.2",
     "eslint": "^8.38.0",
     "eslint-plugin-import": "^2.27.5",
-    "eslint-plugin-jsdoc": "^39.9.1",
-    "eslint-plugin-n": "^15.7.0",
+    "eslint-plugin-jsdoc": "^46.10.1",
+    "eslint-plugin-n": "^16.6.0",
     "eslint-plugin-vue": "^9.11.0",
     "eslint-webpack-plugin": "^4.0.1",
-    "stylelint": "^14.16.1",
+    "stylelint": "^15.11.0",
     "stylelint-webpack-plugin": "^4.1.1",
-    "vue-loader": "^15.10.1",
+    "vue-loader": "^15.11.1",
     "webpack": "^5.79.0",
     "webpack-cli": "^5.0.1"
   }

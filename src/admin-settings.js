@@ -2,8 +2,8 @@ import { showSuccess, showError } from '@nextcloud/dialogs'
 import { generateOcsUrl } from '@nextcloud/router'
 import axios from '@nextcloud/axios'
 import { confirmPassword } from '@nextcloud/password-confirmation'
-import '@nextcloud/dialogs/dist/index.css'
-import '@nextcloud/password-confirmation/dist/style.css'
+import '@nextcloud/dialogs/style.css'
+import '@nextcloud/password-confirmation/style.css'
 
 document.addEventListener('DOMContentLoaded', function() {
 	const inputHandler = function(evt) { saveSetting(this.id, this.value) }
