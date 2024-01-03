@@ -17,8 +17,7 @@ cd ~/Projects
 git clone https://github.com/juliushaertl/nextcloud-docker-dev
 cd nextcloud-docker-dev
 ./bootstrap.sh
-sudo sh -c "echo '127.0.0.1 nextcloud.local' >> /etc/hosts"
-docker-compose up nextcloud proxy
+docker-compose up nextcloud
 ```
 
 ### App dev
