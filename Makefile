@@ -147,6 +147,7 @@ appstore:
 		--exclude="../$(app_name)/protractor\.*" \
 		--exclude="../$(app_name)/.*" \
 		--exclude="../$(app_name)/js/.*" \
+		--exclude="../$(app_name)/node_modules" \
 	../$(app_name)
 
 .PHONY: test

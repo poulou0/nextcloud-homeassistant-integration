@@ -19,7 +19,7 @@ cd nextcloud-docker-dev
 ./bootstrap.sh
 docker-compose up nextcloud
 ```
-
+go to `http://nextcloud.local`
 ### App dev
 
 ```shell
@@ -29,6 +29,7 @@ sudo apt install php php-xml php-curl composer
 cd ~/Projects/nextcloud-docker-dev
 git clone git@github.com:poulou0/nextcloud-homeassistant-integration.git workspace/server/apps-extra/integration_homeassistant/
 cd workspace/server/apps-extra/integration_homeassistant/
+npm install
 make
 ```
 
@@ -43,7 +44,7 @@ The archive is located in build/artifacts/appstore and can then be uploaded to t
 Post it here according to the instructions: https://apps.nextcloud.com/developer/apps/releases/new
 
 ```shell
-openssl dgst -sha512 -sign ~/.nextcloud/certificates/integration_homeassistant.key ~/Projects/nextcloud-docker-devworkspace/server/apps-extra/integration_homeassistant/build/artifacts/appstore/integration_homeassistant.tar.gz | openssl base64
+openssl dgst -sha512 -sign ~/.nextcloud/certificates/integration_homeassistant.key ~/Projects/nextcloud-docker-dev/workspace/server/apps-extra/integration_homeassistant/build/artifacts/appstore/integration_homeassistant.tar.gz | openssl base64
 ```
 
 ## Building the app
