@@ -20,15 +20,9 @@ class HAssAdmin implements IIconSection {
 		return $this->urlGenerator->imagePath(Application::APP_ID, 'logo-dark.svg');
 	}
 
-	public function getID(): string {
-		return self::SETTINGS_SECTION;
-	}
+	public function getID(): string { return self::SETTINGS_SECTION; }
 
-	public function getName(): string {
-		return $this->l->t('Home assistant integration');
-	}
+	public function getName(): string { return $this->l->t('Home assistant integration'); }
 
-	public function getPriority(): int {
-		return 98;
-	}
+	public function getPriority(): int { return 98; }
 }

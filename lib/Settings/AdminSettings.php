@@ -40,7 +40,5 @@ class AdminSettings implements ISettings {
 	 *
 	 * E.g.: 70
 	 */
-	public function getPriority() {
-		return 70;
-	}
+	public function getPriority() { return 70; }
 }

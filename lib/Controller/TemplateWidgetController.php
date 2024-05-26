@@ -16,8 +16,7 @@ class TemplateWidgetController extends Controller
 	private $userId;
 	private $hassIntegrationService;
 
-	public function __construct(string $appName, IRequest $request, HassIntegrationService $hassIntegrationService)
-	{
+	public function __construct(string $appName, IRequest $request, HassIntegrationService $hassIntegrationService) {
 		parent::__construct($appName, $request);
 		$this->hassIntegrationService = $hassIntegrationService;
 	}
@@ -30,7 +29,6 @@ class TemplateWidgetController extends Controller
 	 * @return DataResponse
 	 */
 	public function get() {
-
 		return new DataResponse($this->hassIntegrationService->getWidgetItems(), Http::STATUS_OK);
 	}
 }

@@ -3,7 +3,6 @@
 namespace OCA\HassIntegration\Service;
 
 use OCA\HassIntegration\AppInfo\Application;
-use OCP\Dashboard\Model\WidgetItem;
 use OCP\Http\Client\IClientService;
 use OCP\IConfig;
 
