@@ -9,7 +9,7 @@
     <name>Home Assistant integration</name>
     <summary>A dashboard widget for a home-assistant instance</summary>
     <description><![CDATA[A dashboard widget for a home-assistant instance]]></description>
-    <version>0.0.4</version>
+    <version>0.0.5</version>
     <licence>agpl</licence>
     <author mail="poulou.0@gmail.com" homepage="https://poulou.gr">Poulou</author>
     <namespace>HassIntegration</namespace>
