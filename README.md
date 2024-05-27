@@ -6,7 +6,7 @@ SPDX-License-Identifier: CC0-1.0
 ![Home Assistant Integration, dasboard widget screenshot](img/screenshot1.jpg)
 
 # Home Assistant Integration
-Place this app in **nextcloud/apps/**
+Simple home assistant widgets for you nextcloud dashboard.
 
 ## Development environment
 

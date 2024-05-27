@@ -25,7 +25,6 @@ class TemplateWidgetController extends Controller
 	 * @NoAdminRequired
 	 * @NoCSRFRequired
 	 *
-	 * @param int $fileId
 	 * @return DataResponse
 	 */
 	public function get() {

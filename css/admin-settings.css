@@ -12,7 +12,7 @@
 	min-height: 120px;
 }
 
-#integration_homeassistant textarea#template_widget {
+#integration_homeassistant .widget-section textarea {
 	max-width: none;
 	min-height: 300px;
 }
@@ -24,4 +24,26 @@
 
 #integration_homeassistant .icon {
 	vertical-align: text-bottom;
+}
+
+/* Style tabs */
+.tab {
+	overflow: hidden;
+}
+
+.tab button {
+	display: inline-block;
+}
+
+.tabcontent {
+	display: none;
+}
+
+.tabcontent#jinja2_widget {
+	display: block;
+}
+
+.tabcontent#yaml_widget > div {
+	display: flex;
+	flex-direction: row;
 }
