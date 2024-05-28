@@ -6,6 +6,7 @@ declare(strict_types=1);
 namespace OCA\HassIntegration\AppInfo;
 
 use OCA\HassIntegration\Dashboard\TemplateWidget;
+use OCA\HassIntegration\Dashboard\YamlWidget;
 use OCP\AppFramework\App;
 use OCP\AppFramework\Bootstrap\IRegistrationContext;
 use OCP\AppFramework\Bootstrap\IBootContext;
@@ -20,6 +21,7 @@ class Application extends App implements IBootstrap {
 
 	public function register(IRegistrationContext $context): void {
 		$context->registerDashboardWidget(TemplateWidget::class);
+		$context->registerDashboardWidget(YamlWidget::class);
 	}
 
 	public function boot(IBootContext $context): void {

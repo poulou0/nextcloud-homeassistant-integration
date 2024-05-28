@@ -9,7 +9,6 @@ use OCP\IL10N;
 use OCA\HassIntegration\AppInfo\Application;
 use OCP\IConfig;
 use OCP\Util;
-use OCP\AppFramework\Http\ContentSecurityPolicy;
 
 class TemplateWidget implements IAPIWidget {
 	private $l10n;
@@ -29,8 +28,8 @@ class TemplateWidget implements IAPIWidget {
 		$this->initialStateService = $initialStateService;
 	}
 
-	public function getId(): string { return 'hass-widget'; }
-	public function getTitle(): string { return $this->l10n->t('Home assistant'); }
+	public function getId(): string { return 'hass-template-widget'; }
+	public function getTitle(): string { return $this->l10n->t('Template widget'); }
 	public function getOrder(): int { return 10; }
 	public function getIconClass(): string { return 'icon-hasswidget'; }
 	public function getUrl(): ?string { return null; }
@@ -49,18 +48,12 @@ class TemplateWidget implements IAPIWidget {
 
 		Util::addScript(Application::APP_ID, Application::APP_ID . '-templateWidget');
 		Util::addStyle(Application::APP_ID, 'dashboard');
-
-		
-		if(class_exists('\\OCP\\AppFramework\\Http\\EmptyContentSecurityPolicy')) {
-			$manager = \OC::$server->getContentSecurityPolicyManager();
-			$policy = new \OCP\AppFramework\Http\EmptyContentSecurityPolicy();
-			$policy->addAllowedConnectDomain('ws://' . parse_url($baseURL)['host']);
-			$policy->addAllowedConnectDomain('wss://' . parse_url($baseURL)['host']);
-			$manager->addDefaultPolicy($policy);
-		}
 	}
 
 	public function getItems(string $userId = null, ?string $since = null, int $limit = 7): array {
-		return $this->hassIntegrationService->getWidgetItems();
+		$template = $this->config->getAppValue(Application::APP_ID, 'template_widget', '');
+		return $this->hassIntegrationService->post('/template', [
+			"template" => $template
+		]);
 	}
 }

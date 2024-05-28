@@ -26,6 +26,7 @@ class AdminSettings implements ISettings {
 			'long_lived_access_token' => $this->config->getAppValue(Application::APP_ID, 'long_lived_access_token', ''),
 			'template_widget' => $this->config->getAppValue(Application::APP_ID, 'template_widget', ''),
 			'template_widget_refresh_interval' => $this->config->getAppValue(Application::APP_ID, 'template_widget_refresh_interval', 30),
+			'yaml_widget' => $this->config->getAppValue(Application::APP_ID, 'yaml_widget', ''),
 		], '');
 	}
 

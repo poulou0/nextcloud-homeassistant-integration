@@ -25,7 +25,8 @@
     "@nextcloud/initial-state": "^2.0.0",
     "@nextcloud/password-confirmation": "^5.0.1",
     "@nextcloud/router": "^3.0.1",
-    "home-assistant-js-websocket": "^9.3.0"
+    "home-assistant-js-websocket": "^9.3.0",
+    "yaml": "^2.4.2"
   },
   "browserslist": [
     "extends @nextcloud/browserslist-config"

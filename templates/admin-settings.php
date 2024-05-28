@@ -13,7 +13,6 @@ style(Application::APP_ID, 'admin-settings');
 	<div class="section">
 		<div><?php p($l->t('Base url')); ?></div>
 		<input id="base_url" value="<?php p($_['base_url']) ?>" placeholder="https://..., http://..."/>
-
 		<div>
 			<?php p($l->t('Long-lived access token')); ?>
 			<a target="_blank" rel="noreferrer" href="https://developers.home-assistant.io/docs/auth_api/#long-lived-access-token">
@@ -21,21 +20,15 @@ style(Application::APP_ID, 'admin-settings');
 			</a>
 		</div>
 		<textarea id="long_lived_access_token"><?php p($_['long_lived_access_token']) ?></textarea>
-
-		<div><?php p($l->t('Template widget refresh interval (in seconds)')); ?></div>
-		<input id="template_widget_refresh_interval" value="<?php p($_['template_widget_refresh_interval']) ?>" placeholder="0" type="number" min="0" step="1" />
 	</div>
 	<div class="section widget-section">
-		<h3 class="inlineblock">
-			Widgets
-		</h3>
-
 		<div class="tab">
-			<button class="tablinks active" data-target="jinja2_widget"><?php p($l->t('Template widget')); ?></button>
-			<button class="tablinks" data-target="yaml_widget"><?php p($l->t('YAML widget')); ?></button>
+			<button class="tablinks active" data-target="jinja2_widget_tab"><?php p($l->t('Template widget')); ?></button>
+			<button class="tablinks" data-target="yaml_widget_tab"><?php p($l->t('YAML widget (beta)')); ?></button>
 		</div>
-
-		<div id="jinja2_widget" class="tabcontent">
+		<div id="jinja2_widget_tab" class="tabcontent">
+			<div><?php p($l->t('Template widget refresh interval (in seconds)')); ?></div>
+			<input id="template_widget_refresh_interval" value="<?php p($_['template_widget_refresh_interval']) ?>" placeholder="0" type="number" min="0" step="1" />
 			<textarea id="template_widget"><?php p($_['template_widget']) ?></textarea>
 			<p>Templates are rendered using the Jinja2 template engine with some Home Assistant specific extensions.</p>
 			<ul>
@@ -43,12 +36,8 @@ style(Application::APP_ID, 'admin-settings');
 				<li><a target="_blank" rel="noreferrer" href="https://www.home-assistant.io/docs/configuration/templating/"> Home Assistant template extensions</a></li>
 			</ul>
 		</div>
-
-		<div id="yaml_widget" class="tabcontent">
-			<div>
-				<textarea id="template_widget"><?php p($_['template_widget']) ?></textarea>
-				<div>asdfasdf</div>
-			</div>
+		<div id="yaml_widget_tab" class="tabcontent">
+			<textarea id="yaml_widget"><?php p($_['yaml_widget']) ?></textarea>
 		</div>
 	</div>
 </div>

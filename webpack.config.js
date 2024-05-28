@@ -19,6 +19,7 @@ webpackConfig.stats = {
 const appId = 'integration_homeassistant'
 webpackConfig.entry = {
 	templateWidget: { import: path.join(__dirname, 'src', 'templateWidget.js'), filename: appId + '-templateWidget.js' },
+	yamlWidget: { import: path.join(__dirname, 'src', 'yamlWidget.js'), filename: appId + '-yamlWidget.js' },
 	adminSettings: { import: path.join(__dirname, 'src', 'admin-settings.js'), filename: 'admin-settings.js' },
 }
 

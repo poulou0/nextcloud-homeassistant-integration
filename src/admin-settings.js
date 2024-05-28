@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	document.querySelector('#long_lived_access_token').addEventListener('change', inputHandler)
 	document.querySelector('#template_widget').addEventListener('change', inputHandler)
 	document.querySelector('#template_widget_refresh_interval').addEventListener('change', inputHandler)
+	document.querySelector('#yaml_widget').addEventListener('change', inputHandler)
 	const tablinks = document.getElementsByClassName('tablinks')
 	const openTab = function(evt, tabName) {
 		let i

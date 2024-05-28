@@ -37,13 +37,9 @@
 
 .tabcontent {
 	display: none;
+	padding: 20px
 }
 
-.tabcontent#jinja2_widget {
+.tabcontent#jinja2_widget_tab {
 	display: block;
-}
-
-.tabcontent#yaml_widget > div {
-	display: flex;
-	flex-direction: row;
 }
