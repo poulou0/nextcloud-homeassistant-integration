@@ -29,11 +29,19 @@ document.addEventListener('DOMContentLoaded', () => {
 					<span class="slider round"></span>
 				</label>`
 				Object.values(yamlEntities.entities).forEach(entry => {
-					if (!entry.entity.startsWith('light') && !entry.entity.startsWith('switch')) return
-					el.innerHTML += '<div style="display:flex;justify-content: space-between; align-items: center; margin-bottom: 5px">'
-					+ (entry.name ?? entities[entry.entity].attributes.friendly_name)
-					+ checkbox(entry.entity)
-					+ '</div>'
+					if (entry.entity.startsWith('light') || entry.entity.startsWith('switch')) {
+						el.innerHTML += '<div style="display:flex;justify-content: space-between; align-items: center; margin-bottom: 5px">'
+						+ (entry.name ?? entities[entry.entity].attributes.friendly_name)
+						+ checkbox(entry.entity)
+						+ '</div>'
+					} else if (entry.entity.startsWith('sensor')) {
+						// eslint-disable-next-line no-console
+						console.log(entities[entry.entity].state)
+						el.innerHTML += '<div style="display:flex;justify-content: space-between; align-items: center; margin-bottom: 5px">'
+						+ (entry.name ?? entities[entry.entity].attributes.friendly_name)
+						+ '<span>' + entities[entry.entity].state + ' ' + (entities[entry.entity].attributes.unit_of_measurement ?? '') + '</span>'
+						+ '</div>'
+					}
 				})
 			})
 		})()
