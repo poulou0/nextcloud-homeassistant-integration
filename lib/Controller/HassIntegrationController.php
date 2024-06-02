@@ -43,7 +43,7 @@ class HassIntegrationController extends Controller
 		$entityId = $this->request->getParam("entity_id");
 		$pathPart = str_contains($entityId, 'switch') ? 'switch' : 'light';
 		return new DataResponse($this->hassIntegrationService->post("/services/{$pathPart}/turn_on", [
-			"entity_id" => $this->request->getParam("entity_id")
+			"entity_id" => $entityId
 		]));
 	}
 
@@ -57,7 +57,7 @@ class HassIntegrationController extends Controller
 		$entityId = $this->request->getParam("entity_id");
 		$pathPart = str_contains($entityId, 'switch') ? 'switch' : 'light';
 		return new DataResponse($this->hassIntegrationService->post("/services/{$pathPart}/turn_off", [
-			"entity_id" => $this->request->getParam("entity_id")
+			"entity_id" => $entityId
 		]));
 	}
 }

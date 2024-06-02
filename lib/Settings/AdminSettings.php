@@ -5,16 +5,13 @@ use OCA\HassIntegration\AppInfo\Application;
 use OCA\HassIntegration\Sections\HAssAdmin;
 use OCP\AppFramework\Http\TemplateResponse;
 use OCP\IConfig;
-use OCP\IL10N;
 use OCP\Settings\ISettings;
 
 class AdminSettings implements ISettings {
-	private IL10N $l;
 	private IConfig $config;
 
-	public function __construct(IConfig $config, IL10N $l) {
+	public function __construct(IConfig $config) {
 		$this->config = $config;
-		$this->l = $l;
 	}
 
 	/**
@@ -24,8 +21,8 @@ class AdminSettings implements ISettings {
 		return new TemplateResponse(Application::APP_ID, 'admin-settings', [
 			'base_url' => $this->config->getAppValue(Application::APP_ID, 'base_url', ''),
 			'long_lived_access_token' => $this->config->getAppValue(Application::APP_ID, 'long_lived_access_token', ''),
-			'template_widget' => $this->config->getAppValue(Application::APP_ID, 'template_widget', ''),
 			'template_widget_refresh_interval' => $this->config->getAppValue(Application::APP_ID, 'template_widget_refresh_interval', 30),
+			'template_widget' => $this->config->getAppValue(Application::APP_ID, 'template_widget', ''),
 			'yaml_widget' => $this->config->getAppValue(Application::APP_ID, 'yaml_widget', ''),
 		], '');
 	}

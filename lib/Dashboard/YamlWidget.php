@@ -3,6 +3,7 @@
 namespace OCA\HassIntegration\Dashboard;
 
 use OCA\HassIntegration\Service\HassIntegrationService;
+use OCP\AppFramework\Http\EmptyContentSecurityPolicy;
 use OCP\AppFramework\Services\IInitialState;
 use OCP\Dashboard\IAPIWidget;
 use OCP\IL10N;
@@ -30,20 +31,18 @@ class YamlWidget implements IAPIWidget {
 
 	public function getId(): string { return 'hass-yaml-widget'; }
 	public function getTitle(): string { return $this->l10n->t('YAML widget (beta)'); }
-	public function getOrder(): int { return 10; }
+	public function getOrder(): int { return 11; }
 	public function getIconClass(): string { return 'icon-hasswidget'; }
 	public function getUrl(): ?string { return null; }
 
 	public function load(): void
 	{
-		if(class_exists('\\OCP\\AppFramework\\Http\\EmptyContentSecurityPolicy')) {
-			$baseURL = $this->config->getAppValue(Application::APP_ID, 'base_url', '');
-			$manager = \OC::$server->getContentSecurityPolicyManager();
-			$policy = new \OCP\AppFramework\Http\EmptyContentSecurityPolicy();
-			$policy->addAllowedConnectDomain('ws://' . parse_url($baseURL)['host']);
-			$policy->addAllowedConnectDomain('wss://' . parse_url($baseURL)['host']);
-			$manager->addDefaultPolicy($policy);
-		}
+		$baseURL = $this->config->getAppValue(Application::APP_ID, 'base_url', '');
+		$policy = new EmptyContentSecurityPolicy();
+		$policy->addAllowedConnectDomain('ws://' . parse_url($baseURL)['host']);
+		$policy->addAllowedConnectDomain('wss://' . parse_url($baseURL)['host']);
+		$manager = \OC::$server->getContentSecurityPolicyManager();
+		$manager->addDefaultPolicy($policy);
 
 		Util::addScript(Application::APP_ID, Application::APP_ID . '-yamlWidget');
 		Util::addStyle(Application::APP_ID, 'dashboard');

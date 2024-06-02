@@ -12,22 +12,8 @@ document.addEventListener('DOMContentLoaded', function() {
 	document.querySelector('#template_widget').addEventListener('change', inputHandler)
 	document.querySelector('#template_widget_refresh_interval').addEventListener('change', inputHandler)
 	document.querySelector('#yaml_widget').addEventListener('change', inputHandler)
-	const tablinks = document.getElementsByClassName('tablinks')
-	const openTab = function(evt, tabName) {
-		let i
-		const tabcontent = document.getElementsByClassName('tabcontent')
-		for (i = 0; i < tabcontent.length; i++) {
-			tabcontent[i].style.display = 'none'
-		}
-		for (i = 0; i < tablinks.length; i++) {
-			tablinks[i].className = tablinks[i].className.replace(' active', '')
-		}
-		document.getElementById(tabName).style.display = 'block'
-		evt.currentTarget.className += ' active'
-	}
-	for (let i = 0; i < tablinks.length; i++) {
-		tablinks[i].addEventListener('click', function(e) { openTab(e, tablinks[i].dataset.target) }, false)
-	}
+
+	setupTabs()
 })
 
 /**
@@ -45,5 +31,26 @@ const saveSetting = async (key, value) => {
 		showSuccess(`Saved '${key}'!`)
 	} catch (er) {
 		showError(`Error while saving '${key}'`)
+	}
+}
+
+/**
+ * Setup the admin panel tabs.
+ *
+ * @return {void}
+ */
+const setupTabs = () => {
+	const tablinks = document.querySelectorAll('.tablinks')
+	// eslint-disable-next-line no-console
+	console.log(tablinks)
+	const tabcontent = document.querySelectorAll('.tabcontent')
+	const openTab = (evt, tabId) => {
+		tablinks.forEach((link) => link.classList.remove('active'))
+		tabcontent.forEach((content) => { content.style.display = 'none' })
+		document.querySelector(`#${tabId}`).style.display = 'block'
+		evt.currentTarget.classList.add('active')
+	}
+	for (let i = 0; i < tablinks.length; i++) {
+		tablinks[i].addEventListener('click', function(e) { openTab(e, tablinks[i].dataset.target) }, false)
 	}
 }
