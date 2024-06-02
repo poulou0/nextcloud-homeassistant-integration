@@ -37,9 +37,13 @@
 
 .tabcontent {
 	display: none;
-	padding: 20px
+	padding: 20px 0
 }
 
 .tabcontent#jinja2_widget_tab {
 	display: block;
+}
+
+.tabcontent a {
+	color: var(--color-primary-element)
 }
