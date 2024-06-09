@@ -18973,7 +18973,7 @@ document.addEventListener('DOMContentLoaded', () => {
           return;
         }
         if (entry.type === 'section') {
-          el.innerHTML += `<div class="entity-line type-section">${entry.label}</div>`;
+          el.innerHTML += `<hr style="width: 100%"><div class="entity-line type-section">${entry.label}</div>`;
           return;
         }
         if (entry.type === 'weblink') {

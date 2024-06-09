@@ -10,6 +10,7 @@
 
 #integration_homeassistant textarea {
 	min-height: 120px;
+	font-family: Consolas, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
 }
 
 #integration_homeassistant .widget-section textarea {

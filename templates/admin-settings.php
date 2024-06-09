@@ -35,7 +35,8 @@ style(Application::APP_ID, 'admin-settings');
 			<div><?php p($l->t('Template widget refresh interval (in seconds)')); ?></div>
 			<input id="template_widget_refresh_interval" value="<?php p($_['template_widget_refresh_interval']) ?>"
 				placeholder="0" type="number" min="0" step="1" />
-			<textarea id="template_widget" placeholder="Add your Jinja2 template here.."><?php p($_['template_widget']) ?></textarea>
+			<textarea id="template_widget" placeholder="Add your Jinja2 template here.."
+				spellcheck="false"><?php p($_['template_widget']) ?></textarea>
 			<p>Templates are rendered using the Jinja2 template engine with some Home Assistant specific extensions.</p>
 			<ul>
 				<li><a target="_blank" rel="noreferrer"
@@ -46,7 +47,8 @@ style(Application::APP_ID, 'admin-settings');
 			</ul>
 		</div>
 		<div id="yaml_widget_tab" class="tabcontent">
-			<textarea id="yaml_widget" placeholder="Add your entites widget YAML here.."><?php p($_['yaml_widget']) ?></textarea>
+			<textarea id="yaml_widget" placeholder="Add your entites widget YAML here.."
+				spellcheck="false"><?php p($_['yaml_widget']) ?></textarea>
 			<ul>
 				<li>Home Assistant <a target="_blank" rel="noreferrer"
 						href="https://www.home-assistant.io/dashboards/entities/">Entities card</a> very basic card
@@ -54,7 +56,8 @@ style(Application::APP_ID, 'admin-settings');
 					<ol>
 						<li>Entities like "light", "switch" and "media" tested and should work</li>
 						<li>Every entity row has to have the key "entity" explicitly set</li>
-						<li>Only the "entities" variable is read for now ("title", "header", "footer" etc have no impact)</li>
+						<li>Only the "entities" variable is read for now ("title", "header", "footer" etc have no
+							impact)</li>
 						<li>From <a target="_blank" rel="noreferrer"
 								href="https://www.home-assistant.io/dashboards/entities/#other-special-rows">special
 								rows</a> only "divider", "section" and "weblink" work for now</li>

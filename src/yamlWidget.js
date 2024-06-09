@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
 					el.innerHTML += '<div class="entity-line type-divider"><hr style="width: 100%"></div>'
 					return
 				} if (entry.type === 'section') {
-					el.innerHTML += `<div class="entity-line type-section">${entry.label}</div>`
+					el.innerHTML += `<hr style="width: 100%"><div class="entity-line type-section">${entry.label}</div>`
 					return
 				} if (entry.type === 'weblink') {
 					el.innerHTML += `<div class="entity-line type-weblink"><a target="_blank" href="${entry.url}">${entry.name}</a</div>`
