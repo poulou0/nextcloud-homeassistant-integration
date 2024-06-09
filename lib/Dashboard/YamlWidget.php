@@ -11,7 +11,8 @@ use OCA\HassIntegration\AppInfo\Application;
 use OCP\IConfig;
 use OCP\Util;
 
-class YamlWidget implements IAPIWidget {
+class YamlWidget implements IAPIWidget
+{
 	private $l10n;
 	private $hassIntegrationService;
 	private IConfig $config;
@@ -29,18 +30,33 @@ class YamlWidget implements IAPIWidget {
 		$this->initialStateService = $initialStateService;
 	}
 
-	public function getId(): string { return 'hass-yaml-widget'; }
-	public function getTitle(): string { return $this->l10n->t('YAML widget (beta)'); }
-	public function getOrder(): int { return 11; }
-	public function getIconClass(): string { return 'icon-hasswidget'; }
-	public function getUrl(): ?string { return null; }
+	public function getId(): string
+	{
+		return 'hass-yaml-widget';
+	}
+	public function getTitle(): string
+	{
+		return $this->l10n->t('YAML widget (beta)');
+	}
+	public function getOrder(): int
+	{
+		return 11;
+	}
+	public function getIconClass(): string
+	{
+		return 'icon-hasswidget';
+	}
+	public function getUrl(): ?string
+	{
+		return null;
+	}
 
 	public function load(): void
 	{
 		$baseURL = $this->config->getAppValue(Application::APP_ID, 'base_url', '');
 		$policy = new EmptyContentSecurityPolicy();
-		$policy->addAllowedConnectDomain('ws://' . parse_url($baseURL)['host']);
-		$policy->addAllowedConnectDomain('wss://' . parse_url($baseURL)['host']);
+		$policy->addAllowedConnectDomain('ws://' . parse_url($baseURL)['host'] . ':' . parse_url($baseURL)['port']);
+		$policy->addAllowedConnectDomain('wss://' . parse_url($baseURL)['host'] . ':' . parse_url($baseURL)['port']);
 		$manager = \OC::$server->getContentSecurityPolicyManager();
 		$manager->addDefaultPolicy($policy);
 
@@ -50,7 +66,8 @@ class YamlWidget implements IAPIWidget {
 		$this->initialStateService->provideInitialState('dashboard-yaml-widget', $this->getItems()[0]);
 	}
 
-	public function getItems(string $userId = null, ?string $since = null, int $limit = 7): array {
+	public function getItems(string $userId = null, ?string $since = null, int $limit = 7): array
+	{
 		return $this->hassIntegrationService->getYamlWidget();
 	}
 }
