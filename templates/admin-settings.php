@@ -35,7 +35,7 @@ style(Application::APP_ID, 'admin-settings');
 			<div><?php p($l->t('Template widget refresh interval (in seconds)')); ?></div>
 			<input id="template_widget_refresh_interval" value="<?php p($_['template_widget_refresh_interval']) ?>"
 				placeholder="0" type="number" min="0" step="1" />
-			<textarea id="template_widget"><?php p($_['template_widget']) ?></textarea>
+			<textarea id="template_widget" placeholder="Add your Jinja2 template here.."><?php p($_['template_widget']) ?></textarea>
 			<p>Templates are rendered using the Jinja2 template engine with some Home Assistant specific extensions.</p>
 			<ul>
 				<li><a target="_blank" rel="noreferrer"
@@ -46,7 +46,7 @@ style(Application::APP_ID, 'admin-settings');
 			</ul>
 		</div>
 		<div id="yaml_widget_tab" class="tabcontent">
-			<textarea id="yaml_widget"><?php p($_['yaml_widget']) ?></textarea>
+			<textarea id="yaml_widget" placeholder="Add your entites widget YAML here.."><?php p($_['yaml_widget']) ?></textarea>
 			<ul>
 				<li>Home Assistant <a target="_blank" rel="noreferrer"
 						href="https://www.home-assistant.io/dashboards/entities/">Entities card</a> very basic card

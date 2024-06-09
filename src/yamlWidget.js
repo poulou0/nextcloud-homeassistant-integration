@@ -66,7 +66,9 @@ document.addEventListener('DOMContentLoaded', () => {
 					})
 				}))
 		} catch (e) {
-			el.innerHTML = JSON.stringify(e)
+			el.innerHTML = Object.keys(e).length
+				? JSON.stringify(e)
+				: 'Nothing to show :))<br><br>Go to "Administrator settings" > "Home assistant integration" to get started.'
 		}
 	})
 })

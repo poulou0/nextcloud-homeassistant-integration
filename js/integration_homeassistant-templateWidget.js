@@ -8461,11 +8461,13 @@ document.addEventListener('DOMContentLoaded', () => {
     widget
   }) => {
     el.innerHTML = nl2br((0,_nextcloud_initial_state__WEBPACK_IMPORTED_MODULE_0__.loadState)('integration_homeassistant', 'dashboard-template-widget'));
+    if (!el.innerHTML) el.innerHTML = emptyMsg();
     el.parentElement.style.overflow = 'auto';
     const refreshInterval = parseInt((0,_nextcloud_initial_state__WEBPACK_IMPORTED_MODULE_0__.loadState)('integration_homeassistant', 'dashboard-template-widget-refresh-interval'));
     if (refreshInterval > 0) {
       setInterval(async () => {
         el.innerHTML = nl2br((await _nextcloud_axios__WEBPACK_IMPORTED_MODULE_1__["default"].post((0,_nextcloud_router__WEBPACK_IMPORTED_MODULE_2__.generateUrl)('/apps/integration_homeassistant/template'))).data[0]);
+        if (!el.innerHTML) el.innerHTML = emptyMsg();
       }, refreshInterval * 1000);
     }
   });
@@ -8477,6 +8479,13 @@ document.addEventListener('DOMContentLoaded', () => {
  */
 function nl2br(s) {
   return s.toString().replace(/(?:\r\n|\r|\n)/g, '<br>');
+}
+
+/**
+ * Prints guide
+ */
+function emptyMsg() {
+  return 'Nothing to show :))<br><br>Go to "Administrator settings" > "Home assistant integration" to get started.';
 }
 })();
 
