@@ -18960,45 +18960,52 @@ document.addEventListener('DOMContentLoaded', () => {
       const yamlEntities = yaml__WEBPACK_IMPORTED_MODULE_1__["default"].parse((0,_nextcloud_initial_state__WEBPACK_IMPORTED_MODULE_0__.loadState)('integration_homeassistant', 'dashboard-yaml-widget'));
       if (yamlEntities.type !== 'entities') {
         el.innerHTML = 'YAML is not of "type: entities"';
-        return;
       }
+      const checkboxHTML = entityId => {
+        return `<label class="switch"><input type="checkbox" data-entity-id="${entityId}"><span class="slider round"></span></label>`;
+      };
+      const sensorHTML = entityId => {
+        return `<span data-entity-id="${entityId}"> - &nbsp; &nbsp;</span>`;
+      };
+      Object.values(yamlEntities.entities).forEach(entry => {
+        if (entry.type === 'divider') {
+          el.innerHTML += '<div class="entity-line type-divider"><hr style="width: 100%"></div>';
+          return;
+        }
+        if (entry.type === 'section') {
+          el.innerHTML += `<div class="entity-line type-section">${entry.label}</div>`;
+          return;
+        }
+        if (entry.type === 'weblink') {
+          el.innerHTML += `<div class="entity-line type-weblink"><a target="_blank" href="${entry.url}">${entry.name}</a</div>`;
+        } else if (entry.entity) {
+          const isLightOrSensor = entry.entity.startsWith('light') || entry.entity.startsWith('switch');
+          const name = entry.name ?? entry.entity;
+          el.innerHTML += `<div class="entity-line entity">
+						<div><p data-init-name="${entry.name ?? ''}" title="${name}">${name}</p></div>
+						<div>${isLightOrSensor ? checkboxHTML(entry.entity) : sensorHTML(entry.entity)}</div>
+					</div>`;
+        }
+      });
       const auth = (0,home_assistant_js_websocket__WEBPACK_IMPORTED_MODULE_4__.createLongLivedTokenAuth)((0,_nextcloud_initial_state__WEBPACK_IMPORTED_MODULE_0__.loadState)('integration_homeassistant', 'dashboard-base-url'), (0,_nextcloud_initial_state__WEBPACK_IMPORTED_MODULE_0__.loadState)('integration_homeassistant', 'dashboard-long-lived-access-token'));
       (0,home_assistant_js_websocket__WEBPACK_IMPORTED_MODULE_5__.createConnection)({
         auth
       }).then(connection => (0,home_assistant_js_websocket__WEBPACK_IMPORTED_MODULE_6__.subscribeEntities)(connection, entities => {
-        el.innerHTML = '';
-        const checkboxHTML = entityId => {
-          const isUnavailable = entities[entityId].state === 'unavailable';
-          const isOn = entities[entityId].state === 'on';
-          return `<div><label class="switch" for="${entityId}">
-						<input type="checkbox" id="${entityId}" data-entity-id="${entityId}" ${isUnavailable ? 'disabled' : ''} ${isOn ? 'checked' : ''}>
-						<span class="slider round"></span>
-					</label></div>`;
-        };
-        const sensorHTML = entityId => {
-          return '<div><p>' + entities[entityId].state + ' ' + (entities[entityId].attributes.unit_of_measurement ?? '') + '</p></div>';
-        };
-        Object.values(yamlEntities.entities).forEach(entry => {
-          if (entry.type === 'divider') {
-            el.innerHTML += '<div class="entity-line type-divider"><hr style="width: 100%"></div>';
-            return;
+        document.querySelectorAll('[data-entity-id]').forEach(element => {
+          const entityId = element.dataset.entityId;
+          const entity = entities[entityId];
+          if (element.tagName === 'INPUT' && element.getAttribute('type') === 'checkbox') {
+            element.checked = entity?.state === 'on';
+            element.disabled = entity?.state === 'unavailable' || !entity;
+          } else {
+            element.innerHTML = entity?.state + ' ' + (entity?.attributes?.unit_of_measurement ?? '');
           }
-          if (entry.type === 'section') {
-            el.innerHTML += `<div class="entity-line type-section">${entry.label}</div>`;
-            return;
+          const nameP = element.closest('div.entity-line').querySelector('p');
+          const name = nameP.dataset.initName || entity?.attributes?.friendly_name;
+          if (name !== nameP.innerHTML) {
+            nameP.innerHTML = name;
+            nameP.setAttribute('title', name);
           }
-          if (entry.type === 'weblink') {
-            el.innerHTML += `<div class="entity-line type-weblink"><a target="_blank" href="${entry.url}">${entry.name}</a</div>`;
-            return;
-          } else if (!entry.entity) {
-            return;
-          }
-          const isLightOrSensor = entry.entity.startsWith('light') || entry.entity.startsWith('switch');
-          const name = entry.name ?? entities[entry.entity].attributes.friendly_name;
-          el.innerHTML += `<div class="entity-line entity">
-						<div><p title="${name}">${name}</p></div>
-						${isLightOrSensor ? checkboxHTML(entry.entity) : sensorHTML(entry.entity)}
-					</div>`;
         });
       }));
     } catch (e) {
