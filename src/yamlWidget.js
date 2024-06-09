@@ -41,35 +41,36 @@ document.addEventListener('DOMContentLoaded', () => {
 					</div>`
 				 }
 			})
-			const auth = createLongLivedTokenAuth(
-				loadState('integration_homeassistant', 'dashboard-base-url'),
-				loadState('integration_homeassistant', 'dashboard-long-lived-access-token'),
-			)
-			createConnection({ auth })
-				.then((connection) => subscribeEntities(connection, (entities) => {
-					document.querySelectorAll('[data-entity-id]').forEach(element => {
-						const entityId = element.dataset.entityId
-						const entity = entities[entityId]
-						if (element.tagName === 'INPUT' && element.getAttribute('type') === 'checkbox') {
-							element.checked = entity?.state === 'on'
-							element.disabled = entity?.state === 'unavailable' || !entity
-						} else {
-							element.innerHTML = entity?.state + ' ' + (entity?.attributes?.unit_of_measurement ?? '')
-						}
-
-						const nameP = element.closest('div.entity-line').querySelector('p')
-						const name = nameP.dataset.initName || entity?.attributes?.friendly_name
-						if (name !== nameP.innerHTML) {
-							nameP.innerHTML = name
-							nameP.setAttribute('title', name)
-						}
-					})
-				}))
 		} catch (e) {
 			el.innerHTML = Object.keys(e).length
 				? JSON.stringify(e)
 				: 'Nothing to show :))<br><br>Go to "Administrator settings" > "Home assistant integration" to get started.'
 		}
+		const auth = createLongLivedTokenAuth(
+			loadState('integration_homeassistant', 'dashboard-base-url'),
+			loadState('integration_homeassistant', 'dashboard-long-lived-access-token'),
+		)
+		createConnection({ auth })
+			.then((connection) => subscribeEntities(connection, (entities) => {
+				document.querySelectorAll('[data-entity-id]').forEach(element => {
+					const entityId = element.dataset.entityId
+					const entity = entities[entityId]
+					if (element.tagName === 'INPUT' && element.getAttribute('type') === 'checkbox') {
+						element.checked = entity?.state === 'on'
+						element.disabled = entity?.state === 'unavailable' || !entity
+					} else {
+						element.innerHTML = entity?.state + ' ' + (entity?.attributes?.unit_of_measurement ?? '')
+					}
+
+					const nameP = element.closest('div.entity-line').querySelector('p')
+					const name = nameP.dataset.initName || entity?.attributes?.friendly_name
+					if (name !== nameP.innerHTML) {
+						nameP.innerHTML = name
+						nameP.setAttribute('title', name)
+					}
+				})
+			})).catch(() => { el.innerHTML = 'Cannot connect to websocket server!<br><br>' + el.innerHTML })
+
 	})
 })
 

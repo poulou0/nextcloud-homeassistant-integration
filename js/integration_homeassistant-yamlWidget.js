@@ -18987,30 +18987,32 @@ document.addEventListener('DOMContentLoaded', () => {
 					</div>`;
         }
       });
-      const auth = (0,home_assistant_js_websocket__WEBPACK_IMPORTED_MODULE_4__.createLongLivedTokenAuth)((0,_nextcloud_initial_state__WEBPACK_IMPORTED_MODULE_0__.loadState)('integration_homeassistant', 'dashboard-base-url'), (0,_nextcloud_initial_state__WEBPACK_IMPORTED_MODULE_0__.loadState)('integration_homeassistant', 'dashboard-long-lived-access-token'));
-      (0,home_assistant_js_websocket__WEBPACK_IMPORTED_MODULE_5__.createConnection)({
-        auth
-      }).then(connection => (0,home_assistant_js_websocket__WEBPACK_IMPORTED_MODULE_6__.subscribeEntities)(connection, entities => {
-        document.querySelectorAll('[data-entity-id]').forEach(element => {
-          const entityId = element.dataset.entityId;
-          const entity = entities[entityId];
-          if (element.tagName === 'INPUT' && element.getAttribute('type') === 'checkbox') {
-            element.checked = entity?.state === 'on';
-            element.disabled = entity?.state === 'unavailable' || !entity;
-          } else {
-            element.innerHTML = entity?.state + ' ' + (entity?.attributes?.unit_of_measurement ?? '');
-          }
-          const nameP = element.closest('div.entity-line').querySelector('p');
-          const name = nameP.dataset.initName || entity?.attributes?.friendly_name;
-          if (name !== nameP.innerHTML) {
-            nameP.innerHTML = name;
-            nameP.setAttribute('title', name);
-          }
-        });
-      }));
     } catch (e) {
       el.innerHTML = Object.keys(e).length ? JSON.stringify(e) : 'Nothing to show :))<br><br>Go to "Administrator settings" > "Home assistant integration" to get started.';
     }
+    const auth = (0,home_assistant_js_websocket__WEBPACK_IMPORTED_MODULE_4__.createLongLivedTokenAuth)((0,_nextcloud_initial_state__WEBPACK_IMPORTED_MODULE_0__.loadState)('integration_homeassistant', 'dashboard-base-url'), (0,_nextcloud_initial_state__WEBPACK_IMPORTED_MODULE_0__.loadState)('integration_homeassistant', 'dashboard-long-lived-access-token'));
+    (0,home_assistant_js_websocket__WEBPACK_IMPORTED_MODULE_5__.createConnection)({
+      auth
+    }).then(connection => (0,home_assistant_js_websocket__WEBPACK_IMPORTED_MODULE_6__.subscribeEntities)(connection, entities => {
+      document.querySelectorAll('[data-entity-id]').forEach(element => {
+        const entityId = element.dataset.entityId;
+        const entity = entities[entityId];
+        if (element.tagName === 'INPUT' && element.getAttribute('type') === 'checkbox') {
+          element.checked = entity?.state === 'on';
+          element.disabled = entity?.state === 'unavailable' || !entity;
+        } else {
+          element.innerHTML = entity?.state + ' ' + (entity?.attributes?.unit_of_measurement ?? '');
+        }
+        const nameP = element.closest('div.entity-line').querySelector('p');
+        const name = nameP.dataset.initName || entity?.attributes?.friendly_name;
+        if (name !== nameP.innerHTML) {
+          nameP.innerHTML = name;
+          nameP.setAttribute('title', name);
+        }
+      });
+    })).catch(() => {
+      el.innerHTML = 'Cannot connect to websocket server!<br><br>' + el.innerHTML;
+    });
   });
 });
 document.addEventListener('click', async e => {
