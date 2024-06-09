@@ -54,7 +54,7 @@ style(Application::APP_ID, 'admin-settings');
 					<ol>
 						<li>Entities like "light", "switch" and "media" tested and should work</li>
 						<li>Every entity row has to have the key "entity" explicitly set</li>
-						<li>"title", "header", "footer" and "show_header_toggle" have no impact</li>
+						<li>Only the "entities" variable is read for now ("title", "header", "footer" etc have no impact)</li>
 						<li>From <a target="_blank" rel="noreferrer"
 								href="https://www.home-assistant.io/dashboards/entities/#other-special-rows">special
 								rows</a> only "divider", "section" and "weblink" work for now</li>
