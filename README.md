@@ -3,10 +3,14 @@ SPDX-FileCopyrightText: Poulou <poulou.0@gmail.com>
 SPDX-License-Identifier: CC0-1.0
 -->
 
-![Home Assistant Integration, dasboard widget screenshot](img/screenshot1.jpg)
+![Home Assistant Integration, dasboard widget screenshot](img/screenshot2.jpg)
 
 # Home Assistant Integration
-Simple home assistant widgets for you nextcloud dashboard.
+Home assistant widgets for your nextcloud dashboard.
+
+| Jinja2 template widget                                                                   | YAML widget                                                               |
+| ---------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| [![Jinja2 template widget](img/template_widget-video.jpg)](https://youtu.be/XE_LRTAfVjA) | [![YAML widget](img/yaml_widget-video.jpg)](https://youtu.be/PjWH53rqYe8) |
 
 ## Development environment
 

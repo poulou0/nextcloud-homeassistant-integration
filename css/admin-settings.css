@@ -1,3 +1,7 @@
+#integration_homeassistant.section h2 {
+	margin-bottom: 0;
+}
+
 #integration_homeassistant label {
 	clear: both;
 }
@@ -45,6 +49,6 @@
 	display: block;
 }
 
-.tabcontent a {
+#integration_homeassistant a {
 	color: var(--color-primary-element)
 }
