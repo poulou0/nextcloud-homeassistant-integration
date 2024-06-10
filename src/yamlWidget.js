@@ -46,8 +46,9 @@ document.addEventListener('DOMContentLoaded', () => {
 				? JSON.stringify(e)
 				: 'Nothing to show :))<br><br>Go to "Administrator settings" > "Home assistant integration" to get started.'
 		}
+		const url = new URL(loadState('integration_homeassistant', 'dashboard-base-url'))
 		const auth = createLongLivedTokenAuth(
-			loadState('integration_homeassistant', 'dashboard-base-url'),
+			`${url.protocol}//${url.host}`,
 			loadState('integration_homeassistant', 'dashboard-long-lived-access-token'),
 		)
 		createConnection({ auth })
