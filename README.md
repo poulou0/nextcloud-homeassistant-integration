@@ -3,10 +3,10 @@ SPDX-FileCopyrightText: Poulou <poulou.0@gmail.com>
 SPDX-License-Identifier: CC0-1.0
 -->
 
-![Home Assistant Integration, dasboard widget screenshot](img/screenshot1.jpg)
+![Home Assistant Integration, dasboard widget screenshot](img/screenshot2.jpg)
 
 # Home Assistant Integration
-Simple home assistant widgets for you nextcloud dashboard.
+Home assistant widgets for you nextcloud dashboard.
 
 ## Development environment
 

@@ -10,6 +10,9 @@ style(Application::APP_ID, 'admin-settings');
 
 <div id="integration_homeassistant" class="section">
 	<h2><?php p($l->t('Home assistant integration')); ?></h2>
+	<div><a href="https://apps.nextcloud.com/apps/integration_homeassistant" target="_blank"
+			rel="noreferrer">Documentation and tutorials</a>
+	</div>
 	<div class="section">
 		<div><?php p($l->t('Base url')); ?></div>
 		<input id="base_url" value="<?php p($_['base_url']) ?>" placeholder="https://..., http://..." />
@@ -44,6 +47,9 @@ style(Application::APP_ID, 'admin-settings');
 				</li>
 				<li>Home Assistant <a target="_blank" rel="noreferrer"
 						href="https://www.home-assistant.io/docs/configuration/templating/">Templating</a></li>
+				<li>More documentation and tutorials on the <a
+						href="https://apps.nextcloud.com/apps/integration_homeassistant" target="_blank"
+						rel="noreferrer">app's page</a></li>
 			</ul>
 		</div>
 		<div id="yaml_widget_tab" class="tabcontent">
@@ -61,6 +67,9 @@ style(Application::APP_ID, 'admin-settings');
 						<li>From <a target="_blank" rel="noreferrer"
 								href="https://www.home-assistant.io/dashboards/entities/#other-special-rows">special
 								rows</a> only "divider", "section" and "weblink" work for now</li>
+						<li>More documentation and tutorials on the <a
+								href="https://apps.nextcloud.com/apps/integration_homeassistant" target="_blank"
+								rel="noreferrer">app's page</a></li>
 					</ol>
 				</li>
 			</ul>
