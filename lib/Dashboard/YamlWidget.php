@@ -56,8 +56,10 @@ class YamlWidget implements IAPIWidget
 		$baseURL = $this->config->getAppValue(Application::APP_ID, 'base_url', '');
 		$policy = new EmptyContentSecurityPolicy();
 		$url = parse_url($baseURL);
-		$policy->addAllowedConnectDomain('ws://' . $url['host'] . (isset($url['port']) ? ":$url[port]" : ''));
-		$policy->addAllowedConnectDomain('wss://' . $url['host'] . (isset($url['port']) ? ":$url[port]" : ''));
+		if ($url) {
+			$policy->addAllowedConnectDomain('ws://' . $url['host'] . (isset($url['port']) ? ":$url[port]" : ''));
+			$policy->addAllowedConnectDomain('wss://' . $url['host'] . (isset($url['port']) ? ":$url[port]" : ''));
+		}
 		$manager = \OC::$server->getContentSecurityPolicyManager();
 		$manager->addDefaultPolicy($policy);
 
