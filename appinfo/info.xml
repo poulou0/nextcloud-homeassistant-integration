@@ -23,7 +23,7 @@ Video examples can be found here:
     <bugs>https://github.com/poulou0/nextcloud-homeassistant-integration/issues</bugs>
 	<screenshot>https://github.com/poulou0/nextcloud-homeassistant-integration/raw/main/img/screenshot2.jpg</screenshot>
     <dependencies>
-        <nextcloud min-version="24" max-version="30"/>
+        <nextcloud min-version="24" max-version="31"/>
     </dependencies>
 	<settings>
 		<admin>OCA\HassIntegration\Settings\AdminSettings</admin>
