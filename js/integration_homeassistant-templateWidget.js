@@ -1,2 +1,6406 @@
-(()=>{var e={432:(e,t)=>{"use strict";function r(e,t,r){var n;return(t="symbol"==typeof(n=function(e,t){if("object"!=typeof e||!e)return e;var r=e[Symbol.toPrimitive];if(void 0!==r){var n=r.call(e,t||"default");if("object"!=typeof n)return n;throw new TypeError("@@toPrimitive must return a primitive value.")}return("string"===t?String:Number)(e)}(t,"string"))?n:n+"")in e?Object.defineProperty(e,t,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[t]=r,e}Object.defineProperty(t,"__esModule",{value:!0}),t.default=void 0;class n{constructor(e,t,o){r(this,"scope",void 0),r(this,"wrapped",void 0),this.scope="".concat(o?n.GLOBAL_SCOPE_PERSISTENT:n.GLOBAL_SCOPE_VOLATILE,"_").concat(btoa(e),"_"),this.wrapped=t}scopeKey(e){return"".concat(this.scope).concat(e)}setItem(e,t){this.wrapped.setItem(this.scopeKey(e),t)}getItem(e){return this.wrapped.getItem(this.scopeKey(e))}removeItem(e){this.wrapped.removeItem(this.scopeKey(e))}clear(){Object.keys(this.wrapped).filter((e=>e.startsWith(this.scope))).map(this.wrapped.removeItem.bind(this.wrapped))}}t.default=n,r(n,"GLOBAL_SCOPE_VOLATILE","nextcloud_vol"),r(n,"GLOBAL_SCOPE_PERSISTENT","nextcloud_per")},2322:(e,t,r)=>{var n=r(5606);const o="object"==typeof n&&n.env&&n.env.NODE_DEBUG&&/\bsemver\b/i.test(n.env.NODE_DEBUG)?(...e)=>console.error("SEMVER",...e):()=>{};e.exports=o},3229:e=>{const t=/^[0-9]+$/,r=(e,r)=>{const n=t.test(e),o=t.test(r);return n&&o&&(e=+e,r=+r),e===r?0:n&&!o?-1:o&&!n?1:e<r?-1:1};e.exports={compareIdentifiers:r,rcompareIdentifiers:(e,t)=>r(t,e)}},5208:(e,t,r)=>{const{MAX_SAFE_COMPONENT_LENGTH:n,MAX_SAFE_BUILD_LENGTH:o,MAX_LENGTH:s}=r(6692),i=r(2322),a=(t=e.exports={}).re=[],c=t.safeRe=[],l=t.src=[],u=t.safeSrc=[],d=t.t={};let f=0;const h="[a-zA-Z0-9-]",p=[["\\s",1],["\\d",s],[h,o]],E=(e,t,r)=>{const n=(e=>{for(const[t,r]of p)e=e.split(`${t}*`).join(`${t}{0,${r}}`).split(`${t}+`).join(`${t}{1,${r}}`);return e})(t),o=f++;i(e,o,t),d[e]=o,l[o]=t,u[o]=n,a[o]=new RegExp(t,r?"g":void 0),c[o]=new RegExp(n,r?"g":void 0)};E("NUMERICIDENTIFIER","0|[1-9]\\d*"),E("NUMERICIDENTIFIERLOOSE","\\d+"),E("NONNUMERICIDENTIFIER",`\\d*[a-zA-Z-]${h}*`),E("MAINVERSION",`(${l[d.NUMERICIDENTIFIER]})\\.(${l[d.NUMERICIDENTIFIER]})\\.(${l[d.NUMERICIDENTIFIER]})`),E("MAINVERSIONLOOSE",`(${l[d.NUMERICIDENTIFIERLOOSE]})\\.(${l[d.NUMERICIDENTIFIERLOOSE]})\\.(${l[d.NUMERICIDENTIFIERLOOSE]})`),E("PRERELEASEIDENTIFIER",`(?:${l[d.NUMERICIDENTIFIER]}|${l[d.NONNUMERICIDENTIFIER]})`),E("PRERELEASEIDENTIFIERLOOSE",`(?:${l[d.NUMERICIDENTIFIERLOOSE]}|${l[d.NONNUMERICIDENTIFIER]})`),E("PRERELEASE",`(?:-(${l[d.PRERELEASEIDENTIFIER]}(?:\\.${l[d.PRERELEASEIDENTIFIER]})*))`),E("PRERELEASELOOSE",`(?:-?(${l[d.PRERELEASEIDENTIFIERLOOSE]}(?:\\.${l[d.PRERELEASEIDENTIFIERLOOSE]})*))`),E("BUILDIDENTIFIER",`${h}+`),E("BUILD",`(?:\\+(${l[d.BUILDIDENTIFIER]}(?:\\.${l[d.BUILDIDENTIFIER]})*))`),E("FULLPLAIN",`v?${l[d.MAINVERSION]}${l[d.PRERELEASE]}?${l[d.BUILD]}?`),E("FULL",`^${l[d.FULLPLAIN]}$`),E("LOOSEPLAIN",`[v=\\s]*${l[d.MAINVERSIONLOOSE]}${l[d.PRERELEASELOOSE]}?${l[d.BUILD]}?`),E("LOOSE",`^${l[d.LOOSEPLAIN]}$`),E("GTLT","((?:<|>)?=?)"),E("XRANGEIDENTIFIERLOOSE",`${l[d.NUMERICIDENTIFIERLOOSE]}|x|X|\\*`),E("XRANGEIDENTIFIER",`${l[d.NUMERICIDENTIFIER]}|x|X|\\*`),E("XRANGEPLAIN",`[v=\\s]*(${l[d.XRANGEIDENTIFIER]})(?:\\.(${l[d.XRANGEIDENTIFIER]})(?:\\.(${l[d.XRANGEIDENTIFIER]})(?:${l[d.PRERELEASE]})?${l[d.BUILD]}?)?)?`),E("XRANGEPLAINLOOSE",`[v=\\s]*(${l[d.XRANGEIDENTIFIERLOOSE]})(?:\\.(${l[d.XRANGEIDENTIFIERLOOSE]})(?:\\.(${l[d.XRANGEIDENTIFIERLOOSE]})(?:${l[d.PRERELEASELOOSE]})?${l[d.BUILD]}?)?)?`),E("XRANGE",`^${l[d.GTLT]}\\s*${l[d.XRANGEPLAIN]}$`),E("XRANGELOOSE",`^${l[d.GTLT]}\\s*${l[d.XRANGEPLAINLOOSE]}$`),E("COERCEPLAIN",`(^|[^\\d])(\\d{1,${n}})(?:\\.(\\d{1,${n}}))?(?:\\.(\\d{1,${n}}))?`),E("COERCE",`${l[d.COERCEPLAIN]}(?:$|[^\\d])`),E("COERCEFULL",l[d.COERCEPLAIN]+`(?:${l[d.PRERELEASE]})?`+`(?:${l[d.BUILD]})?(?:$|[^\\d])`),E("COERCERTL",l[d.COERCE],!0),E("COERCERTLFULL",l[d.COERCEFULL],!0),E("LONETILDE","(?:~>?)"),E("TILDETRIM",`(\\s*)${l[d.LONETILDE]}\\s+`,!0),t.tildeTrimReplace="$1~",E("TILDE",`^${l[d.LONETILDE]}${l[d.XRANGEPLAIN]}$`),E("TILDELOOSE",`^${l[d.LONETILDE]}${l[d.XRANGEPLAINLOOSE]}$`),E("LONECARET","(?:\\^)"),E("CARETTRIM",`(\\s*)${l[d.LONECARET]}\\s+`,!0),t.caretTrimReplace="$1^",E("CARET",`^${l[d.LONECARET]}${l[d.XRANGEPLAIN]}$`),E("CARETLOOSE",`^${l[d.LONECARET]}${l[d.XRANGEPLAINLOOSE]}$`),E("COMPARATORLOOSE",`^${l[d.GTLT]}\\s*(${l[d.LOOSEPLAIN]})$|^$`),E("COMPARATOR",`^${l[d.GTLT]}\\s*(${l[d.FULLPLAIN]})$|^$`),E("COMPARATORTRIM",`(\\s*)${l[d.GTLT]}\\s*(${l[d.LOOSEPLAIN]}|${l[d.XRANGEPLAIN]})`,!0),t.comparatorTrimReplace="$1$2$3",E("HYPHENRANGE",`^\\s*(${l[d.XRANGEPLAIN]})\\s+-\\s+(${l[d.XRANGEPLAIN]})\\s*$`),E("HYPHENRANGELOOSE",`^\\s*(${l[d.XRANGEPLAINLOOSE]})\\s+-\\s+(${l[d.XRANGEPLAINLOOSE]})\\s*$`),E("STAR","(<|>)?=?\\s*\\*"),E("GTE0","^\\s*>=\\s*0\\.0\\.0\\s*$"),E("GTE0PRE","^\\s*>=\\s*0\\.0\\.0-0\\s*$")},5606:e=>{var t,r,n=e.exports={};function o(){throw new Error("setTimeout has not been defined")}function s(){throw new Error("clearTimeout has not been defined")}function i(e){if(t===setTimeout)return setTimeout(e,0);if((t===o||!t)&&setTimeout)return t=setTimeout,setTimeout(e,0);try{return t(e,0)}catch(r){try{return t.call(null,e,0)}catch(r){return t.call(this,e,0)}}}!function(){try{t="function"==typeof setTimeout?setTimeout:o}catch(e){t=o}try{r="function"==typeof clearTimeout?clearTimeout:s}catch(e){r=s}}();var a,c=[],l=!1,u=-1;function d(){l&&a&&(l=!1,a.length?c=a.concat(c):u=-1,c.length&&f())}function f(){if(!l){var e=i(d);l=!0;for(var t=c.length;t;){for(a=c,c=[];++u<t;)a&&a[u].run();u=-1,t=c.length}a=null,l=!1,function(e){if(r===clearTimeout)return clearTimeout(e);if((r===s||!r)&&clearTimeout)return r=clearTimeout,clearTimeout(e);try{return r(e)}catch(t){try{return r.call(null,e)}catch(t){return r.call(this,e)}}}(e)}}function h(e,t){this.fun=e,this.array=t}function p(){}n.nextTick=function(e){var t=new Array(arguments.length-1);if(arguments.length>1)for(var r=1;r<arguments.length;r++)t[r-1]=arguments[r];c.push(new h(e,t)),1!==c.length||l||i(f)},h.prototype.run=function(){this.fun.apply(null,this.array)},n.title="browser",n.browser=!0,n.env={},n.argv=[],n.version="",n.versions={},n.on=p,n.addListener=p,n.once=p,n.off=p,n.removeListener=p,n.removeAllListeners=p,n.emit=p,n.prependListener=p,n.prependOnceListener=p,n.listeners=function(e){return[]},n.binding=function(e){throw new Error("process.binding is not supported")},n.cwd=function(){return"/"},n.chdir=function(e){throw new Error("process.chdir is not supported")},n.umask=function(){return 0}},5950:(e,t,r)=>{const n=r(2322),{MAX_LENGTH:o,MAX_SAFE_INTEGER:s}=r(6692),{safeRe:i,safeSrc:a,t:c}=r(5208),l=r(9901),{compareIdentifiers:u}=r(3229);class d{constructor(e,t){if(t=l(t),e instanceof d){if(e.loose===!!t.loose&&e.includePrerelease===!!t.includePrerelease)return e;e=e.version}else if("string"!=typeof e)throw new TypeError(`Invalid version. Must be a string. Got type "${typeof e}".`);if(e.length>o)throw new TypeError(`version is longer than ${o} characters`);n("SemVer",e,t),this.options=t,this.loose=!!t.loose,this.includePrerelease=!!t.includePrerelease;const r=e.trim().match(t.loose?i[c.LOOSE]:i[c.FULL]);if(!r)throw new TypeError(`Invalid Version: ${e}`);if(this.raw=e,this.major=+r[1],this.minor=+r[2],this.patch=+r[3],this.major>s||this.major<0)throw new TypeError("Invalid major version");if(this.minor>s||this.minor<0)throw new TypeError("Invalid minor version");if(this.patch>s||this.patch<0)throw new TypeError("Invalid patch version");r[4]?this.prerelease=r[4].split(".").map((e=>{if(/^[0-9]+$/.test(e)){const t=+e;if(t>=0&&t<s)return t}return e})):this.prerelease=[],this.build=r[5]?r[5].split("."):[],this.format()}format(){return this.version=`${this.major}.${this.minor}.${this.patch}`,this.prerelease.length&&(this.version+=`-${this.prerelease.join(".")}`),this.version}toString(){return this.version}compare(e){if(n("SemVer.compare",this.version,this.options,e),!(e instanceof d)){if("string"==typeof e&&e===this.version)return 0;e=new d(e,this.options)}return e.version===this.version?0:this.compareMain(e)||this.comparePre(e)}compareMain(e){return e instanceof d||(e=new d(e,this.options)),u(this.major,e.major)||u(this.minor,e.minor)||u(this.patch,e.patch)}comparePre(e){if(e instanceof d||(e=new d(e,this.options)),this.prerelease.length&&!e.prerelease.length)return-1;if(!this.prerelease.length&&e.prerelease.length)return 1;if(!this.prerelease.length&&!e.prerelease.length)return 0;let t=0;do{const r=this.prerelease[t],o=e.prerelease[t];if(n("prerelease compare",t,r,o),void 0===r&&void 0===o)return 0;if(void 0===o)return 1;if(void 0===r)return-1;if(r!==o)return u(r,o)}while(++t)}compareBuild(e){e instanceof d||(e=new d(e,this.options));let t=0;do{const r=this.build[t],o=e.build[t];if(n("build compare",t,r,o),void 0===r&&void 0===o)return 0;if(void 0===o)return 1;if(void 0===r)return-1;if(r!==o)return u(r,o)}while(++t)}inc(e,t,r){if(e.startsWith("pre")){if(!t&&!1===r)throw new Error("invalid increment argument: identifier is empty");if(t){const e=new RegExp(`^${this.options.loose?a[c.PRERELEASELOOSE]:a[c.PRERELEASE]}$`),r=`-${t}`.match(e);if(!r||r[1]!==t)throw new Error(`invalid identifier: ${t}`)}}switch(e){case"premajor":this.prerelease.length=0,this.patch=0,this.minor=0,this.major++,this.inc("pre",t,r);break;case"preminor":this.prerelease.length=0,this.patch=0,this.minor++,this.inc("pre",t,r);break;case"prepatch":this.prerelease.length=0,this.inc("patch",t,r),this.inc("pre",t,r);break;case"prerelease":0===this.prerelease.length&&this.inc("patch",t,r),this.inc("pre",t,r);break;case"release":if(0===this.prerelease.length)throw new Error(`version ${this.raw} is not a prerelease`);this.prerelease.length=0;break;case"major":0===this.minor&&0===this.patch&&0!==this.prerelease.length||this.major++,this.minor=0,this.patch=0,this.prerelease=[];break;case"minor":0===this.patch&&0!==this.prerelease.length||this.minor++,this.patch=0,this.prerelease=[];break;case"patch":0===this.prerelease.length&&this.patch++,this.prerelease=[];break;case"pre":{const e=Number(r)?1:0;if(0===this.prerelease.length)this.prerelease=[e];else{let n=this.prerelease.length;for(;--n>=0;)"number"==typeof this.prerelease[n]&&(this.prerelease[n]++,n=-2);if(-1===n){if(t===this.prerelease.join(".")&&!1===r)throw new Error("invalid increment argument: identifier already exists");this.prerelease.push(e)}}if(t){let n=[t,e];!1===r&&(n=[t]),0===u(this.prerelease[0],t)?isNaN(this.prerelease[1])&&(this.prerelease=n):this.prerelease=n}break}default:throw new Error(`invalid increment argument: ${e}`)}return this.raw=this.format(),this.build.length&&(this.raw+=`+${this.build.join(".")}`),this}}e.exports=d},6692:e=>{const t=Number.MAX_SAFE_INTEGER||9007199254740991;e.exports={MAX_LENGTH:256,MAX_SAFE_COMPONENT_LENGTH:16,MAX_SAFE_BUILD_LENGTH:250,MAX_SAFE_INTEGER:t,RELEASE_TYPES:["major","premajor","minor","preminor","patch","prepatch","prerelease"],SEMVER_SPEC_VERSION:"2.0.0",FLAG_INCLUDE_PRERELEASE:1,FLAG_LOOSE:2}},8064:(e,t,r)=>{const n=r(5950);e.exports=(e,t)=>new n(e,t).major},8690:(e,t,r)=>{const n=r(5950);e.exports=(e,t,r=!1)=>{if(e instanceof n)return e;try{return new n(e,t)}catch(e){if(!r)return null;throw e}}},8711:(e,t,r)=>{const n=r(8690);e.exports=(e,t)=>{const r=n(e,t);return r?r.version:null}},9097:(e,t,r)=>{"use strict";t.c0=function(e){return new n.default(e)};var n=s(r(9457)),o=s(r(432));function s(e){return e&&e.__esModule?e:{default:e}}function i(e,t){Object.keys(e).filter((e=>!t||t(e))).map(e.removeItem.bind(e))}},9457:(e,t,r)=>{"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.default=void 0;var n,o=(n=r(432))&&n.__esModule?n:{default:n};function s(e,t,r){var n;return(t="symbol"==typeof(n=function(e,t){if("object"!=typeof e||!e)return e;var r=e[Symbol.toPrimitive];if(void 0!==r){var n=r.call(e,t||"default");if("object"!=typeof n)return n;throw new TypeError("@@toPrimitive must return a primitive value.")}return("string"===t?String:Number)(e)}(t,"string"))?n:n+"")in e?Object.defineProperty(e,t,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[t]=r,e}t.default=class{constructor(e){s(this,"appId",void 0),s(this,"persisted",!1),s(this,"clearedOnLogout",!1),this.appId=e}persist(){let e=!(arguments.length>0&&void 0!==arguments[0])||arguments[0];return this.persisted=e,this}clearOnLogout(){let e=!(arguments.length>0&&void 0!==arguments[0])||arguments[0];return this.clearedOnLogout=e,this}build(){return new o.default(this.appId,this.persisted?window.localStorage:window.sessionStorage,!this.clearedOnLogout)}}},9901:e=>{const t=Object.freeze({loose:!0}),r=Object.freeze({});e.exports=e=>e?"object"!=typeof e?t:e:r}},t={};function r(n){var o=t[n];if(void 0!==o)return o.exports;var s=t[n]={exports:{}};return e[n](s,s.exports,r),s.exports}r.d=(e,t)=>{for(var n in t)r.o(t,n)&&!r.o(e,n)&&Object.defineProperty(e,n,{enumerable:!0,get:t[n]})},r.o=(e,t)=>Object.prototype.hasOwnProperty.call(e,t),r.r=e=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},(()=>{"use strict";var e={};function t(e,t,r){const n=document.querySelector(`#initial-state-${e}-${t}`);if(null===n){if(void 0!==r)return r;throw new Error(`Could not find initial state ${t} of ${e}`)}try{return JSON.parse(atob(n.value))}catch(r){throw new Error(`Could not parse initial state ${t} of ${e}`)}}function n(e,t){return function(){return e.apply(t,arguments)}}r.r(e),r.d(e,{hasBrowserEnv:()=>ue,hasStandardBrowserEnv:()=>fe,hasStandardBrowserWebWorkerEnv:()=>he,navigator:()=>de,origin:()=>pe});var o=r(5606);const{toString:s}=Object.prototype,{getPrototypeOf:i}=Object,{iterator:a,toStringTag:c}=Symbol,l=(u=Object.create(null),e=>{const t=s.call(e);return u[t]||(u[t]=t.slice(8,-1).toLowerCase())});var u;const d=e=>(e=e.toLowerCase(),t=>l(t)===e),f=e=>t=>typeof t===e,{isArray:h}=Array,p=f("undefined");const E=d("ArrayBuffer");const m=f("string"),b=f("function"),g=f("number"),w=e=>null!==e&&"object"==typeof e,y=e=>{if("object"!==l(e))return!1;const t=i(e);return!(null!==t&&t!==Object.prototype&&null!==Object.getPrototypeOf(t)||c in e||a in e)},R=d("Date"),O=d("File"),v=d("Blob"),S=d("FileList"),T=d("URLSearchParams"),[L,N,A,I]=["ReadableStream","Request","Response","Headers"].map(d);function P(e,t,{allOwnKeys:r=!1}={}){if(null==e)return;let n,o;if("object"!=typeof e&&(e=[e]),h(e))for(n=0,o=e.length;n<o;n++)t.call(null,e[n],n,e);else{const o=r?Object.getOwnPropertyNames(e):Object.keys(e),s=o.length;let i;for(n=0;n<s;n++)i=o[n],t.call(null,e[i],i,e)}}function C(e,t){t=t.toLowerCase();const r=Object.keys(e);let n,o=r.length;for(;o-- >0;)if(n=r[o],t===n.toLowerCase())return n;return null}const _="undefined"!=typeof globalThis?globalThis:"undefined"!=typeof self?self:"undefined"!=typeof window?window:global,j=e=>!p(e)&&e!==_;const $=(x="undefined"!=typeof Uint8Array&&i(Uint8Array),e=>x&&e instanceof x);var x;const F=d("HTMLFormElement"),U=(({hasOwnProperty:e})=>(t,r)=>e.call(t,r))(Object.prototype),D=d("RegExp"),k=(e,t)=>{const r=Object.getOwnPropertyDescriptors(e),n={};P(r,((r,o)=>{let s;!1!==(s=t(r,o,e))&&(n[o]=s||r)})),Object.defineProperties(e,n)};const B=d("AsyncFunction"),M=(q="function"==typeof setImmediate,G=b(_.postMessage),q?setImmediate:G?((e,t)=>(_.addEventListener("message",(({source:r,data:n})=>{r===_&&n===e&&t.length&&t.shift()()}),!1),r=>{t.push(r),_.postMessage(e,"*")}))(`axios@${Math.random()}`,[]):e=>setTimeout(e));var q,G;const X="undefined"!=typeof queueMicrotask?queueMicrotask.bind(_):void 0!==o&&o.nextTick||M,H={isArray:h,isArrayBuffer:E,isBuffer:function(e){return null!==e&&!p(e)&&null!==e.constructor&&!p(e.constructor)&&b(e.constructor.isBuffer)&&e.constructor.isBuffer(e)},isFormData:e=>{let t;return e&&("function"==typeof FormData&&e instanceof FormData||b(e.append)&&("formdata"===(t=l(e))||"object"===t&&b(e.toString)&&"[object FormData]"===e.toString()))},isArrayBufferView:function(e){let t;return t="undefined"!=typeof ArrayBuffer&&ArrayBuffer.isView?ArrayBuffer.isView(e):e&&e.buffer&&E(e.buffer),t},isString:m,isNumber:g,isBoolean:e=>!0===e||!1===e,isObject:w,isPlainObject:y,isReadableStream:L,isRequest:N,isResponse:A,isHeaders:I,isUndefined:p,isDate:R,isFile:O,isBlob:v,isRegExp:D,isFunction:b,isStream:e=>w(e)&&b(e.pipe),isURLSearchParams:T,isTypedArray:$,isFileList:S,forEach:P,merge:function e(){const{caseless:t}=j(this)&&this||{},r={},n=(n,o)=>{const s=t&&C(r,o)||o;y(r[s])&&y(n)?r[s]=e(r[s],n):y(n)?r[s]=e({},n):h(n)?r[s]=n.slice():r[s]=n};for(let e=0,t=arguments.length;e<t;e++)arguments[e]&&P(arguments[e],n);return r},extend:(e,t,r,{allOwnKeys:o}={})=>(P(t,((t,o)=>{r&&b(t)?e[o]=n(t,r):e[o]=t}),{allOwnKeys:o}),e),trim:e=>e.trim?e.trim():e.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g,""),stripBOM:e=>(65279===e.charCodeAt(0)&&(e=e.slice(1)),e),inherits:(e,t,r,n)=>{e.prototype=Object.create(t.prototype,n),e.prototype.constructor=e,Object.defineProperty(e,"super",{value:t.prototype}),r&&Object.assign(e.prototype,r)},toFlatObject:(e,t,r,n)=>{let o,s,a;const c={};if(t=t||{},null==e)return t;do{for(o=Object.getOwnPropertyNames(e),s=o.length;s-- >0;)a=o[s],n&&!n(a,e,t)||c[a]||(t[a]=e[a],c[a]=!0);e=!1!==r&&i(e)}while(e&&(!r||r(e,t))&&e!==Object.prototype);return t},kindOf:l,kindOfTest:d,endsWith:(e,t,r)=>{e=String(e),(void 0===r||r>e.length)&&(r=e.length),r-=t.length;const n=e.indexOf(t,r);return-1!==n&&n===r},toArray:e=>{if(!e)return null;if(h(e))return e;let t=e.length;if(!g(t))return null;const r=new Array(t);for(;t-- >0;)r[t]=e[t];return r},forEachEntry:(e,t)=>{const r=(e&&e[a]).call(e);let n;for(;(n=r.next())&&!n.done;){const r=n.value;t.call(e,r[0],r[1])}},matchAll:(e,t)=>{let r;const n=[];for(;null!==(r=e.exec(t));)n.push(r);return n},isHTMLForm:F,hasOwnProperty:U,hasOwnProp:U,reduceDescriptors:k,freezeMethods:e=>{k(e,((t,r)=>{if(b(e)&&-1!==["arguments","caller","callee"].indexOf(r))return!1;const n=e[r];b(n)&&(t.enumerable=!1,"writable"in t?t.writable=!1:t.set||(t.set=()=>{throw Error("Can not rewrite read-only method '"+r+"'")}))}))},toObjectSet:(e,t)=>{const r={},n=e=>{e.forEach((e=>{r[e]=!0}))};return h(e)?n(e):n(String(e).split(t)),r},toCamelCase:e=>e.toLowerCase().replace(/[-_\s]([a-z\d])(\w*)/g,(function(e,t,r){return t.toUpperCase()+r})),noop:()=>{},toFiniteNumber:(e,t)=>null!=e&&Number.isFinite(e=+e)?e:t,findKey:C,global:_,isContextDefined:j,isSpecCompliantForm:function(e){return!!(e&&b(e.append)&&"FormData"===e[c]&&e[a])},toJSONObject:e=>{const t=new Array(10),r=(e,n)=>{if(w(e)){if(t.indexOf(e)>=0)return;if(!("toJSON"in e)){t[n]=e;const o=h(e)?[]:{};return P(e,((e,t)=>{const s=r(e,n+1);!p(s)&&(o[t]=s)})),t[n]=void 0,o}}return e};return r(e,0)},isAsyncFn:B,isThenable:e=>e&&(w(e)||b(e))&&b(e.then)&&b(e.catch),setImmediate:M,asap:X,isIterable:e=>null!=e&&b(e[a])};function V(e,t,r,n,o){Error.call(this),Error.captureStackTrace?Error.captureStackTrace(this,this.constructor):this.stack=(new Error).stack,this.message=e,this.name="AxiosError",t&&(this.code=t),r&&(this.config=r),n&&(this.request=n),o&&(this.response=o,this.status=o.status?o.status:null)}H.inherits(V,Error,{toJSON:function(){return{message:this.message,name:this.name,description:this.description,number:this.number,fileName:this.fileName,lineNumber:this.lineNumber,columnNumber:this.columnNumber,stack:this.stack,config:H.toJSONObject(this.config),code:this.code,status:this.status}}});const z=V.prototype,W={};["ERR_BAD_OPTION_VALUE","ERR_BAD_OPTION","ECONNABORTED","ETIMEDOUT","ERR_NETWORK","ERR_FR_TOO_MANY_REDIRECTS","ERR_DEPRECATED","ERR_BAD_RESPONSE","ERR_BAD_REQUEST","ERR_CANCELED","ERR_NOT_SUPPORT","ERR_INVALID_URL"].forEach((e=>{W[e]={value:e}})),Object.defineProperties(V,W),Object.defineProperty(z,"isAxiosError",{value:!0}),V.from=(e,t,r,n,o,s)=>{const i=Object.create(z);return H.toFlatObject(e,i,(function(e){return e!==Error.prototype}),(e=>"isAxiosError"!==e)),V.call(i,e.message,t,r,n,o),i.cause=e,i.name=e.name,s&&Object.assign(i,s),i};const J=V;function K(e){return H.isPlainObject(e)||H.isArray(e)}function Y(e){return H.endsWith(e,"[]")?e.slice(0,-2):e}function Z(e,t,r){return e?e.concat(t).map((function(e,t){return e=Y(e),!r&&t?"["+e+"]":e})).join(r?".":""):t}const Q=H.toFlatObject(H,{},null,(function(e){return/^is[A-Z]/.test(e)}));const ee=function(e,t,r){if(!H.isObject(e))throw new TypeError("target must be an object");t=t||new FormData;const n=(r=H.toFlatObject(r,{metaTokens:!0,dots:!1,indexes:!1},!1,(function(e,t){return!H.isUndefined(t[e])}))).metaTokens,o=r.visitor||l,s=r.dots,i=r.indexes,a=(r.Blob||"undefined"!=typeof Blob&&Blob)&&H.isSpecCompliantForm(t);if(!H.isFunction(o))throw new TypeError("visitor must be a function");function c(e){if(null===e)return"";if(H.isDate(e))return e.toISOString();if(!a&&H.isBlob(e))throw new J("Blob is not supported. Use a Buffer instead.");return H.isArrayBuffer(e)||H.isTypedArray(e)?a&&"function"==typeof Blob?new Blob([e]):Buffer.from(e):e}function l(e,r,o){let a=e;if(e&&!o&&"object"==typeof e)if(H.endsWith(r,"{}"))r=n?r:r.slice(0,-2),e=JSON.stringify(e);else if(H.isArray(e)&&function(e){return H.isArray(e)&&!e.some(K)}(e)||(H.isFileList(e)||H.endsWith(r,"[]"))&&(a=H.toArray(e)))return r=Y(r),a.forEach((function(e,n){!H.isUndefined(e)&&null!==e&&t.append(!0===i?Z([r],n,s):null===i?r:r+"[]",c(e))})),!1;return!!K(e)||(t.append(Z(o,r,s),c(e)),!1)}const u=[],d=Object.assign(Q,{defaultVisitor:l,convertValue:c,isVisitable:K});if(!H.isObject(e))throw new TypeError("data must be an object");return function e(r,n){if(!H.isUndefined(r)){if(-1!==u.indexOf(r))throw Error("Circular reference detected in "+n.join("."));u.push(r),H.forEach(r,(function(r,s){!0===(!(H.isUndefined(r)||null===r)&&o.call(t,r,H.isString(s)?s.trim():s,n,d))&&e(r,n?n.concat(s):[s])})),u.pop()}}(e),t};function te(e){const t={"!":"%21","'":"%27","(":"%28",")":"%29","~":"%7E","%20":"+","%00":"\0"};return encodeURIComponent(e).replace(/[!'()~]|%20|%00/g,(function(e){return t[e]}))}function re(e,t){this._pairs=[],e&&ee(e,this,t)}const ne=re.prototype;ne.append=function(e,t){this._pairs.push([e,t])},ne.toString=function(e){const t=e?function(t){return e.call(this,t,te)}:te;return this._pairs.map((function(e){return t(e[0])+"="+t(e[1])}),"").join("&")};const oe=re;function se(e){return encodeURIComponent(e).replace(/%3A/gi,":").replace(/%24/g,"$").replace(/%2C/gi,",").replace(/%20/g,"+").replace(/%5B/gi,"[").replace(/%5D/gi,"]")}function ie(e,t,r){if(!t)return e;const n=r&&r.encode||se;H.isFunction(r)&&(r={serialize:r});const o=r&&r.serialize;let s;if(s=o?o(t,r):H.isURLSearchParams(t)?t.toString():new oe(t,r).toString(n),s){const t=e.indexOf("#");-1!==t&&(e=e.slice(0,t)),e+=(-1===e.indexOf("?")?"?":"&")+s}return e}const ae=class{constructor(){this.handlers=[]}use(e,t,r){return this.handlers.push({fulfilled:e,rejected:t,synchronous:!!r&&r.synchronous,runWhen:r?r.runWhen:null}),this.handlers.length-1}eject(e){this.handlers[e]&&(this.handlers[e]=null)}clear(){this.handlers&&(this.handlers=[])}forEach(e){H.forEach(this.handlers,(function(t){null!==t&&e(t)}))}},ce={silentJSONParsing:!0,forcedJSONParsing:!0,clarifyTimeoutError:!1},le={isBrowser:!0,classes:{URLSearchParams:"undefined"!=typeof URLSearchParams?URLSearchParams:oe,FormData:"undefined"!=typeof FormData?FormData:null,Blob:"undefined"!=typeof Blob?Blob:null},protocols:["http","https","file","blob","url","data"]},ue="undefined"!=typeof window&&"undefined"!=typeof document,de="object"==typeof navigator&&navigator||void 0,fe=ue&&(!de||["ReactNative","NativeScript","NS"].indexOf(de.product)<0),he="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope&&"function"==typeof self.importScripts,pe=ue&&window.location.href||"http://localhost",Ee={...e,...le};const me=function(e){function t(e,r,n,o){let s=e[o++];if("__proto__"===s)return!0;const i=Number.isFinite(+s),a=o>=e.length;if(s=!s&&H.isArray(n)?n.length:s,a)return H.hasOwnProp(n,s)?n[s]=[n[s],r]:n[s]=r,!i;n[s]&&H.isObject(n[s])||(n[s]=[]);return t(e,r,n[s],o)&&H.isArray(n[s])&&(n[s]=function(e){const t={},r=Object.keys(e);let n;const o=r.length;let s;for(n=0;n<o;n++)s=r[n],t[s]=e[s];return t}(n[s])),!i}if(H.isFormData(e)&&H.isFunction(e.entries)){const r={};return H.forEachEntry(e,((e,n)=>{t(function(e){return H.matchAll(/\w+|\[(\w*)]/g,e).map((e=>"[]"===e[0]?"":e[1]||e[0]))}(e),n,r,0)})),r}return null};const be={transitional:ce,adapter:["xhr","http","fetch"],transformRequest:[function(e,t){const r=t.getContentType()||"",n=r.indexOf("application/json")>-1,o=H.isObject(e);o&&H.isHTMLForm(e)&&(e=new FormData(e));if(H.isFormData(e))return n?JSON.stringify(me(e)):e;if(H.isArrayBuffer(e)||H.isBuffer(e)||H.isStream(e)||H.isFile(e)||H.isBlob(e)||H.isReadableStream(e))return e;if(H.isArrayBufferView(e))return e.buffer;if(H.isURLSearchParams(e))return t.setContentType("application/x-www-form-urlencoded;charset=utf-8",!1),e.toString();let s;if(o){if(r.indexOf("application/x-www-form-urlencoded")>-1)return function(e,t){return ee(e,new Ee.classes.URLSearchParams,Object.assign({visitor:function(e,t,r,n){return Ee.isNode&&H.isBuffer(e)?(this.append(t,e.toString("base64")),!1):n.defaultVisitor.apply(this,arguments)}},t))}(e,this.formSerializer).toString();if((s=H.isFileList(e))||r.indexOf("multipart/form-data")>-1){const t=this.env&&this.env.FormData;return ee(s?{"files[]":e}:e,t&&new t,this.formSerializer)}}return o||n?(t.setContentType("application/json",!1),function(e,t,r){if(H.isString(e))try{return(t||JSON.parse)(e),H.trim(e)}catch(e){if("SyntaxError"!==e.name)throw e}return(r||JSON.stringify)(e)}(e)):e}],transformResponse:[function(e){const t=this.transitional||be.transitional,r=t&&t.forcedJSONParsing,n="json"===this.responseType;if(H.isResponse(e)||H.isReadableStream(e))return e;if(e&&H.isString(e)&&(r&&!this.responseType||n)){const r=!(t&&t.silentJSONParsing)&&n;try{return JSON.parse(e)}catch(e){if(r){if("SyntaxError"===e.name)throw J.from(e,J.ERR_BAD_RESPONSE,this,null,this.response);throw e}}}return e}],timeout:0,xsrfCookieName:"XSRF-TOKEN",xsrfHeaderName:"X-XSRF-TOKEN",maxContentLength:-1,maxBodyLength:-1,env:{FormData:Ee.classes.FormData,Blob:Ee.classes.Blob},validateStatus:function(e){return e>=200&&e<300},headers:{common:{Accept:"application/json, text/plain, */*","Content-Type":void 0}}};H.forEach(["delete","get","head","post","put","patch"],(e=>{be.headers[e]={}}));const ge=be,we=H.toObjectSet(["age","authorization","content-length","content-type","etag","expires","from","host","if-modified-since","if-unmodified-since","last-modified","location","max-forwards","proxy-authorization","referer","retry-after","user-agent"]),ye=Symbol("internals");function Re(e){return e&&String(e).trim().toLowerCase()}function Oe(e){return!1===e||null==e?e:H.isArray(e)?e.map(Oe):String(e)}function ve(e,t,r,n,o){return H.isFunction(n)?n.call(this,t,r):(o&&(t=r),H.isString(t)?H.isString(n)?-1!==t.indexOf(n):H.isRegExp(n)?n.test(t):void 0:void 0)}class Se{constructor(e){e&&this.set(e)}set(e,t,r){const n=this;function o(e,t,r){const o=Re(t);if(!o)throw new Error("header name must be a non-empty string");const s=H.findKey(n,o);(!s||void 0===n[s]||!0===r||void 0===r&&!1!==n[s])&&(n[s||t]=Oe(e))}const s=(e,t)=>H.forEach(e,((e,r)=>o(e,r,t)));if(H.isPlainObject(e)||e instanceof this.constructor)s(e,t);else if(H.isString(e)&&(e=e.trim())&&!/^[-_a-zA-Z0-9^`|~,!#$%&'*+.]+$/.test(e.trim()))s((e=>{const t={};let r,n,o;return e&&e.split("\n").forEach((function(e){o=e.indexOf(":"),r=e.substring(0,o).trim().toLowerCase(),n=e.substring(o+1).trim(),!r||t[r]&&we[r]||("set-cookie"===r?t[r]?t[r].push(n):t[r]=[n]:t[r]=t[r]?t[r]+", "+n:n)})),t})(e),t);else if(H.isObject(e)&&H.isIterable(e)){let r,n,o={};for(const t of e){if(!H.isArray(t))throw TypeError("Object iterator must return a key-value pair");o[n=t[0]]=(r=o[n])?H.isArray(r)?[...r,t[1]]:[r,t[1]]:t[1]}s(o,t)}else null!=e&&o(t,e,r);return this}get(e,t){if(e=Re(e)){const r=H.findKey(this,e);if(r){const e=this[r];if(!t)return e;if(!0===t)return function(e){const t=Object.create(null),r=/([^\s,;=]+)\s*(?:=\s*([^,;]+))?/g;let n;for(;n=r.exec(e);)t[n[1]]=n[2];return t}(e);if(H.isFunction(t))return t.call(this,e,r);if(H.isRegExp(t))return t.exec(e);throw new TypeError("parser must be boolean|regexp|function")}}}has(e,t){if(e=Re(e)){const r=H.findKey(this,e);return!(!r||void 0===this[r]||t&&!ve(0,this[r],r,t))}return!1}delete(e,t){const r=this;let n=!1;function o(e){if(e=Re(e)){const o=H.findKey(r,e);!o||t&&!ve(0,r[o],o,t)||(delete r[o],n=!0)}}return H.isArray(e)?e.forEach(o):o(e),n}clear(e){const t=Object.keys(this);let r=t.length,n=!1;for(;r--;){const o=t[r];e&&!ve(0,this[o],o,e,!0)||(delete this[o],n=!0)}return n}normalize(e){const t=this,r={};return H.forEach(this,((n,o)=>{const s=H.findKey(r,o);if(s)return t[s]=Oe(n),void delete t[o];const i=e?function(e){return e.trim().toLowerCase().replace(/([a-z\d])(\w*)/g,((e,t,r)=>t.toUpperCase()+r))}(o):String(o).trim();i!==o&&delete t[o],t[i]=Oe(n),r[i]=!0})),this}concat(...e){return this.constructor.concat(this,...e)}toJSON(e){const t=Object.create(null);return H.forEach(this,((r,n)=>{null!=r&&!1!==r&&(t[n]=e&&H.isArray(r)?r.join(", "):r)})),t}[Symbol.iterator](){return Object.entries(this.toJSON())[Symbol.iterator]()}toString(){return Object.entries(this.toJSON()).map((([e,t])=>e+": "+t)).join("\n")}getSetCookie(){return this.get("set-cookie")||[]}get[Symbol.toStringTag](){return"AxiosHeaders"}static from(e){return e instanceof this?e:new this(e)}static concat(e,...t){const r=new this(e);return t.forEach((e=>r.set(e))),r}static accessor(e){const t=(this[ye]=this[ye]={accessors:{}}).accessors,r=this.prototype;function n(e){const n=Re(e);t[n]||(!function(e,t){const r=H.toCamelCase(" "+t);["get","set","has"].forEach((n=>{Object.defineProperty(e,n+r,{value:function(e,r,o){return this[n].call(this,t,e,r,o)},configurable:!0})}))}(r,e),t[n]=!0)}return H.isArray(e)?e.forEach(n):n(e),this}}Se.accessor(["Content-Type","Content-Length","Accept","Accept-Encoding","User-Agent","Authorization"]),H.reduceDescriptors(Se.prototype,(({value:e},t)=>{let r=t[0].toUpperCase()+t.slice(1);return{get:()=>e,set(e){this[r]=e}}})),H.freezeMethods(Se);const Te=Se;function Le(e,t){const r=this||ge,n=t||r,o=Te.from(n.headers);let s=n.data;return H.forEach(e,(function(e){s=e.call(r,s,o.normalize(),t?t.status:void 0)})),o.normalize(),s}function Ne(e){return!(!e||!e.__CANCEL__)}function Ae(e,t,r){J.call(this,null==e?"canceled":e,J.ERR_CANCELED,t,r),this.name="CanceledError"}H.inherits(Ae,J,{__CANCEL__:!0});const Ie=Ae;function Pe(e,t,r){const n=r.config.validateStatus;r.status&&n&&!n(r.status)?t(new J("Request failed with status code "+r.status,[J.ERR_BAD_REQUEST,J.ERR_BAD_RESPONSE][Math.floor(r.status/100)-4],r.config,r.request,r)):e(r)}const Ce=function(e,t){e=e||10;const r=new Array(e),n=new Array(e);let o,s=0,i=0;return t=void 0!==t?t:1e3,function(a){const c=Date.now(),l=n[i];o||(o=c),r[s]=a,n[s]=c;let u=i,d=0;for(;u!==s;)d+=r[u++],u%=e;if(s=(s+1)%e,s===i&&(i=(i+1)%e),c-o<t)return;const f=l&&c-l;return f?Math.round(1e3*d/f):void 0}};const _e=function(e,t){let r,n,o=0,s=1e3/t;const i=(t,s=Date.now())=>{o=s,r=null,n&&(clearTimeout(n),n=null),e.apply(null,t)};return[(...e)=>{const t=Date.now(),a=t-o;a>=s?i(e,t):(r=e,n||(n=setTimeout((()=>{n=null,i(r)}),s-a)))},()=>r&&i(r)]},je=(e,t,r=3)=>{let n=0;const o=Ce(50,250);return _e((r=>{const s=r.loaded,i=r.lengthComputable?r.total:void 0,a=s-n,c=o(a);n=s;e({loaded:s,total:i,progress:i?s/i:void 0,bytes:a,rate:c||void 0,estimated:c&&i&&s<=i?(i-s)/c:void 0,event:r,lengthComputable:null!=i,[t?"download":"upload"]:!0})}),r)},$e=(e,t)=>{const r=null!=e;return[n=>t[0]({lengthComputable:r,total:e,loaded:n}),t[1]]},xe=e=>(...t)=>H.asap((()=>e(...t))),Fe=Ee.hasStandardBrowserEnv?((e,t)=>r=>(r=new URL(r,Ee.origin),e.protocol===r.protocol&&e.host===r.host&&(t||e.port===r.port)))(new URL(Ee.origin),Ee.navigator&&/(msie|trident)/i.test(Ee.navigator.userAgent)):()=>!0,Ue=Ee.hasStandardBrowserEnv?{write(e,t,r,n,o,s){const i=[e+"="+encodeURIComponent(t)];H.isNumber(r)&&i.push("expires="+new Date(r).toGMTString()),H.isString(n)&&i.push("path="+n),H.isString(o)&&i.push("domain="+o),!0===s&&i.push("secure"),document.cookie=i.join("; ")},read(e){const t=document.cookie.match(new RegExp("(^|;\\s*)("+e+")=([^;]*)"));return t?decodeURIComponent(t[3]):null},remove(e){this.write(e,"",Date.now()-864e5)}}:{write(){},read:()=>null,remove(){}};function De(e,t,r){let n=!/^([a-z][a-z\d+\-.]*:)?\/\//i.test(t);return e&&(n||0==r)?function(e,t){return t?e.replace(/\/?\/$/,"")+"/"+t.replace(/^\/+/,""):e}(e,t):t}const ke=e=>e instanceof Te?{...e}:e;function Be(e,t){t=t||{};const r={};function n(e,t,r,n){return H.isPlainObject(e)&&H.isPlainObject(t)?H.merge.call({caseless:n},e,t):H.isPlainObject(t)?H.merge({},t):H.isArray(t)?t.slice():t}function o(e,t,r,o){return H.isUndefined(t)?H.isUndefined(e)?void 0:n(void 0,e,0,o):n(e,t,0,o)}function s(e,t){if(!H.isUndefined(t))return n(void 0,t)}function i(e,t){return H.isUndefined(t)?H.isUndefined(e)?void 0:n(void 0,e):n(void 0,t)}function a(r,o,s){return s in t?n(r,o):s in e?n(void 0,r):void 0}const c={url:s,method:s,data:s,baseURL:i,transformRequest:i,transformResponse:i,paramsSerializer:i,timeout:i,timeoutMessage:i,withCredentials:i,withXSRFToken:i,adapter:i,responseType:i,xsrfCookieName:i,xsrfHeaderName:i,onUploadProgress:i,onDownloadProgress:i,decompress:i,maxContentLength:i,maxBodyLength:i,beforeRedirect:i,transport:i,httpAgent:i,httpsAgent:i,cancelToken:i,socketPath:i,responseEncoding:i,validateStatus:a,headers:(e,t,r)=>o(ke(e),ke(t),0,!0)};return H.forEach(Object.keys(Object.assign({},e,t)),(function(n){const s=c[n]||o,i=s(e[n],t[n],n);H.isUndefined(i)&&s!==a||(r[n]=i)})),r}const Me=e=>{const t=Be({},e);let r,{data:n,withXSRFToken:o,xsrfHeaderName:s,xsrfCookieName:i,headers:a,auth:c}=t;if(t.headers=a=Te.from(a),t.url=ie(De(t.baseURL,t.url,t.allowAbsoluteUrls),e.params,e.paramsSerializer),c&&a.set("Authorization","Basic "+btoa((c.username||"")+":"+(c.password?unescape(encodeURIComponent(c.password)):""))),H.isFormData(n))if(Ee.hasStandardBrowserEnv||Ee.hasStandardBrowserWebWorkerEnv)a.setContentType(void 0);else if(!1!==(r=a.getContentType())){const[e,...t]=r?r.split(";").map((e=>e.trim())).filter(Boolean):[];a.setContentType([e||"multipart/form-data",...t].join("; "))}if(Ee.hasStandardBrowserEnv&&(o&&H.isFunction(o)&&(o=o(t)),o||!1!==o&&Fe(t.url))){const e=s&&i&&Ue.read(i);e&&a.set(s,e)}return t},qe="undefined"!=typeof XMLHttpRequest&&function(e){return new Promise((function(t,r){const n=Me(e);let o=n.data;const s=Te.from(n.headers).normalize();let i,a,c,l,u,{responseType:d,onUploadProgress:f,onDownloadProgress:h}=n;function p(){l&&l(),u&&u(),n.cancelToken&&n.cancelToken.unsubscribe(i),n.signal&&n.signal.removeEventListener("abort",i)}let E=new XMLHttpRequest;function m(){if(!E)return;const n=Te.from("getAllResponseHeaders"in E&&E.getAllResponseHeaders());Pe((function(e){t(e),p()}),(function(e){r(e),p()}),{data:d&&"text"!==d&&"json"!==d?E.response:E.responseText,status:E.status,statusText:E.statusText,headers:n,config:e,request:E}),E=null}E.open(n.method.toUpperCase(),n.url,!0),E.timeout=n.timeout,"onloadend"in E?E.onloadend=m:E.onreadystatechange=function(){E&&4===E.readyState&&(0!==E.status||E.responseURL&&0===E.responseURL.indexOf("file:"))&&setTimeout(m)},E.onabort=function(){E&&(r(new J("Request aborted",J.ECONNABORTED,e,E)),E=null)},E.onerror=function(){r(new J("Network Error",J.ERR_NETWORK,e,E)),E=null},E.ontimeout=function(){let t=n.timeout?"timeout of "+n.timeout+"ms exceeded":"timeout exceeded";const o=n.transitional||ce;n.timeoutErrorMessage&&(t=n.timeoutErrorMessage),r(new J(t,o.clarifyTimeoutError?J.ETIMEDOUT:J.ECONNABORTED,e,E)),E=null},void 0===o&&s.setContentType(null),"setRequestHeader"in E&&H.forEach(s.toJSON(),(function(e,t){E.setRequestHeader(t,e)})),H.isUndefined(n.withCredentials)||(E.withCredentials=!!n.withCredentials),d&&"json"!==d&&(E.responseType=n.responseType),h&&([c,u]=je(h,!0),E.addEventListener("progress",c)),f&&E.upload&&([a,l]=je(f),E.upload.addEventListener("progress",a),E.upload.addEventListener("loadend",l)),(n.cancelToken||n.signal)&&(i=t=>{E&&(r(!t||t.type?new Ie(null,e,E):t),E.abort(),E=null)},n.cancelToken&&n.cancelToken.subscribe(i),n.signal&&(n.signal.aborted?i():n.signal.addEventListener("abort",i)));const b=function(e){const t=/^([-+\w]{1,25})(:?\/\/|:)/.exec(e);return t&&t[1]||""}(n.url);b&&-1===Ee.protocols.indexOf(b)?r(new J("Unsupported protocol "+b+":",J.ERR_BAD_REQUEST,e)):E.send(o||null)}))},Ge=(e,t)=>{const{length:r}=e=e?e.filter(Boolean):[];if(t||r){let r,n=new AbortController;const o=function(e){if(!r){r=!0,i();const t=e instanceof Error?e:this.reason;n.abort(t instanceof J?t:new Ie(t instanceof Error?t.message:t))}};let s=t&&setTimeout((()=>{s=null,o(new J(`timeout ${t} of ms exceeded`,J.ETIMEDOUT))}),t);const i=()=>{e&&(s&&clearTimeout(s),s=null,e.forEach((e=>{e.unsubscribe?e.unsubscribe(o):e.removeEventListener("abort",o)})),e=null)};e.forEach((e=>e.addEventListener("abort",o)));const{signal:a}=n;return a.unsubscribe=()=>H.asap(i),a}},Xe=function*(e,t){let r=e.byteLength;if(!t||r<t)return void(yield e);let n,o=0;for(;o<r;)n=o+t,yield e.slice(o,n),o=n},He=async function*(e){if(e[Symbol.asyncIterator])return void(yield*e);const t=e.getReader();try{for(;;){const{done:e,value:r}=await t.read();if(e)break;yield r}}finally{await t.cancel()}},Ve=(e,t,r,n)=>{const o=async function*(e,t){for await(const r of He(e))yield*Xe(r,t)}(e,t);let s,i=0,a=e=>{s||(s=!0,n&&n(e))};return new ReadableStream({async pull(e){try{const{done:t,value:n}=await o.next();if(t)return a(),void e.close();let s=n.byteLength;if(r){let e=i+=s;r(e)}e.enqueue(new Uint8Array(n))}catch(e){throw a(e),e}},cancel:e=>(a(e),o.return())},{highWaterMark:2})},ze="function"==typeof fetch&&"function"==typeof Request&&"function"==typeof Response,We=ze&&"function"==typeof ReadableStream,Je=ze&&("function"==typeof TextEncoder?(Ke=new TextEncoder,e=>Ke.encode(e)):async e=>new Uint8Array(await new Response(e).arrayBuffer()));var Ke;const Ye=(e,...t)=>{try{return!!e(...t)}catch(e){return!1}},Ze=We&&Ye((()=>{let e=!1;const t=new Request(Ee.origin,{body:new ReadableStream,method:"POST",get duplex(){return e=!0,"half"}}).headers.has("Content-Type");return e&&!t})),Qe=We&&Ye((()=>H.isReadableStream(new Response("").body))),et={stream:Qe&&(e=>e.body)};var tt;ze&&(tt=new Response,["text","arrayBuffer","blob","formData","stream"].forEach((e=>{!et[e]&&(et[e]=H.isFunction(tt[e])?t=>t[e]():(t,r)=>{throw new J(`Response type '${e}' is not supported`,J.ERR_NOT_SUPPORT,r)})})));const rt=async(e,t)=>{const r=H.toFiniteNumber(e.getContentLength());return null==r?(async e=>{if(null==e)return 0;if(H.isBlob(e))return e.size;if(H.isSpecCompliantForm(e)){const t=new Request(Ee.origin,{method:"POST",body:e});return(await t.arrayBuffer()).byteLength}return H.isArrayBufferView(e)||H.isArrayBuffer(e)?e.byteLength:(H.isURLSearchParams(e)&&(e+=""),H.isString(e)?(await Je(e)).byteLength:void 0)})(t):r},nt=ze&&(async e=>{let{url:t,method:r,data:n,signal:o,cancelToken:s,timeout:i,onDownloadProgress:a,onUploadProgress:c,responseType:l,headers:u,withCredentials:d="same-origin",fetchOptions:f}=Me(e);l=l?(l+"").toLowerCase():"text";let h,p=Ge([o,s&&s.toAbortSignal()],i);const E=p&&p.unsubscribe&&(()=>{p.unsubscribe()});let m;try{if(c&&Ze&&"get"!==r&&"head"!==r&&0!==(m=await rt(u,n))){let e,r=new Request(t,{method:"POST",body:n,duplex:"half"});if(H.isFormData(n)&&(e=r.headers.get("content-type"))&&u.setContentType(e),r.body){const[e,t]=$e(m,je(xe(c)));n=Ve(r.body,65536,e,t)}}H.isString(d)||(d=d?"include":"omit");const o="credentials"in Request.prototype;h=new Request(t,{...f,signal:p,method:r.toUpperCase(),headers:u.normalize().toJSON(),body:n,duplex:"half",credentials:o?d:void 0});let s=await fetch(h);const i=Qe&&("stream"===l||"response"===l);if(Qe&&(a||i&&E)){const e={};["status","statusText","headers"].forEach((t=>{e[t]=s[t]}));const t=H.toFiniteNumber(s.headers.get("content-length")),[r,n]=a&&$e(t,je(xe(a),!0))||[];s=new Response(Ve(s.body,65536,r,(()=>{n&&n(),E&&E()})),e)}l=l||"text";let b=await et[H.findKey(et,l)||"text"](s,e);return!i&&E&&E(),await new Promise(((t,r)=>{Pe(t,r,{data:b,headers:Te.from(s.headers),status:s.status,statusText:s.statusText,config:e,request:h})}))}catch(t){if(E&&E(),t&&"TypeError"===t.name&&/Load failed|fetch/i.test(t.message))throw Object.assign(new J("Network Error",J.ERR_NETWORK,e,h),{cause:t.cause||t});throw J.from(t,t&&t.code,e,h)}}),ot={http:null,xhr:qe,fetch:nt};H.forEach(ot,((e,t)=>{if(e){try{Object.defineProperty(e,"name",{value:t})}catch(e){}Object.defineProperty(e,"adapterName",{value:t})}}));const st=e=>`- ${e}`,it=e=>H.isFunction(e)||null===e||!1===e,at=e=>{e=H.isArray(e)?e:[e];const{length:t}=e;let r,n;const o={};for(let s=0;s<t;s++){let t;if(r=e[s],n=r,!it(r)&&(n=ot[(t=String(r)).toLowerCase()],void 0===n))throw new J(`Unknown adapter '${t}'`);if(n)break;o[t||"#"+s]=n}if(!n){const e=Object.entries(o).map((([e,t])=>`adapter ${e} `+(!1===t?"is not supported by the environment":"is not available in the build")));let r=t?e.length>1?"since :\n"+e.map(st).join("\n"):" "+st(e[0]):"as no adapter specified";throw new J("There is no suitable adapter to dispatch the request "+r,"ERR_NOT_SUPPORT")}return n};function ct(e){if(e.cancelToken&&e.cancelToken.throwIfRequested(),e.signal&&e.signal.aborted)throw new Ie(null,e)}function lt(e){ct(e),e.headers=Te.from(e.headers),e.data=Le.call(e,e.transformRequest),-1!==["post","put","patch"].indexOf(e.method)&&e.headers.setContentType("application/x-www-form-urlencoded",!1);return at(e.adapter||ge.adapter)(e).then((function(t){return ct(e),t.data=Le.call(e,e.transformResponse,t),t.headers=Te.from(t.headers),t}),(function(t){return Ne(t)||(ct(e),t&&t.response&&(t.response.data=Le.call(e,e.transformResponse,t.response),t.response.headers=Te.from(t.response.headers))),Promise.reject(t)}))}const ut="1.9.0",dt={};["object","boolean","number","function","string","symbol"].forEach(((e,t)=>{dt[e]=function(r){return typeof r===e||"a"+(t<1?"n ":" ")+e}}));const ft={};dt.transitional=function(e,t,r){function n(e,t){return"[Axios v1.9.0] Transitional option '"+e+"'"+t+(r?". "+r:"")}return(r,o,s)=>{if(!1===e)throw new J(n(o," has been removed"+(t?" in "+t:"")),J.ERR_DEPRECATED);return t&&!ft[o]&&(ft[o]=!0,console.warn(n(o," has been deprecated since v"+t+" and will be removed in the near future"))),!e||e(r,o,s)}},dt.spelling=function(e){return(t,r)=>(console.warn(`${r} is likely a misspelling of ${e}`),!0)};const ht={assertOptions:function(e,t,r){if("object"!=typeof e)throw new J("options must be an object",J.ERR_BAD_OPTION_VALUE);const n=Object.keys(e);let o=n.length;for(;o-- >0;){const s=n[o],i=t[s];if(i){const t=e[s],r=void 0===t||i(t,s,e);if(!0!==r)throw new J("option "+s+" must be "+r,J.ERR_BAD_OPTION_VALUE)}else if(!0!==r)throw new J("Unknown option "+s,J.ERR_BAD_OPTION)}},validators:dt},pt=ht.validators;class Et{constructor(e){this.defaults=e||{},this.interceptors={request:new ae,response:new ae}}async request(e,t){try{return await this._request(e,t)}catch(e){if(e instanceof Error){let t={};Error.captureStackTrace?Error.captureStackTrace(t):t=new Error;const r=t.stack?t.stack.replace(/^.+\n/,""):"";try{e.stack?r&&!String(e.stack).endsWith(r.replace(/^.+\n.+\n/,""))&&(e.stack+="\n"+r):e.stack=r}catch(e){}}throw e}}_request(e,t){"string"==typeof e?(t=t||{}).url=e:t=e||{},t=Be(this.defaults,t);const{transitional:r,paramsSerializer:n,headers:o}=t;void 0!==r&&ht.assertOptions(r,{silentJSONParsing:pt.transitional(pt.boolean),forcedJSONParsing:pt.transitional(pt.boolean),clarifyTimeoutError:pt.transitional(pt.boolean)},!1),null!=n&&(H.isFunction(n)?t.paramsSerializer={serialize:n}:ht.assertOptions(n,{encode:pt.function,serialize:pt.function},!0)),void 0!==t.allowAbsoluteUrls||(void 0!==this.defaults.allowAbsoluteUrls?t.allowAbsoluteUrls=this.defaults.allowAbsoluteUrls:t.allowAbsoluteUrls=!0),ht.assertOptions(t,{baseUrl:pt.spelling("baseURL"),withXsrfToken:pt.spelling("withXSRFToken")},!0),t.method=(t.method||this.defaults.method||"get").toLowerCase();let s=o&&H.merge(o.common,o[t.method]);o&&H.forEach(["delete","get","head","post","put","patch","common"],(e=>{delete o[e]})),t.headers=Te.concat(s,o);const i=[];let a=!0;this.interceptors.request.forEach((function(e){"function"==typeof e.runWhen&&!1===e.runWhen(t)||(a=a&&e.synchronous,i.unshift(e.fulfilled,e.rejected))}));const c=[];let l;this.interceptors.response.forEach((function(e){c.push(e.fulfilled,e.rejected)}));let u,d=0;if(!a){const e=[lt.bind(this),void 0];for(e.unshift.apply(e,i),e.push.apply(e,c),u=e.length,l=Promise.resolve(t);d<u;)l=l.then(e[d++],e[d++]);return l}u=i.length;let f=t;for(d=0;d<u;){const e=i[d++],t=i[d++];try{f=e(f)}catch(e){t.call(this,e);break}}try{l=lt.call(this,f)}catch(e){return Promise.reject(e)}for(d=0,u=c.length;d<u;)l=l.then(c[d++],c[d++]);return l}getUri(e){return ie(De((e=Be(this.defaults,e)).baseURL,e.url,e.allowAbsoluteUrls),e.params,e.paramsSerializer)}}H.forEach(["delete","get","head","options"],(function(e){Et.prototype[e]=function(t,r){return this.request(Be(r||{},{method:e,url:t,data:(r||{}).data}))}})),H.forEach(["post","put","patch"],(function(e){function t(t){return function(r,n,o){return this.request(Be(o||{},{method:e,headers:t?{"Content-Type":"multipart/form-data"}:{},url:r,data:n}))}}Et.prototype[e]=t(),Et.prototype[e+"Form"]=t(!0)}));const mt=Et;class bt{constructor(e){if("function"!=typeof e)throw new TypeError("executor must be a function.");let t;this.promise=new Promise((function(e){t=e}));const r=this;this.promise.then((e=>{if(!r._listeners)return;let t=r._listeners.length;for(;t-- >0;)r._listeners[t](e);r._listeners=null})),this.promise.then=e=>{let t;const n=new Promise((e=>{r.subscribe(e),t=e})).then(e);return n.cancel=function(){r.unsubscribe(t)},n},e((function(e,n,o){r.reason||(r.reason=new Ie(e,n,o),t(r.reason))}))}throwIfRequested(){if(this.reason)throw this.reason}subscribe(e){this.reason?e(this.reason):this._listeners?this._listeners.push(e):this._listeners=[e]}unsubscribe(e){if(!this._listeners)return;const t=this._listeners.indexOf(e);-1!==t&&this._listeners.splice(t,1)}toAbortSignal(){const e=new AbortController,t=t=>{e.abort(t)};return this.subscribe(t),e.signal.unsubscribe=()=>this.unsubscribe(t),e.signal}static source(){let e;return{token:new bt((function(t){e=t})),cancel:e}}}const gt=bt;const wt={Continue:100,SwitchingProtocols:101,Processing:102,EarlyHints:103,Ok:200,Created:201,Accepted:202,NonAuthoritativeInformation:203,NoContent:204,ResetContent:205,PartialContent:206,MultiStatus:207,AlreadyReported:208,ImUsed:226,MultipleChoices:300,MovedPermanently:301,Found:302,SeeOther:303,NotModified:304,UseProxy:305,Unused:306,TemporaryRedirect:307,PermanentRedirect:308,BadRequest:400,Unauthorized:401,PaymentRequired:402,Forbidden:403,NotFound:404,MethodNotAllowed:405,NotAcceptable:406,ProxyAuthenticationRequired:407,RequestTimeout:408,Conflict:409,Gone:410,LengthRequired:411,PreconditionFailed:412,PayloadTooLarge:413,UriTooLong:414,UnsupportedMediaType:415,RangeNotSatisfiable:416,ExpectationFailed:417,ImATeapot:418,MisdirectedRequest:421,UnprocessableEntity:422,Locked:423,FailedDependency:424,TooEarly:425,UpgradeRequired:426,PreconditionRequired:428,TooManyRequests:429,RequestHeaderFieldsTooLarge:431,UnavailableForLegalReasons:451,InternalServerError:500,NotImplemented:501,BadGateway:502,ServiceUnavailable:503,GatewayTimeout:504,HttpVersionNotSupported:505,VariantAlsoNegotiates:506,InsufficientStorage:507,LoopDetected:508,NotExtended:510,NetworkAuthenticationRequired:511};Object.entries(wt).forEach((([e,t])=>{wt[t]=e}));const yt=wt;const Rt=function e(t){const r=new mt(t),o=n(mt.prototype.request,r);return H.extend(o,mt.prototype,r,{allOwnKeys:!0}),H.extend(o,r,null,{allOwnKeys:!0}),o.create=function(r){return e(Be(t,r))},o}(ge);Rt.Axios=mt,Rt.CanceledError=Ie,Rt.CancelToken=gt,Rt.isCancel=Ne,Rt.VERSION=ut,Rt.toFormData=ee,Rt.AxiosError=J,Rt.Cancel=Rt.CanceledError,Rt.all=function(e){return Promise.all(e)},Rt.spread=function(e){return function(t){return e.apply(null,t)}},Rt.isAxiosError=function(e){return H.isObject(e)&&!0===e.isAxiosError},Rt.mergeConfig=Be,Rt.AxiosHeaders=Te,Rt.formToJSON=e=>me(H.isHTMLForm(e)?new FormData(e):e),Rt.getAdapter=at,Rt.HttpStatusCode=yt,Rt.default=Rt;const Ot=Rt;var vt=r(8711),St=r(8064);class Tt{bus;constructor(e){"function"==typeof e.getVersion&&vt(e.getVersion())?St(e.getVersion())!==St(this.getVersion())&&console.warn("Proxying an event bus of version "+e.getVersion()+" with "+this.getVersion()):console.warn("Proxying an event bus with an unknown or invalid version"),this.bus=e}getVersion(){return"3.3.2"}subscribe(e,t){this.bus.subscribe(e,t)}unsubscribe(e,t){this.bus.unsubscribe(e,t)}emit(e,...t){this.bus.emit(e,...t)}}class Lt{handlers=new Map;getVersion(){return"3.3.2"}subscribe(e,t){this.handlers.set(e,(this.handlers.get(e)||[]).concat(t))}unsubscribe(e,t){this.handlers.set(e,(this.handlers.get(e)||[]).filter((e=>e!==t)))}emit(e,...t){(this.handlers.get(e)||[]).forEach((e=>{try{e(t[0])}catch(e){console.error("could not invoke event listener",e)}}))}}let Nt=null;function At(){return null!==Nt?Nt:"undefined"==typeof window?new Proxy({},{get:()=>()=>console.error("Window not available, EventBus can not be established!")}):(window.OC?._eventBus&&void 0===window._nc_event_bus&&(console.warn("found old event bus instance at OC._eventBus. Update your version!"),window._nc_event_bus=window.OC._eventBus),Nt=void 0!==window?._nc_event_bus?new Tt(window._nc_event_bus):window._nc_event_bus=new Lt,Nt)}var It=r(9097);let Pt;const Ct=[];function _t(){return void 0===Pt&&(Pt=document.head.dataset.requesttoken??null),Pt}var jt,$t;jt="csrf-token-update",$t=e=>{Pt=e.token,Ct.forEach((e=>{try{e(Pt)}catch(e){console.error("Error updating CSRF token observer",e)}}))},At().subscribe(jt,$t);(0,It.c0)("public").persist().build();const xt=(e,t,r)=>{const n=Object.assign({escape:!0},r||{});return"/"!==e.charAt(0)&&(e="/"+e),o=(o=t||{})||{},e.replace(/{([^{}]*)}/g,(function(e,t){const r=o[t];return n.escape?encodeURIComponent("string"==typeof r||"number"==typeof r?r.toString():e):"string"==typeof r||"number"==typeof r?r.toString():e}));var o},Ft=(e,t,r)=>{var n,o,s;const i=Object.assign({noRewrite:!1},r||{}),a=null!=(n=null==r?void 0:r.baseURL)?n:Ut();return!0!==(null==(s=null==(o=null==window?void 0:window.OC)?void 0:o.config)?void 0:s.modRewriteWorking)||i.noRewrite?a+"/index.php"+xt(e,t,r):a+xt(e,t,r)};function Ut(){let e=window._oc_webroot;if(typeof e>"u"){e=location.pathname;const t=e.indexOf("/index.php/");if(-1!==t)e=e.slice(0,t);else{const t=e.indexOf("/",1);e=e.slice(0,t>0?t:void 0)}}return e}const Dt=Symbol("csrf-retry"),kt=Symbol("retryDelay");var Bt;const Mt=Ot.create({headers:{requesttoken:null!=(Bt=_t())?Bt:"","X-Requested-With":"XMLHttpRequest"}}),qt=Object.assign(Mt,{CancelToken:Ot.CancelToken,isCancel:Ot.isCancel});var Gt;function Xt(e){return e.toString().replace(/(?:\r\n|\r|\n)/g,"<br>")}qt.interceptors.response.use((e=>e),(e=>async t=>{var r;const{config:n,response:o,request:s}=t,i=null==s?void 0:s.responseURL;if(412===(null==o?void 0:o.status)&&"CSRF check failed"===(null==(r=null==o?void 0:o.data)?void 0:r.message)&&void 0===n[Dt]){console.warn("Request to ".concat(i," failed because of a CSRF mismatch. Fetching a new token"));const{data:{token:t}}=await e.get(Ft("/csrftoken"));return console.debug("New request token ".concat(t," fetched")),e.defaults.headers.requesttoken=t,e({...n,headers:{...n.headers,requesttoken:t},[Dt]:!0})}return Promise.reject(t)})(qt)),qt.interceptors.response.use((e=>e),(e=>async t=>{var r;const{config:n,response:o,request:s}=t,i=null==s?void 0:s.responseURL,a=null==o?void 0:o.status,c=null==o?void 0:o.headers;if(503===a&&"1"===c["x-nextcloud-maintenance-mode"]&&n.retryIfMaintenanceMode&&(!n[kt]||n[kt]<=32)){const t=2*(null!=(r=n[kt])?r:1);return console.warn("Request to ".concat(i," failed because of maintenance mode. Retrying in ").concat(t,"s")),await new Promise((e=>{setTimeout(e,1e3*t)})),e({...n,[kt]:t})}return Promise.reject(t)})(qt)),qt.interceptors.response.use((e=>e),(async e=>{var t;const{config:r,response:n,request:o}=e,s=null==o?void 0:o.responseURL;return 401===(null==n?void 0:n.status)&&"Current user is not logged in"===(null==(t=null==n?void 0:n.data)?void 0:t.message)&&r.reloadExpiredSession&&(null==window?void 0:window.location)&&(console.error("Request to ".concat(s," failed because the user session expired. Reloading the page …")),window.location.reload()),Promise.reject(e)})),Gt=e=>{Mt.defaults.headers.requesttoken=e},Ct.push(Gt),document.addEventListener("DOMContentLoaded",(()=>{OCA.Dashboard.register("hass-template-widget",((e,{widget:r})=>{e.innerHTML=Xt(t("integration_homeassistant","dashboard-template-widget")),e.innerHTML||(e.innerHTML='Nothing to show :))<br><br>Go to "Administrator settings" > "Home assistant integration" to get started.'),e.parentElement.style.overflow="auto";const n=parseInt(t("integration_homeassistant","dashboard-template-widget-refresh-interval"));n>0&&setInterval((async()=>{e.innerHTML=Xt((await qt.post(Ft("/apps/integration_homeassistant/template"))).data[0]),e.innerHTML||(e.innerHTML='Nothing to show :))<br><br>Go to "Administrator settings" > "Home assistant integration" to get started.')}),1e3*n)}))}))})()})();
+/******/ (() => { // webpackBootstrap
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./node_modules/@nextcloud/auth/dist/index.mjs":
+/*!*****************************************************!*\
+  !*** ./node_modules/@nextcloud/auth/dist/index.mjs ***!
+  \*****************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   getCSPNonce: () => (/* binding */ getCSPNonce),
+/* harmony export */   getCurrentUser: () => (/* binding */ getCurrentUser),
+/* harmony export */   getGuestNickname: () => (/* binding */ getGuestNickname),
+/* harmony export */   getRequestToken: () => (/* binding */ getRequestToken),
+/* harmony export */   onRequestTokenUpdate: () => (/* binding */ onRequestTokenUpdate),
+/* harmony export */   setGuestNickname: () => (/* binding */ setGuestNickname)
+/* harmony export */ });
+/* harmony import */ var _nextcloud_event_bus__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @nextcloud/event-bus */ "./node_modules/@nextcloud/event-bus/dist/index.mjs");
+/* harmony import */ var _nextcloud_browser_storage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @nextcloud/browser-storage */ "./node_modules/@nextcloud/browser-storage/dist/index.js");
+
+
+let token;
+const observers = [];
+function getRequestToken() {
+  if (token === void 0) {
+    token = document.head.dataset.requesttoken ?? null;
+  }
+  return token;
+}
+function onRequestTokenUpdate(observer) {
+  observers.push(observer);
+}
+(0,_nextcloud_event_bus__WEBPACK_IMPORTED_MODULE_0__.subscribe)("csrf-token-update", (e) => {
+  token = e.token;
+  observers.forEach((observer) => {
+    try {
+      observer(token);
+    } catch (e2) {
+      console.error("Error updating CSRF token observer", e2);
+    }
+  });
+});
+function getCSPNonce() {
+  const meta = document?.querySelector('meta[name="csp-nonce"]');
+  if (!meta) {
+    const token2 = getRequestToken();
+    return token2 ? btoa(token2) : void 0;
+  }
+  return meta.nonce;
+}
+const browserStorage = (0,_nextcloud_browser_storage__WEBPACK_IMPORTED_MODULE_1__.getBuilder)("public").persist().build();
+function getGuestNickname() {
+  return browserStorage.getItem("guestNickname");
+}
+function setGuestNickname(nickname) {
+  browserStorage.setItem("guestNickname", nickname);
+}
+let currentUser;
+const getAttribute = (el, attribute) => {
+  if (el) {
+    return el.getAttribute(attribute);
+  }
+  return null;
+};
+function getCurrentUser() {
+  if (currentUser !== void 0) {
+    return currentUser;
+  }
+  const head = document?.getElementsByTagName("head")[0];
+  if (!head) {
+    return null;
+  }
+  const uid = getAttribute(head, "data-user");
+  if (uid === null) {
+    currentUser = null;
+    return currentUser;
+  }
+  currentUser = {
+    uid,
+    displayName: getAttribute(head, "data-user-displayname"),
+    isAdmin: !!window._oc_isadmin
+  };
+  return currentUser;
+}
+
+
+
+/***/ }),
+
+/***/ "./node_modules/@nextcloud/axios/dist/index.mjs":
+/*!******************************************************!*\
+  !*** ./node_modules/@nextcloud/axios/dist/index.mjs ***!
+  \******************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ cancelableClient),
+/* harmony export */   isAxiosError: () => (/* reexport safe */ axios__WEBPACK_IMPORTED_MODULE_3__.isAxiosError),
+/* harmony export */   isCancel: () => (/* reexport safe */ axios__WEBPACK_IMPORTED_MODULE_3__.isCancel)
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var _nextcloud_auth__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @nextcloud/auth */ "./node_modules/@nextcloud/auth/dist/index.mjs");
+/* harmony import */ var _nextcloud_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @nextcloud/router */ "./node_modules/@nextcloud/router/dist/index.mjs");
+
+
+
+
+const RETRY_KEY = Symbol("csrf-retry");
+const onError$2 = (axios) => async (error) => {
+  var _a2;
+  const { config, response, request } = error;
+  const responseURL = request == null ? void 0 : request.responseURL;
+  const status = response == null ? void 0 : response.status;
+  if (status === 412 && ((_a2 = response == null ? void 0 : response.data) == null ? void 0 : _a2.message) === "CSRF check failed" && config[RETRY_KEY] === void 0) {
+    console.warn("Request to ".concat(responseURL, " failed because of a CSRF mismatch. Fetching a new token"));
+    const { data: { token } } = await axios.get((0,_nextcloud_router__WEBPACK_IMPORTED_MODULE_1__.generateUrl)("/csrftoken"));
+    console.debug("New request token ".concat(token, " fetched"));
+    axios.defaults.headers.requesttoken = token;
+    return axios({
+      ...config,
+      headers: {
+        ...config.headers,
+        requesttoken: token
+      },
+      [RETRY_KEY]: true
+    });
+  }
+  return Promise.reject(error);
+};
+const RETRY_DELAY_KEY = Symbol("retryDelay");
+const onError$1 = (axios) => async (error) => {
+  var _a2;
+  const { config, response, request } = error;
+  const responseURL = request == null ? void 0 : request.responseURL;
+  const status = response == null ? void 0 : response.status;
+  const headers = response == null ? void 0 : response.headers;
+  if (status === 503 && headers["x-nextcloud-maintenance-mode"] === "1" && config.retryIfMaintenanceMode && (!config[RETRY_DELAY_KEY] || config[RETRY_DELAY_KEY] <= 32)) {
+    const retryDelay = ((_a2 = config[RETRY_DELAY_KEY]) != null ? _a2 : 1) * 2;
+    console.warn("Request to ".concat(responseURL, " failed because of maintenance mode. Retrying in ").concat(retryDelay, "s"));
+    await new Promise((resolve) => {
+      setTimeout(resolve, retryDelay * 1e3);
+    });
+    return axios({
+      ...config,
+      [RETRY_DELAY_KEY]: retryDelay
+    });
+  }
+  return Promise.reject(error);
+};
+const onError = async (error) => {
+  var _a2;
+  const { config, response, request } = error;
+  const responseURL = request == null ? void 0 : request.responseURL;
+  const status = response == null ? void 0 : response.status;
+  if (status === 401 && ((_a2 = response == null ? void 0 : response.data) == null ? void 0 : _a2.message) === "Current user is not logged in" && config.reloadExpiredSession && (window == null ? void 0 : window.location)) {
+    console.error("Request to ".concat(responseURL, " failed because the user session expired. Reloading the page …"));
+    window.location.reload();
+  }
+  return Promise.reject(error);
+};
+var _a;
+const client = axios__WEBPACK_IMPORTED_MODULE_2__["default"].create({
+  headers: {
+    requesttoken: (_a = (0,_nextcloud_auth__WEBPACK_IMPORTED_MODULE_0__.getRequestToken)()) != null ? _a : "",
+    "X-Requested-With": "XMLHttpRequest"
+  }
+});
+const cancelableClient = Object.assign(client, {
+  CancelToken: axios__WEBPACK_IMPORTED_MODULE_2__["default"].CancelToken,
+  isCancel: axios__WEBPACK_IMPORTED_MODULE_2__["default"].isCancel
+});
+cancelableClient.interceptors.response.use((r) => r, onError$2(cancelableClient));
+cancelableClient.interceptors.response.use((r) => r, onError$1(cancelableClient));
+cancelableClient.interceptors.response.use((r) => r, onError);
+(0,_nextcloud_auth__WEBPACK_IMPORTED_MODULE_0__.onRequestTokenUpdate)((token) => {
+  client.defaults.headers.requesttoken = token;
+});
+
+
+
+/***/ }),
+
+/***/ "./node_modules/@nextcloud/browser-storage/dist/index.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/@nextcloud/browser-storage/dist/index.js ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.clearAll = clearAll;
+exports.clearNonPersistent = clearNonPersistent;
+exports.getBuilder = getBuilder;
+var _storagebuilder = _interopRequireDefault(__webpack_require__(/*! ./storagebuilder */ "./node_modules/@nextcloud/browser-storage/dist/storagebuilder.js"));
+var _scopedstorage = _interopRequireDefault(__webpack_require__(/*! ./scopedstorage */ "./node_modules/@nextcloud/browser-storage/dist/scopedstorage.js"));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+/**
+ * Get the storage builder for an app
+ * @param appId App ID to scope storage
+ */
+function getBuilder(appId) {
+  return new _storagebuilder.default(appId);
+}
+
+/**
+ * Clear values from storage
+ * @param storage The storage to clear
+ * @param pred Callback to check if value should be cleared
+ */
+function clearStorage(storage, pred) {
+  Object.keys(storage).filter(k => pred ? pred(k) : true).map(storage.removeItem.bind(storage));
+}
+
+/**
+ * Clear all values from all storages
+ */
+function clearAll() {
+  const storages = [window.sessionStorage, window.localStorage];
+  storages.map(s => clearStorage(s));
+}
+
+/**
+ * Clear ony non persistent values
+ */
+function clearNonPersistent() {
+  const storages = [window.sessionStorage, window.localStorage];
+  storages.map(s => clearStorage(s, k => !k.startsWith(_scopedstorage.default.GLOBAL_SCOPE_PERSISTENT)));
+}
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@nextcloud/browser-storage/dist/scopedstorage.js":
+/*!***********************************************************************!*\
+  !*** ./node_modules/@nextcloud/browser-storage/dist/scopedstorage.js ***!
+  \***********************************************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+class ScopedStorage {
+  constructor(scope, wrapped, persistent) {
+    _defineProperty(this, "scope", void 0);
+    _defineProperty(this, "wrapped", void 0);
+    this.scope = "".concat(persistent ? ScopedStorage.GLOBAL_SCOPE_PERSISTENT : ScopedStorage.GLOBAL_SCOPE_VOLATILE, "_").concat(btoa(scope), "_");
+    this.wrapped = wrapped;
+  }
+  scopeKey(key) {
+    return "".concat(this.scope).concat(key);
+  }
+  setItem(key, value) {
+    this.wrapped.setItem(this.scopeKey(key), value);
+  }
+  getItem(key) {
+    return this.wrapped.getItem(this.scopeKey(key));
+  }
+  removeItem(key) {
+    this.wrapped.removeItem(this.scopeKey(key));
+  }
+  clear() {
+    Object.keys(this.wrapped).filter(key => key.startsWith(this.scope)).map(this.wrapped.removeItem.bind(this.wrapped));
+  }
+}
+exports["default"] = ScopedStorage;
+_defineProperty(ScopedStorage, "GLOBAL_SCOPE_VOLATILE", 'nextcloud_vol');
+_defineProperty(ScopedStorage, "GLOBAL_SCOPE_PERSISTENT", 'nextcloud_per');
+//# sourceMappingURL=scopedstorage.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@nextcloud/browser-storage/dist/storagebuilder.js":
+/*!************************************************************************!*\
+  !*** ./node_modules/@nextcloud/browser-storage/dist/storagebuilder.js ***!
+  \************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _scopedstorage = _interopRequireDefault(__webpack_require__(/*! ./scopedstorage */ "./node_modules/@nextcloud/browser-storage/dist/scopedstorage.js"));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+class StorageBuilder {
+  constructor(appId) {
+    _defineProperty(this, "appId", void 0);
+    _defineProperty(this, "persisted", false);
+    _defineProperty(this, "clearedOnLogout", false);
+    this.appId = appId;
+  }
+  persist() {
+    let persist = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+    this.persisted = persist;
+    return this;
+  }
+  clearOnLogout() {
+    let clear = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+    this.clearedOnLogout = clear;
+    return this;
+  }
+  build() {
+    return new _scopedstorage.default(this.appId, this.persisted ? window.localStorage : window.sessionStorage, !this.clearedOnLogout);
+  }
+}
+exports["default"] = StorageBuilder;
+//# sourceMappingURL=storagebuilder.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@nextcloud/event-bus/dist/index.mjs":
+/*!**********************************************************!*\
+  !*** ./node_modules/@nextcloud/event-bus/dist/index.mjs ***!
+  \**********************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   ProxyBus: () => (/* binding */ ProxyBus),
+/* harmony export */   SimpleBus: () => (/* binding */ SimpleBus),
+/* harmony export */   emit: () => (/* binding */ emit),
+/* harmony export */   subscribe: () => (/* binding */ subscribe),
+/* harmony export */   unsubscribe: () => (/* binding */ unsubscribe)
+/* harmony export */ });
+/* harmony import */ var semver_functions_valid_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! semver/functions/valid.js */ "./node_modules/@nextcloud/event-bus/node_modules/semver/functions/valid.js");
+/* harmony import */ var semver_functions_major_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! semver/functions/major.js */ "./node_modules/@nextcloud/event-bus/node_modules/semver/functions/major.js");
+
+
+class ProxyBus {
+  bus;
+  constructor(bus2) {
+    if (typeof bus2.getVersion !== "function" || !semver_functions_valid_js__WEBPACK_IMPORTED_MODULE_0__(bus2.getVersion())) {
+      console.warn("Proxying an event bus with an unknown or invalid version");
+    } else if (semver_functions_major_js__WEBPACK_IMPORTED_MODULE_1__(bus2.getVersion()) !== semver_functions_major_js__WEBPACK_IMPORTED_MODULE_1__(this.getVersion())) {
+      console.warn(
+        "Proxying an event bus of version " + bus2.getVersion() + " with " + this.getVersion()
+      );
+    }
+    this.bus = bus2;
+  }
+  getVersion() {
+    return "3.3.2";
+  }
+  subscribe(name, handler) {
+    this.bus.subscribe(name, handler);
+  }
+  unsubscribe(name, handler) {
+    this.bus.unsubscribe(name, handler);
+  }
+  emit(name, ...event) {
+    this.bus.emit(name, ...event);
+  }
+}
+class SimpleBus {
+  handlers = /* @__PURE__ */ new Map();
+  getVersion() {
+    return "3.3.2";
+  }
+  subscribe(name, handler) {
+    this.handlers.set(
+      name,
+      (this.handlers.get(name) || []).concat(
+        handler
+      )
+    );
+  }
+  unsubscribe(name, handler) {
+    this.handlers.set(
+      name,
+      (this.handlers.get(name) || []).filter((h) => h !== handler)
+    );
+  }
+  emit(name, ...event) {
+    const handlers = this.handlers.get(name) || [];
+    handlers.forEach((h) => {
+      try {
+        ;
+        h(event[0]);
+      } catch (e) {
+        console.error("could not invoke event listener", e);
+      }
+    });
+  }
+}
+let bus = null;
+function getBus() {
+  if (bus !== null) {
+    return bus;
+  }
+  if (typeof window === "undefined") {
+    return new Proxy({}, {
+      get: () => {
+        return () => console.error(
+          "Window not available, EventBus can not be established!"
+        );
+      }
+    });
+  }
+  if (window.OC?._eventBus && typeof window._nc_event_bus === "undefined") {
+    console.warn(
+      "found old event bus instance at OC._eventBus. Update your version!"
+    );
+    window._nc_event_bus = window.OC._eventBus;
+  }
+  if (typeof window?._nc_event_bus !== "undefined") {
+    bus = new ProxyBus(window._nc_event_bus);
+  } else {
+    bus = window._nc_event_bus = new SimpleBus();
+  }
+  return bus;
+}
+function subscribe(name, handler) {
+  getBus().subscribe(name, handler);
+}
+function unsubscribe(name, handler) {
+  getBus().unsubscribe(name, handler);
+}
+function emit(name, ...event) {
+  getBus().emit(name, ...event);
+}
+
+
+
+/***/ }),
+
+/***/ "./node_modules/@nextcloud/event-bus/node_modules/semver/classes/semver.js":
+/*!*********************************************************************************!*\
+  !*** ./node_modules/@nextcloud/event-bus/node_modules/semver/classes/semver.js ***!
+  \*********************************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+const debug = __webpack_require__(/*! ../internal/debug */ "./node_modules/@nextcloud/event-bus/node_modules/semver/internal/debug.js")
+const { MAX_LENGTH, MAX_SAFE_INTEGER } = __webpack_require__(/*! ../internal/constants */ "./node_modules/@nextcloud/event-bus/node_modules/semver/internal/constants.js")
+const { safeRe: re, safeSrc: src, t } = __webpack_require__(/*! ../internal/re */ "./node_modules/@nextcloud/event-bus/node_modules/semver/internal/re.js")
+
+const parseOptions = __webpack_require__(/*! ../internal/parse-options */ "./node_modules/@nextcloud/event-bus/node_modules/semver/internal/parse-options.js")
+const { compareIdentifiers } = __webpack_require__(/*! ../internal/identifiers */ "./node_modules/@nextcloud/event-bus/node_modules/semver/internal/identifiers.js")
+class SemVer {
+  constructor (version, options) {
+    options = parseOptions(options)
+
+    if (version instanceof SemVer) {
+      if (version.loose === !!options.loose &&
+        version.includePrerelease === !!options.includePrerelease) {
+        return version
+      } else {
+        version = version.version
+      }
+    } else if (typeof version !== 'string') {
+      throw new TypeError(`Invalid version. Must be a string. Got type "${typeof version}".`)
+    }
+
+    if (version.length > MAX_LENGTH) {
+      throw new TypeError(
+        `version is longer than ${MAX_LENGTH} characters`
+      )
+    }
+
+    debug('SemVer', version, options)
+    this.options = options
+    this.loose = !!options.loose
+    // this isn't actually relevant for versions, but keep it so that we
+    // don't run into trouble passing this.options around.
+    this.includePrerelease = !!options.includePrerelease
+
+    const m = version.trim().match(options.loose ? re[t.LOOSE] : re[t.FULL])
+
+    if (!m) {
+      throw new TypeError(`Invalid Version: ${version}`)
+    }
+
+    this.raw = version
+
+    // these are actually numbers
+    this.major = +m[1]
+    this.minor = +m[2]
+    this.patch = +m[3]
+
+    if (this.major > MAX_SAFE_INTEGER || this.major < 0) {
+      throw new TypeError('Invalid major version')
+    }
+
+    if (this.minor > MAX_SAFE_INTEGER || this.minor < 0) {
+      throw new TypeError('Invalid minor version')
+    }
+
+    if (this.patch > MAX_SAFE_INTEGER || this.patch < 0) {
+      throw new TypeError('Invalid patch version')
+    }
+
+    // numberify any prerelease numeric ids
+    if (!m[4]) {
+      this.prerelease = []
+    } else {
+      this.prerelease = m[4].split('.').map((id) => {
+        if (/^[0-9]+$/.test(id)) {
+          const num = +id
+          if (num >= 0 && num < MAX_SAFE_INTEGER) {
+            return num
+          }
+        }
+        return id
+      })
+    }
+
+    this.build = m[5] ? m[5].split('.') : []
+    this.format()
+  }
+
+  format () {
+    this.version = `${this.major}.${this.minor}.${this.patch}`
+    if (this.prerelease.length) {
+      this.version += `-${this.prerelease.join('.')}`
+    }
+    return this.version
+  }
+
+  toString () {
+    return this.version
+  }
+
+  compare (other) {
+    debug('SemVer.compare', this.version, this.options, other)
+    if (!(other instanceof SemVer)) {
+      if (typeof other === 'string' && other === this.version) {
+        return 0
+      }
+      other = new SemVer(other, this.options)
+    }
+
+    if (other.version === this.version) {
+      return 0
+    }
+
+    return this.compareMain(other) || this.comparePre(other)
+  }
+
+  compareMain (other) {
+    if (!(other instanceof SemVer)) {
+      other = new SemVer(other, this.options)
+    }
+
+    return (
+      compareIdentifiers(this.major, other.major) ||
+      compareIdentifiers(this.minor, other.minor) ||
+      compareIdentifiers(this.patch, other.patch)
+    )
+  }
+
+  comparePre (other) {
+    if (!(other instanceof SemVer)) {
+      other = new SemVer(other, this.options)
+    }
+
+    // NOT having a prerelease is > having one
+    if (this.prerelease.length && !other.prerelease.length) {
+      return -1
+    } else if (!this.prerelease.length && other.prerelease.length) {
+      return 1
+    } else if (!this.prerelease.length && !other.prerelease.length) {
+      return 0
+    }
+
+    let i = 0
+    do {
+      const a = this.prerelease[i]
+      const b = other.prerelease[i]
+      debug('prerelease compare', i, a, b)
+      if (a === undefined && b === undefined) {
+        return 0
+      } else if (b === undefined) {
+        return 1
+      } else if (a === undefined) {
+        return -1
+      } else if (a === b) {
+        continue
+      } else {
+        return compareIdentifiers(a, b)
+      }
+    } while (++i)
+  }
+
+  compareBuild (other) {
+    if (!(other instanceof SemVer)) {
+      other = new SemVer(other, this.options)
+    }
+
+    let i = 0
+    do {
+      const a = this.build[i]
+      const b = other.build[i]
+      debug('build compare', i, a, b)
+      if (a === undefined && b === undefined) {
+        return 0
+      } else if (b === undefined) {
+        return 1
+      } else if (a === undefined) {
+        return -1
+      } else if (a === b) {
+        continue
+      } else {
+        return compareIdentifiers(a, b)
+      }
+    } while (++i)
+  }
+
+  // preminor will bump the version up to the next minor release, and immediately
+  // down to pre-release. premajor and prepatch work the same way.
+  inc (release, identifier, identifierBase) {
+    if (release.startsWith('pre')) {
+      if (!identifier && identifierBase === false) {
+        throw new Error('invalid increment argument: identifier is empty')
+      }
+      // Avoid an invalid semver results
+      if (identifier) {
+        const r = new RegExp(`^${this.options.loose ? src[t.PRERELEASELOOSE] : src[t.PRERELEASE]}$`)
+        const match = `-${identifier}`.match(r)
+        if (!match || match[1] !== identifier) {
+          throw new Error(`invalid identifier: ${identifier}`)
+        }
+      }
+    }
+
+    switch (release) {
+      case 'premajor':
+        this.prerelease.length = 0
+        this.patch = 0
+        this.minor = 0
+        this.major++
+        this.inc('pre', identifier, identifierBase)
+        break
+      case 'preminor':
+        this.prerelease.length = 0
+        this.patch = 0
+        this.minor++
+        this.inc('pre', identifier, identifierBase)
+        break
+      case 'prepatch':
+        // If this is already a prerelease, it will bump to the next version
+        // drop any prereleases that might already exist, since they are not
+        // relevant at this point.
+        this.prerelease.length = 0
+        this.inc('patch', identifier, identifierBase)
+        this.inc('pre', identifier, identifierBase)
+        break
+      // If the input is a non-prerelease version, this acts the same as
+      // prepatch.
+      case 'prerelease':
+        if (this.prerelease.length === 0) {
+          this.inc('patch', identifier, identifierBase)
+        }
+        this.inc('pre', identifier, identifierBase)
+        break
+      case 'release':
+        if (this.prerelease.length === 0) {
+          throw new Error(`version ${this.raw} is not a prerelease`)
+        }
+        this.prerelease.length = 0
+        break
+
+      case 'major':
+        // If this is a pre-major version, bump up to the same major version.
+        // Otherwise increment major.
+        // 1.0.0-5 bumps to 1.0.0
+        // 1.1.0 bumps to 2.0.0
+        if (
+          this.minor !== 0 ||
+          this.patch !== 0 ||
+          this.prerelease.length === 0
+        ) {
+          this.major++
+        }
+        this.minor = 0
+        this.patch = 0
+        this.prerelease = []
+        break
+      case 'minor':
+        // If this is a pre-minor version, bump up to the same minor version.
+        // Otherwise increment minor.
+        // 1.2.0-5 bumps to 1.2.0
+        // 1.2.1 bumps to 1.3.0
+        if (this.patch !== 0 || this.prerelease.length === 0) {
+          this.minor++
+        }
+        this.patch = 0
+        this.prerelease = []
+        break
+      case 'patch':
+        // If this is not a pre-release version, it will increment the patch.
+        // If it is a pre-release it will bump up to the same patch version.
+        // 1.2.0-5 patches to 1.2.0
+        // 1.2.0 patches to 1.2.1
+        if (this.prerelease.length === 0) {
+          this.patch++
+        }
+        this.prerelease = []
+        break
+      // This probably shouldn't be used publicly.
+      // 1.0.0 'pre' would become 1.0.0-0 which is the wrong direction.
+      case 'pre': {
+        const base = Number(identifierBase) ? 1 : 0
+
+        if (this.prerelease.length === 0) {
+          this.prerelease = [base]
+        } else {
+          let i = this.prerelease.length
+          while (--i >= 0) {
+            if (typeof this.prerelease[i] === 'number') {
+              this.prerelease[i]++
+              i = -2
+            }
+          }
+          if (i === -1) {
+            // didn't increment anything
+            if (identifier === this.prerelease.join('.') && identifierBase === false) {
+              throw new Error('invalid increment argument: identifier already exists')
+            }
+            this.prerelease.push(base)
+          }
+        }
+        if (identifier) {
+          // 1.2.0-beta.1 bumps to 1.2.0-beta.2,
+          // 1.2.0-beta.fooblz or 1.2.0-beta bumps to 1.2.0-beta.0
+          let prerelease = [identifier, base]
+          if (identifierBase === false) {
+            prerelease = [identifier]
+          }
+          if (compareIdentifiers(this.prerelease[0], identifier) === 0) {
+            if (isNaN(this.prerelease[1])) {
+              this.prerelease = prerelease
+            }
+          } else {
+            this.prerelease = prerelease
+          }
+        }
+        break
+      }
+      default:
+        throw new Error(`invalid increment argument: ${release}`)
+    }
+    this.raw = this.format()
+    if (this.build.length) {
+      this.raw += `+${this.build.join('.')}`
+    }
+    return this
+  }
+}
+
+module.exports = SemVer
+
+
+/***/ }),
+
+/***/ "./node_modules/@nextcloud/event-bus/node_modules/semver/functions/major.js":
+/*!**********************************************************************************!*\
+  !*** ./node_modules/@nextcloud/event-bus/node_modules/semver/functions/major.js ***!
+  \**********************************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+const SemVer = __webpack_require__(/*! ../classes/semver */ "./node_modules/@nextcloud/event-bus/node_modules/semver/classes/semver.js")
+const major = (a, loose) => new SemVer(a, loose).major
+module.exports = major
+
+
+/***/ }),
+
+/***/ "./node_modules/@nextcloud/event-bus/node_modules/semver/functions/parse.js":
+/*!**********************************************************************************!*\
+  !*** ./node_modules/@nextcloud/event-bus/node_modules/semver/functions/parse.js ***!
+  \**********************************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+const SemVer = __webpack_require__(/*! ../classes/semver */ "./node_modules/@nextcloud/event-bus/node_modules/semver/classes/semver.js")
+const parse = (version, options, throwErrors = false) => {
+  if (version instanceof SemVer) {
+    return version
+  }
+  try {
+    return new SemVer(version, options)
+  } catch (er) {
+    if (!throwErrors) {
+      return null
+    }
+    throw er
+  }
+}
+
+module.exports = parse
+
+
+/***/ }),
+
+/***/ "./node_modules/@nextcloud/event-bus/node_modules/semver/functions/valid.js":
+/*!**********************************************************************************!*\
+  !*** ./node_modules/@nextcloud/event-bus/node_modules/semver/functions/valid.js ***!
+  \**********************************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+const parse = __webpack_require__(/*! ./parse */ "./node_modules/@nextcloud/event-bus/node_modules/semver/functions/parse.js")
+const valid = (version, options) => {
+  const v = parse(version, options)
+  return v ? v.version : null
+}
+module.exports = valid
+
+
+/***/ }),
+
+/***/ "./node_modules/@nextcloud/event-bus/node_modules/semver/internal/constants.js":
+/*!*************************************************************************************!*\
+  !*** ./node_modules/@nextcloud/event-bus/node_modules/semver/internal/constants.js ***!
+  \*************************************************************************************/
+/***/ ((module) => {
+
+// Note: this is the semver.org version of the spec that it implements
+// Not necessarily the package version of this code.
+const SEMVER_SPEC_VERSION = '2.0.0'
+
+const MAX_LENGTH = 256
+const MAX_SAFE_INTEGER = Number.MAX_SAFE_INTEGER ||
+/* istanbul ignore next */ 9007199254740991
+
+// Max safe segment length for coercion.
+const MAX_SAFE_COMPONENT_LENGTH = 16
+
+// Max safe length for a build identifier. The max length minus 6 characters for
+// the shortest version with a build 0.0.0+BUILD.
+const MAX_SAFE_BUILD_LENGTH = MAX_LENGTH - 6
+
+const RELEASE_TYPES = [
+  'major',
+  'premajor',
+  'minor',
+  'preminor',
+  'patch',
+  'prepatch',
+  'prerelease',
+]
+
+module.exports = {
+  MAX_LENGTH,
+  MAX_SAFE_COMPONENT_LENGTH,
+  MAX_SAFE_BUILD_LENGTH,
+  MAX_SAFE_INTEGER,
+  RELEASE_TYPES,
+  SEMVER_SPEC_VERSION,
+  FLAG_INCLUDE_PRERELEASE: 0b001,
+  FLAG_LOOSE: 0b010,
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@nextcloud/event-bus/node_modules/semver/internal/debug.js":
+/*!*********************************************************************************!*\
+  !*** ./node_modules/@nextcloud/event-bus/node_modules/semver/internal/debug.js ***!
+  \*********************************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+/* provided dependency */ var process = __webpack_require__(/*! ./node_modules/process/browser.js */ "./node_modules/process/browser.js");
+const debug = (
+  typeof process === 'object' &&
+  process.env &&
+  process.env.NODE_DEBUG &&
+  /\bsemver\b/i.test(process.env.NODE_DEBUG)
+) ? (...args) => console.error('SEMVER', ...args)
+  : () => {}
+
+module.exports = debug
+
+
+/***/ }),
+
+/***/ "./node_modules/@nextcloud/event-bus/node_modules/semver/internal/identifiers.js":
+/*!***************************************************************************************!*\
+  !*** ./node_modules/@nextcloud/event-bus/node_modules/semver/internal/identifiers.js ***!
+  \***************************************************************************************/
+/***/ ((module) => {
+
+const numeric = /^[0-9]+$/
+const compareIdentifiers = (a, b) => {
+  const anum = numeric.test(a)
+  const bnum = numeric.test(b)
+
+  if (anum && bnum) {
+    a = +a
+    b = +b
+  }
+
+  return a === b ? 0
+    : (anum && !bnum) ? -1
+    : (bnum && !anum) ? 1
+    : a < b ? -1
+    : 1
+}
+
+const rcompareIdentifiers = (a, b) => compareIdentifiers(b, a)
+
+module.exports = {
+  compareIdentifiers,
+  rcompareIdentifiers,
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@nextcloud/event-bus/node_modules/semver/internal/parse-options.js":
+/*!*****************************************************************************************!*\
+  !*** ./node_modules/@nextcloud/event-bus/node_modules/semver/internal/parse-options.js ***!
+  \*****************************************************************************************/
+/***/ ((module) => {
+
+// parse out just the options we care about
+const looseOption = Object.freeze({ loose: true })
+const emptyOpts = Object.freeze({ })
+const parseOptions = options => {
+  if (!options) {
+    return emptyOpts
+  }
+
+  if (typeof options !== 'object') {
+    return looseOption
+  }
+
+  return options
+}
+module.exports = parseOptions
+
+
+/***/ }),
+
+/***/ "./node_modules/@nextcloud/event-bus/node_modules/semver/internal/re.js":
+/*!******************************************************************************!*\
+  !*** ./node_modules/@nextcloud/event-bus/node_modules/semver/internal/re.js ***!
+  \******************************************************************************/
+/***/ ((module, exports, __webpack_require__) => {
+
+const {
+  MAX_SAFE_COMPONENT_LENGTH,
+  MAX_SAFE_BUILD_LENGTH,
+  MAX_LENGTH,
+} = __webpack_require__(/*! ./constants */ "./node_modules/@nextcloud/event-bus/node_modules/semver/internal/constants.js")
+const debug = __webpack_require__(/*! ./debug */ "./node_modules/@nextcloud/event-bus/node_modules/semver/internal/debug.js")
+exports = module.exports = {}
+
+// The actual regexps go on exports.re
+const re = exports.re = []
+const safeRe = exports.safeRe = []
+const src = exports.src = []
+const safeSrc = exports.safeSrc = []
+const t = exports.t = {}
+let R = 0
+
+const LETTERDASHNUMBER = '[a-zA-Z0-9-]'
+
+// Replace some greedy regex tokens to prevent regex dos issues. These regex are
+// used internally via the safeRe object since all inputs in this library get
+// normalized first to trim and collapse all extra whitespace. The original
+// regexes are exported for userland consumption and lower level usage. A
+// future breaking change could export the safer regex only with a note that
+// all input should have extra whitespace removed.
+const safeRegexReplacements = [
+  ['\\s', 1],
+  ['\\d', MAX_LENGTH],
+  [LETTERDASHNUMBER, MAX_SAFE_BUILD_LENGTH],
+]
+
+const makeSafeRegex = (value) => {
+  for (const [token, max] of safeRegexReplacements) {
+    value = value
+      .split(`${token}*`).join(`${token}{0,${max}}`)
+      .split(`${token}+`).join(`${token}{1,${max}}`)
+  }
+  return value
+}
+
+const createToken = (name, value, isGlobal) => {
+  const safe = makeSafeRegex(value)
+  const index = R++
+  debug(name, index, value)
+  t[name] = index
+  src[index] = value
+  safeSrc[index] = safe
+  re[index] = new RegExp(value, isGlobal ? 'g' : undefined)
+  safeRe[index] = new RegExp(safe, isGlobal ? 'g' : undefined)
+}
+
+// The following Regular Expressions can be used for tokenizing,
+// validating, and parsing SemVer version strings.
+
+// ## Numeric Identifier
+// A single `0`, or a non-zero digit followed by zero or more digits.
+
+createToken('NUMERICIDENTIFIER', '0|[1-9]\\d*')
+createToken('NUMERICIDENTIFIERLOOSE', '\\d+')
+
+// ## Non-numeric Identifier
+// Zero or more digits, followed by a letter or hyphen, and then zero or
+// more letters, digits, or hyphens.
+
+createToken('NONNUMERICIDENTIFIER', `\\d*[a-zA-Z-]${LETTERDASHNUMBER}*`)
+
+// ## Main Version
+// Three dot-separated numeric identifiers.
+
+createToken('MAINVERSION', `(${src[t.NUMERICIDENTIFIER]})\\.` +
+                   `(${src[t.NUMERICIDENTIFIER]})\\.` +
+                   `(${src[t.NUMERICIDENTIFIER]})`)
+
+createToken('MAINVERSIONLOOSE', `(${src[t.NUMERICIDENTIFIERLOOSE]})\\.` +
+                        `(${src[t.NUMERICIDENTIFIERLOOSE]})\\.` +
+                        `(${src[t.NUMERICIDENTIFIERLOOSE]})`)
+
+// ## Pre-release Version Identifier
+// A numeric identifier, or a non-numeric identifier.
+
+createToken('PRERELEASEIDENTIFIER', `(?:${src[t.NUMERICIDENTIFIER]
+}|${src[t.NONNUMERICIDENTIFIER]})`)
+
+createToken('PRERELEASEIDENTIFIERLOOSE', `(?:${src[t.NUMERICIDENTIFIERLOOSE]
+}|${src[t.NONNUMERICIDENTIFIER]})`)
+
+// ## Pre-release Version
+// Hyphen, followed by one or more dot-separated pre-release version
+// identifiers.
+
+createToken('PRERELEASE', `(?:-(${src[t.PRERELEASEIDENTIFIER]
+}(?:\\.${src[t.PRERELEASEIDENTIFIER]})*))`)
+
+createToken('PRERELEASELOOSE', `(?:-?(${src[t.PRERELEASEIDENTIFIERLOOSE]
+}(?:\\.${src[t.PRERELEASEIDENTIFIERLOOSE]})*))`)
+
+// ## Build Metadata Identifier
+// Any combination of digits, letters, or hyphens.
+
+createToken('BUILDIDENTIFIER', `${LETTERDASHNUMBER}+`)
+
+// ## Build Metadata
+// Plus sign, followed by one or more period-separated build metadata
+// identifiers.
+
+createToken('BUILD', `(?:\\+(${src[t.BUILDIDENTIFIER]
+}(?:\\.${src[t.BUILDIDENTIFIER]})*))`)
+
+// ## Full Version String
+// A main version, followed optionally by a pre-release version and
+// build metadata.
+
+// Note that the only major, minor, patch, and pre-release sections of
+// the version string are capturing groups.  The build metadata is not a
+// capturing group, because it should not ever be used in version
+// comparison.
+
+createToken('FULLPLAIN', `v?${src[t.MAINVERSION]
+}${src[t.PRERELEASE]}?${
+  src[t.BUILD]}?`)
+
+createToken('FULL', `^${src[t.FULLPLAIN]}$`)
+
+// like full, but allows v1.2.3 and =1.2.3, which people do sometimes.
+// also, 1.0.0alpha1 (prerelease without the hyphen) which is pretty
+// common in the npm registry.
+createToken('LOOSEPLAIN', `[v=\\s]*${src[t.MAINVERSIONLOOSE]
+}${src[t.PRERELEASELOOSE]}?${
+  src[t.BUILD]}?`)
+
+createToken('LOOSE', `^${src[t.LOOSEPLAIN]}$`)
+
+createToken('GTLT', '((?:<|>)?=?)')
+
+// Something like "2.*" or "1.2.x".
+// Note that "x.x" is a valid xRange identifer, meaning "any version"
+// Only the first item is strictly required.
+createToken('XRANGEIDENTIFIERLOOSE', `${src[t.NUMERICIDENTIFIERLOOSE]}|x|X|\\*`)
+createToken('XRANGEIDENTIFIER', `${src[t.NUMERICIDENTIFIER]}|x|X|\\*`)
+
+createToken('XRANGEPLAIN', `[v=\\s]*(${src[t.XRANGEIDENTIFIER]})` +
+                   `(?:\\.(${src[t.XRANGEIDENTIFIER]})` +
+                   `(?:\\.(${src[t.XRANGEIDENTIFIER]})` +
+                   `(?:${src[t.PRERELEASE]})?${
+                     src[t.BUILD]}?` +
+                   `)?)?`)
+
+createToken('XRANGEPLAINLOOSE', `[v=\\s]*(${src[t.XRANGEIDENTIFIERLOOSE]})` +
+                        `(?:\\.(${src[t.XRANGEIDENTIFIERLOOSE]})` +
+                        `(?:\\.(${src[t.XRANGEIDENTIFIERLOOSE]})` +
+                        `(?:${src[t.PRERELEASELOOSE]})?${
+                          src[t.BUILD]}?` +
+                        `)?)?`)
+
+createToken('XRANGE', `^${src[t.GTLT]}\\s*${src[t.XRANGEPLAIN]}$`)
+createToken('XRANGELOOSE', `^${src[t.GTLT]}\\s*${src[t.XRANGEPLAINLOOSE]}$`)
+
+// Coercion.
+// Extract anything that could conceivably be a part of a valid semver
+createToken('COERCEPLAIN', `${'(^|[^\\d])' +
+              '(\\d{1,'}${MAX_SAFE_COMPONENT_LENGTH}})` +
+              `(?:\\.(\\d{1,${MAX_SAFE_COMPONENT_LENGTH}}))?` +
+              `(?:\\.(\\d{1,${MAX_SAFE_COMPONENT_LENGTH}}))?`)
+createToken('COERCE', `${src[t.COERCEPLAIN]}(?:$|[^\\d])`)
+createToken('COERCEFULL', src[t.COERCEPLAIN] +
+              `(?:${src[t.PRERELEASE]})?` +
+              `(?:${src[t.BUILD]})?` +
+              `(?:$|[^\\d])`)
+createToken('COERCERTL', src[t.COERCE], true)
+createToken('COERCERTLFULL', src[t.COERCEFULL], true)
+
+// Tilde ranges.
+// Meaning is "reasonably at or greater than"
+createToken('LONETILDE', '(?:~>?)')
+
+createToken('TILDETRIM', `(\\s*)${src[t.LONETILDE]}\\s+`, true)
+exports.tildeTrimReplace = '$1~'
+
+createToken('TILDE', `^${src[t.LONETILDE]}${src[t.XRANGEPLAIN]}$`)
+createToken('TILDELOOSE', `^${src[t.LONETILDE]}${src[t.XRANGEPLAINLOOSE]}$`)
+
+// Caret ranges.
+// Meaning is "at least and backwards compatible with"
+createToken('LONECARET', '(?:\\^)')
+
+createToken('CARETTRIM', `(\\s*)${src[t.LONECARET]}\\s+`, true)
+exports.caretTrimReplace = '$1^'
+
+createToken('CARET', `^${src[t.LONECARET]}${src[t.XRANGEPLAIN]}$`)
+createToken('CARETLOOSE', `^${src[t.LONECARET]}${src[t.XRANGEPLAINLOOSE]}$`)
+
+// A simple gt/lt/eq thing, or just "" to indicate "any version"
+createToken('COMPARATORLOOSE', `^${src[t.GTLT]}\\s*(${src[t.LOOSEPLAIN]})$|^$`)
+createToken('COMPARATOR', `^${src[t.GTLT]}\\s*(${src[t.FULLPLAIN]})$|^$`)
+
+// An expression to strip any whitespace between the gtlt and the thing
+// it modifies, so that `> 1.2.3` ==> `>1.2.3`
+createToken('COMPARATORTRIM', `(\\s*)${src[t.GTLT]
+}\\s*(${src[t.LOOSEPLAIN]}|${src[t.XRANGEPLAIN]})`, true)
+exports.comparatorTrimReplace = '$1$2$3'
+
+// Something like `1.2.3 - 1.2.4`
+// Note that these all use the loose form, because they'll be
+// checked against either the strict or loose comparator form
+// later.
+createToken('HYPHENRANGE', `^\\s*(${src[t.XRANGEPLAIN]})` +
+                   `\\s+-\\s+` +
+                   `(${src[t.XRANGEPLAIN]})` +
+                   `\\s*$`)
+
+createToken('HYPHENRANGELOOSE', `^\\s*(${src[t.XRANGEPLAINLOOSE]})` +
+                        `\\s+-\\s+` +
+                        `(${src[t.XRANGEPLAINLOOSE]})` +
+                        `\\s*$`)
+
+// Star ranges basically just allow anything at all.
+createToken('STAR', '(<|>)?=?\\s*\\*')
+// >=0.0.0 is like a star
+createToken('GTE0', '^\\s*>=\\s*0\\.0\\.0\\s*$')
+createToken('GTE0PRE', '^\\s*>=\\s*0\\.0\\.0-0\\s*$')
+
+
+/***/ }),
+
+/***/ "./node_modules/@nextcloud/initial-state/dist/index.mjs":
+/*!**************************************************************!*\
+  !*** ./node_modules/@nextcloud/initial-state/dist/index.mjs ***!
+  \**************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   loadState: () => (/* binding */ loadState)
+/* harmony export */ });
+function loadState(app, key, fallback) {
+  const elem = document.querySelector(`#initial-state-${app}-${key}`);
+  if (elem === null) {
+    if (fallback !== void 0) {
+      return fallback;
+    }
+    throw new Error(`Could not find initial state ${key} of ${app}`);
+  }
+  try {
+    return JSON.parse(atob(elem.value));
+  } catch (e) {
+    throw new Error(`Could not parse initial state ${key} of ${app}`);
+  }
+}
+
+
+
+/***/ }),
+
+/***/ "./node_modules/@nextcloud/router/dist/index.mjs":
+/*!*******************************************************!*\
+  !*** ./node_modules/@nextcloud/router/dist/index.mjs ***!
+  \*******************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   generateFilePath: () => (/* binding */ d),
+/* harmony export */   generateOcsUrl: () => (/* binding */ v),
+/* harmony export */   generateRemoteUrl: () => (/* binding */ U),
+/* harmony export */   generateUrl: () => (/* binding */ _),
+/* harmony export */   getAppRootUrl: () => (/* binding */ b),
+/* harmony export */   getBaseUrl: () => (/* binding */ w),
+/* harmony export */   getRootUrl: () => (/* binding */ f),
+/* harmony export */   imagePath: () => (/* binding */ h),
+/* harmony export */   linkTo: () => (/* binding */ R)
+/* harmony export */ });
+const R = (n, e) => d(n, "", e), g = (n) => "/remote.php/" + n, U = (n, e) => {
+  var o;
+  return ((o = e == null ? void 0 : e.baseURL) != null ? o : w()) + g(n);
+}, v = (n, e, o) => {
+  var c;
+  const i = Object.assign({
+    ocsVersion: 2
+  }, o || {}).ocsVersion === 1 ? 1 : 2;
+  return ((c = o == null ? void 0 : o.baseURL) != null ? c : w()) + "/ocs/v" + i + ".php" + u(n, e, o);
+}, u = (n, e, o) => {
+  const c = Object.assign({
+    escape: !0
+  }, o || {}), r = function(i, s) {
+    return s = s || {}, i.replace(
+      /{([^{}]*)}/g,
+      function(l, t) {
+        const a = s[t];
+        return c.escape ? encodeURIComponent(typeof a == "string" || typeof a == "number" ? a.toString() : l) : typeof a == "string" || typeof a == "number" ? a.toString() : l;
+      }
+    );
+  };
+  return n.charAt(0) !== "/" && (n = "/" + n), r(n, e || {});
+}, _ = (n, e, o) => {
+  var c, r, i;
+  const s = Object.assign({
+    noRewrite: !1
+  }, o || {}), l = (c = o == null ? void 0 : o.baseURL) != null ? c : f();
+  return ((i = (r = window == null ? void 0 : window.OC) == null ? void 0 : r.config) == null ? void 0 : i.modRewriteWorking) === !0 && !s.noRewrite ? l + u(n, e, o) : l + "/index.php" + u(n, e, o);
+}, h = (n, e) => e.includes(".") ? d(n, "img", e) : d(n, "img", "".concat(e, ".svg")), d = (n, e, o) => {
+  var c, r, i;
+  const s = (i = (r = (c = window == null ? void 0 : window.OC) == null ? void 0 : c.coreApps) == null ? void 0 : r.includes(n)) != null ? i : !1, l = o.slice(-3) === "php";
+  let t = f();
+  return l && !s ? (t += "/index.php/apps/".concat(n), e && (t += "/".concat(encodeURI(e))), o !== "index.php" && (t += "/".concat(o))) : !l && !s ? (t = b(n), e && (t += "/".concat(e, "/")), t.at(-1) !== "/" && (t += "/"), t += o) : ((n === "settings" || n === "core" || n === "search") && e === "ajax" && (t += "/index.php"), n && (t += "/".concat(n)), e && (t += "/".concat(e)), t += "/".concat(o)), t;
+}, w = () => window.location.protocol + "//" + window.location.host + f();
+function f() {
+  let n = window._oc_webroot;
+  if (typeof n > "u") {
+    n = location.pathname;
+    const e = n.indexOf("/index.php/");
+    if (e !== -1)
+      n = n.slice(0, e);
+    else {
+      const o = n.indexOf("/", 1);
+      n = n.slice(0, o > 0 ? o : void 0);
+    }
+  }
+  return n;
+}
+function b(n) {
+  var e, o;
+  return (o = ((e = window._oc_appswebroots) != null ? e : {})[n]) != null ? o : "";
+}
+
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/index.js":
+/*!*************************************!*\
+  !*** ./node_modules/axios/index.js ***!
+  \*************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   Axios: () => (/* binding */ Axios),
+/* harmony export */   AxiosError: () => (/* binding */ AxiosError),
+/* harmony export */   AxiosHeaders: () => (/* binding */ AxiosHeaders),
+/* harmony export */   Cancel: () => (/* binding */ Cancel),
+/* harmony export */   CancelToken: () => (/* binding */ CancelToken),
+/* harmony export */   CanceledError: () => (/* binding */ CanceledError),
+/* harmony export */   HttpStatusCode: () => (/* binding */ HttpStatusCode),
+/* harmony export */   VERSION: () => (/* binding */ VERSION),
+/* harmony export */   all: () => (/* binding */ all),
+/* harmony export */   "default": () => (/* reexport safe */ _lib_axios_js__WEBPACK_IMPORTED_MODULE_0__["default"]),
+/* harmony export */   formToJSON: () => (/* binding */ formToJSON),
+/* harmony export */   getAdapter: () => (/* binding */ getAdapter),
+/* harmony export */   isAxiosError: () => (/* binding */ isAxiosError),
+/* harmony export */   isCancel: () => (/* binding */ isCancel),
+/* harmony export */   mergeConfig: () => (/* binding */ mergeConfig),
+/* harmony export */   spread: () => (/* binding */ spread),
+/* harmony export */   toFormData: () => (/* binding */ toFormData)
+/* harmony export */ });
+/* harmony import */ var _lib_axios_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./lib/axios.js */ "./node_modules/axios/lib/axios.js");
+
+
+// This module is intended to unwrap Axios default export as named.
+// Keep top-level export same with static properties
+// so that it can keep same with es module or cjs
+const {
+  Axios,
+  AxiosError,
+  CanceledError,
+  isCancel,
+  CancelToken,
+  VERSION,
+  all,
+  Cancel,
+  isAxiosError,
+  spread,
+  toFormData,
+  AxiosHeaders,
+  HttpStatusCode,
+  formToJSON,
+  getAdapter,
+  mergeConfig
+} = _lib_axios_js__WEBPACK_IMPORTED_MODULE_0__["default"];
+
+
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/adapters/adapters.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/axios/lib/adapters/adapters.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../utils.js */ "./node_modules/axios/lib/utils.js");
+/* harmony import */ var _http_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./http.js */ "./node_modules/axios/lib/helpers/null.js");
+/* harmony import */ var _xhr_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./xhr.js */ "./node_modules/axios/lib/adapters/xhr.js");
+/* harmony import */ var _fetch_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./fetch.js */ "./node_modules/axios/lib/adapters/fetch.js");
+/* harmony import */ var _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../core/AxiosError.js */ "./node_modules/axios/lib/core/AxiosError.js");
+
+
+
+
+
+
+const knownAdapters = {
+  http: _http_js__WEBPACK_IMPORTED_MODULE_0__["default"],
+  xhr: _xhr_js__WEBPACK_IMPORTED_MODULE_1__["default"],
+  fetch: _fetch_js__WEBPACK_IMPORTED_MODULE_2__["default"]
+}
+
+_utils_js__WEBPACK_IMPORTED_MODULE_3__["default"].forEach(knownAdapters, (fn, value) => {
+  if (fn) {
+    try {
+      Object.defineProperty(fn, 'name', {value});
+    } catch (e) {
+      // eslint-disable-next-line no-empty
+    }
+    Object.defineProperty(fn, 'adapterName', {value});
+  }
+});
+
+const renderReason = (reason) => `- ${reason}`;
+
+const isResolvedHandle = (adapter) => _utils_js__WEBPACK_IMPORTED_MODULE_3__["default"].isFunction(adapter) || adapter === null || adapter === false;
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  getAdapter: (adapters) => {
+    adapters = _utils_js__WEBPACK_IMPORTED_MODULE_3__["default"].isArray(adapters) ? adapters : [adapters];
+
+    const {length} = adapters;
+    let nameOrAdapter;
+    let adapter;
+
+    const rejectedReasons = {};
+
+    for (let i = 0; i < length; i++) {
+      nameOrAdapter = adapters[i];
+      let id;
+
+      adapter = nameOrAdapter;
+
+      if (!isResolvedHandle(nameOrAdapter)) {
+        adapter = knownAdapters[(id = String(nameOrAdapter)).toLowerCase()];
+
+        if (adapter === undefined) {
+          throw new _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_4__["default"](`Unknown adapter '${id}'`);
+        }
+      }
+
+      if (adapter) {
+        break;
+      }
+
+      rejectedReasons[id || '#' + i] = adapter;
+    }
+
+    if (!adapter) {
+
+      const reasons = Object.entries(rejectedReasons)
+        .map(([id, state]) => `adapter ${id} ` +
+          (state === false ? 'is not supported by the environment' : 'is not available in the build')
+        );
+
+      let s = length ?
+        (reasons.length > 1 ? 'since :\n' + reasons.map(renderReason).join('\n') : ' ' + renderReason(reasons[0])) :
+        'as no adapter specified';
+
+      throw new _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_4__["default"](
+        `There is no suitable adapter to dispatch the request ` + s,
+        'ERR_NOT_SUPPORT'
+      );
+    }
+
+    return adapter;
+  },
+  adapters: knownAdapters
+});
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/adapters/fetch.js":
+/*!**************************************************!*\
+  !*** ./node_modules/axios/lib/adapters/fetch.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _platform_index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../platform/index.js */ "./node_modules/axios/lib/platform/index.js");
+/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils.js */ "./node_modules/axios/lib/utils.js");
+/* harmony import */ var _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../core/AxiosError.js */ "./node_modules/axios/lib/core/AxiosError.js");
+/* harmony import */ var _helpers_composeSignals_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../helpers/composeSignals.js */ "./node_modules/axios/lib/helpers/composeSignals.js");
+/* harmony import */ var _helpers_trackStream_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../helpers/trackStream.js */ "./node_modules/axios/lib/helpers/trackStream.js");
+/* harmony import */ var _core_AxiosHeaders_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../core/AxiosHeaders.js */ "./node_modules/axios/lib/core/AxiosHeaders.js");
+/* harmony import */ var _helpers_progressEventReducer_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../helpers/progressEventReducer.js */ "./node_modules/axios/lib/helpers/progressEventReducer.js");
+/* harmony import */ var _helpers_resolveConfig_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../helpers/resolveConfig.js */ "./node_modules/axios/lib/helpers/resolveConfig.js");
+/* harmony import */ var _core_settle_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../core/settle.js */ "./node_modules/axios/lib/core/settle.js");
+
+
+
+
+
+
+
+
+
+
+const isFetchSupported = typeof fetch === 'function' && typeof Request === 'function' && typeof Response === 'function';
+const isReadableStreamSupported = isFetchSupported && typeof ReadableStream === 'function';
+
+// used only inside the fetch adapter
+const encodeText = isFetchSupported && (typeof TextEncoder === 'function' ?
+    ((encoder) => (str) => encoder.encode(str))(new TextEncoder()) :
+    async (str) => new Uint8Array(await new Response(str).arrayBuffer())
+);
+
+const test = (fn, ...args) => {
+  try {
+    return !!fn(...args);
+  } catch (e) {
+    return false
+  }
+}
+
+const supportsRequestStream = isReadableStreamSupported && test(() => {
+  let duplexAccessed = false;
+
+  const hasContentType = new Request(_platform_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].origin, {
+    body: new ReadableStream(),
+    method: 'POST',
+    get duplex() {
+      duplexAccessed = true;
+      return 'half';
+    },
+  }).headers.has('Content-Type');
+
+  return duplexAccessed && !hasContentType;
+});
+
+const DEFAULT_CHUNK_SIZE = 64 * 1024;
+
+const supportsResponseStream = isReadableStreamSupported &&
+  test(() => _utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].isReadableStream(new Response('').body));
+
+
+const resolvers = {
+  stream: supportsResponseStream && ((res) => res.body)
+};
+
+isFetchSupported && (((res) => {
+  ['text', 'arrayBuffer', 'blob', 'formData', 'stream'].forEach(type => {
+    !resolvers[type] && (resolvers[type] = _utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].isFunction(res[type]) ? (res) => res[type]() :
+      (_, config) => {
+        throw new _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_2__["default"](`Response type '${type}' is not supported`, _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_2__["default"].ERR_NOT_SUPPORT, config);
+      })
+  });
+})(new Response));
+
+const getBodyLength = async (body) => {
+  if (body == null) {
+    return 0;
+  }
+
+  if(_utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].isBlob(body)) {
+    return body.size;
+  }
+
+  if(_utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].isSpecCompliantForm(body)) {
+    const _request = new Request(_platform_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].origin, {
+      method: 'POST',
+      body,
+    });
+    return (await _request.arrayBuffer()).byteLength;
+  }
+
+  if(_utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].isArrayBufferView(body) || _utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].isArrayBuffer(body)) {
+    return body.byteLength;
+  }
+
+  if(_utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].isURLSearchParams(body)) {
+    body = body + '';
+  }
+
+  if(_utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].isString(body)) {
+    return (await encodeText(body)).byteLength;
+  }
+}
+
+const resolveBodyLength = async (headers, body) => {
+  const length = _utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].toFiniteNumber(headers.getContentLength());
+
+  return length == null ? getBodyLength(body) : length;
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (isFetchSupported && (async (config) => {
+  let {
+    url,
+    method,
+    data,
+    signal,
+    cancelToken,
+    timeout,
+    onDownloadProgress,
+    onUploadProgress,
+    responseType,
+    headers,
+    withCredentials = 'same-origin',
+    fetchOptions
+  } = (0,_helpers_resolveConfig_js__WEBPACK_IMPORTED_MODULE_3__["default"])(config);
+
+  responseType = responseType ? (responseType + '').toLowerCase() : 'text';
+
+  let composedSignal = (0,_helpers_composeSignals_js__WEBPACK_IMPORTED_MODULE_4__["default"])([signal, cancelToken && cancelToken.toAbortSignal()], timeout);
+
+  let request;
+
+  const unsubscribe = composedSignal && composedSignal.unsubscribe && (() => {
+      composedSignal.unsubscribe();
+  });
+
+  let requestContentLength;
+
+  try {
+    if (
+      onUploadProgress && supportsRequestStream && method !== 'get' && method !== 'head' &&
+      (requestContentLength = await resolveBodyLength(headers, data)) !== 0
+    ) {
+      let _request = new Request(url, {
+        method: 'POST',
+        body: data,
+        duplex: "half"
+      });
+
+      let contentTypeHeader;
+
+      if (_utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].isFormData(data) && (contentTypeHeader = _request.headers.get('content-type'))) {
+        headers.setContentType(contentTypeHeader)
+      }
+
+      if (_request.body) {
+        const [onProgress, flush] = (0,_helpers_progressEventReducer_js__WEBPACK_IMPORTED_MODULE_5__.progressEventDecorator)(
+          requestContentLength,
+          (0,_helpers_progressEventReducer_js__WEBPACK_IMPORTED_MODULE_5__.progressEventReducer)((0,_helpers_progressEventReducer_js__WEBPACK_IMPORTED_MODULE_5__.asyncDecorator)(onUploadProgress))
+        );
+
+        data = (0,_helpers_trackStream_js__WEBPACK_IMPORTED_MODULE_6__.trackStream)(_request.body, DEFAULT_CHUNK_SIZE, onProgress, flush);
+      }
+    }
+
+    if (!_utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].isString(withCredentials)) {
+      withCredentials = withCredentials ? 'include' : 'omit';
+    }
+
+    // Cloudflare Workers throws when credentials are defined
+    // see https://github.com/cloudflare/workerd/issues/902
+    const isCredentialsSupported = "credentials" in Request.prototype;
+    request = new Request(url, {
+      ...fetchOptions,
+      signal: composedSignal,
+      method: method.toUpperCase(),
+      headers: headers.normalize().toJSON(),
+      body: data,
+      duplex: "half",
+      credentials: isCredentialsSupported ? withCredentials : undefined
+    });
+
+    let response = await fetch(request);
+
+    const isStreamResponse = supportsResponseStream && (responseType === 'stream' || responseType === 'response');
+
+    if (supportsResponseStream && (onDownloadProgress || (isStreamResponse && unsubscribe))) {
+      const options = {};
+
+      ['status', 'statusText', 'headers'].forEach(prop => {
+        options[prop] = response[prop];
+      });
+
+      const responseContentLength = _utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].toFiniteNumber(response.headers.get('content-length'));
+
+      const [onProgress, flush] = onDownloadProgress && (0,_helpers_progressEventReducer_js__WEBPACK_IMPORTED_MODULE_5__.progressEventDecorator)(
+        responseContentLength,
+        (0,_helpers_progressEventReducer_js__WEBPACK_IMPORTED_MODULE_5__.progressEventReducer)((0,_helpers_progressEventReducer_js__WEBPACK_IMPORTED_MODULE_5__.asyncDecorator)(onDownloadProgress), true)
+      ) || [];
+
+      response = new Response(
+        (0,_helpers_trackStream_js__WEBPACK_IMPORTED_MODULE_6__.trackStream)(response.body, DEFAULT_CHUNK_SIZE, onProgress, () => {
+          flush && flush();
+          unsubscribe && unsubscribe();
+        }),
+        options
+      );
+    }
+
+    responseType = responseType || 'text';
+
+    let responseData = await resolvers[_utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].findKey(resolvers, responseType) || 'text'](response, config);
+
+    !isStreamResponse && unsubscribe && unsubscribe();
+
+    return await new Promise((resolve, reject) => {
+      (0,_core_settle_js__WEBPACK_IMPORTED_MODULE_7__["default"])(resolve, reject, {
+        data: responseData,
+        headers: _core_AxiosHeaders_js__WEBPACK_IMPORTED_MODULE_8__["default"].from(response.headers),
+        status: response.status,
+        statusText: response.statusText,
+        config,
+        request
+      })
+    })
+  } catch (err) {
+    unsubscribe && unsubscribe();
+
+    if (err && err.name === 'TypeError' && /Load failed|fetch/i.test(err.message)) {
+      throw Object.assign(
+        new _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_2__["default"]('Network Error', _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_2__["default"].ERR_NETWORK, config, request),
+        {
+          cause: err.cause || err
+        }
+      )
+    }
+
+    throw _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_2__["default"].from(err, err && err.code, config, request);
+  }
+}));
+
+
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/adapters/xhr.js":
+/*!************************************************!*\
+  !*** ./node_modules/axios/lib/adapters/xhr.js ***!
+  \************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./../utils.js */ "./node_modules/axios/lib/utils.js");
+/* harmony import */ var _core_settle_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../core/settle.js */ "./node_modules/axios/lib/core/settle.js");
+/* harmony import */ var _defaults_transitional_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../defaults/transitional.js */ "./node_modules/axios/lib/defaults/transitional.js");
+/* harmony import */ var _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../core/AxiosError.js */ "./node_modules/axios/lib/core/AxiosError.js");
+/* harmony import */ var _cancel_CanceledError_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../cancel/CanceledError.js */ "./node_modules/axios/lib/cancel/CanceledError.js");
+/* harmony import */ var _helpers_parseProtocol_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../helpers/parseProtocol.js */ "./node_modules/axios/lib/helpers/parseProtocol.js");
+/* harmony import */ var _platform_index_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../platform/index.js */ "./node_modules/axios/lib/platform/index.js");
+/* harmony import */ var _core_AxiosHeaders_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../core/AxiosHeaders.js */ "./node_modules/axios/lib/core/AxiosHeaders.js");
+/* harmony import */ var _helpers_progressEventReducer_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../helpers/progressEventReducer.js */ "./node_modules/axios/lib/helpers/progressEventReducer.js");
+/* harmony import */ var _helpers_resolveConfig_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../helpers/resolveConfig.js */ "./node_modules/axios/lib/helpers/resolveConfig.js");
+
+
+
+
+
+
+
+
+
+
+
+const isXHRAdapterSupported = typeof XMLHttpRequest !== 'undefined';
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (isXHRAdapterSupported && function (config) {
+  return new Promise(function dispatchXhrRequest(resolve, reject) {
+    const _config = (0,_helpers_resolveConfig_js__WEBPACK_IMPORTED_MODULE_0__["default"])(config);
+    let requestData = _config.data;
+    const requestHeaders = _core_AxiosHeaders_js__WEBPACK_IMPORTED_MODULE_1__["default"].from(_config.headers).normalize();
+    let {responseType, onUploadProgress, onDownloadProgress} = _config;
+    let onCanceled;
+    let uploadThrottled, downloadThrottled;
+    let flushUpload, flushDownload;
+
+    function done() {
+      flushUpload && flushUpload(); // flush events
+      flushDownload && flushDownload(); // flush events
+
+      _config.cancelToken && _config.cancelToken.unsubscribe(onCanceled);
+
+      _config.signal && _config.signal.removeEventListener('abort', onCanceled);
+    }
+
+    let request = new XMLHttpRequest();
+
+    request.open(_config.method.toUpperCase(), _config.url, true);
+
+    // Set the request timeout in MS
+    request.timeout = _config.timeout;
+
+    function onloadend() {
+      if (!request) {
+        return;
+      }
+      // Prepare the response
+      const responseHeaders = _core_AxiosHeaders_js__WEBPACK_IMPORTED_MODULE_1__["default"].from(
+        'getAllResponseHeaders' in request && request.getAllResponseHeaders()
+      );
+      const responseData = !responseType || responseType === 'text' || responseType === 'json' ?
+        request.responseText : request.response;
+      const response = {
+        data: responseData,
+        status: request.status,
+        statusText: request.statusText,
+        headers: responseHeaders,
+        config,
+        request
+      };
+
+      (0,_core_settle_js__WEBPACK_IMPORTED_MODULE_2__["default"])(function _resolve(value) {
+        resolve(value);
+        done();
+      }, function _reject(err) {
+        reject(err);
+        done();
+      }, response);
+
+      // Clean up request
+      request = null;
+    }
+
+    if ('onloadend' in request) {
+      // Use onloadend if available
+      request.onloadend = onloadend;
+    } else {
+      // Listen for ready state to emulate onloadend
+      request.onreadystatechange = function handleLoad() {
+        if (!request || request.readyState !== 4) {
+          return;
+        }
+
+        // The request errored out and we didn't get a response, this will be
+        // handled by onerror instead
+        // With one exception: request that using file: protocol, most browsers
+        // will return status as 0 even though it's a successful request
+        if (request.status === 0 && !(request.responseURL && request.responseURL.indexOf('file:') === 0)) {
+          return;
+        }
+        // readystate handler is calling before onerror or ontimeout handlers,
+        // so we should call onloadend on the next 'tick'
+        setTimeout(onloadend);
+      };
+    }
+
+    // Handle browser request cancellation (as opposed to a manual cancellation)
+    request.onabort = function handleAbort() {
+      if (!request) {
+        return;
+      }
+
+      reject(new _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_3__["default"]('Request aborted', _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_3__["default"].ECONNABORTED, config, request));
+
+      // Clean up request
+      request = null;
+    };
+
+    // Handle low level network errors
+    request.onerror = function handleError() {
+      // Real errors are hidden from us by the browser
+      // onerror should only fire if it's a network error
+      reject(new _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_3__["default"]('Network Error', _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_3__["default"].ERR_NETWORK, config, request));
+
+      // Clean up request
+      request = null;
+    };
+
+    // Handle timeout
+    request.ontimeout = function handleTimeout() {
+      let timeoutErrorMessage = _config.timeout ? 'timeout of ' + _config.timeout + 'ms exceeded' : 'timeout exceeded';
+      const transitional = _config.transitional || _defaults_transitional_js__WEBPACK_IMPORTED_MODULE_4__["default"];
+      if (_config.timeoutErrorMessage) {
+        timeoutErrorMessage = _config.timeoutErrorMessage;
+      }
+      reject(new _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_3__["default"](
+        timeoutErrorMessage,
+        transitional.clarifyTimeoutError ? _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_3__["default"].ETIMEDOUT : _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_3__["default"].ECONNABORTED,
+        config,
+        request));
+
+      // Clean up request
+      request = null;
+    };
+
+    // Remove Content-Type if data is undefined
+    requestData === undefined && requestHeaders.setContentType(null);
+
+    // Add headers to the request
+    if ('setRequestHeader' in request) {
+      _utils_js__WEBPACK_IMPORTED_MODULE_5__["default"].forEach(requestHeaders.toJSON(), function setRequestHeader(val, key) {
+        request.setRequestHeader(key, val);
+      });
+    }
+
+    // Add withCredentials to request if needed
+    if (!_utils_js__WEBPACK_IMPORTED_MODULE_5__["default"].isUndefined(_config.withCredentials)) {
+      request.withCredentials = !!_config.withCredentials;
+    }
+
+    // Add responseType to request if needed
+    if (responseType && responseType !== 'json') {
+      request.responseType = _config.responseType;
+    }
+
+    // Handle progress if needed
+    if (onDownloadProgress) {
+      ([downloadThrottled, flushDownload] = (0,_helpers_progressEventReducer_js__WEBPACK_IMPORTED_MODULE_6__.progressEventReducer)(onDownloadProgress, true));
+      request.addEventListener('progress', downloadThrottled);
+    }
+
+    // Not all browsers support upload events
+    if (onUploadProgress && request.upload) {
+      ([uploadThrottled, flushUpload] = (0,_helpers_progressEventReducer_js__WEBPACK_IMPORTED_MODULE_6__.progressEventReducer)(onUploadProgress));
+
+      request.upload.addEventListener('progress', uploadThrottled);
+
+      request.upload.addEventListener('loadend', flushUpload);
+    }
+
+    if (_config.cancelToken || _config.signal) {
+      // Handle cancellation
+      // eslint-disable-next-line func-names
+      onCanceled = cancel => {
+        if (!request) {
+          return;
+        }
+        reject(!cancel || cancel.type ? new _cancel_CanceledError_js__WEBPACK_IMPORTED_MODULE_7__["default"](null, config, request) : cancel);
+        request.abort();
+        request = null;
+      };
+
+      _config.cancelToken && _config.cancelToken.subscribe(onCanceled);
+      if (_config.signal) {
+        _config.signal.aborted ? onCanceled() : _config.signal.addEventListener('abort', onCanceled);
+      }
+    }
+
+    const protocol = (0,_helpers_parseProtocol_js__WEBPACK_IMPORTED_MODULE_8__["default"])(_config.url);
+
+    if (protocol && _platform_index_js__WEBPACK_IMPORTED_MODULE_9__["default"].protocols.indexOf(protocol) === -1) {
+      reject(new _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_3__["default"]('Unsupported protocol ' + protocol + ':', _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_3__["default"].ERR_BAD_REQUEST, config));
+      return;
+    }
+
+
+    // Send the request
+    request.send(requestData || null);
+  });
+});
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/axios.js":
+/*!*****************************************!*\
+  !*** ./node_modules/axios/lib/axios.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils.js */ "./node_modules/axios/lib/utils.js");
+/* harmony import */ var _helpers_bind_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./helpers/bind.js */ "./node_modules/axios/lib/helpers/bind.js");
+/* harmony import */ var _core_Axios_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./core/Axios.js */ "./node_modules/axios/lib/core/Axios.js");
+/* harmony import */ var _core_mergeConfig_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./core/mergeConfig.js */ "./node_modules/axios/lib/core/mergeConfig.js");
+/* harmony import */ var _defaults_index_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./defaults/index.js */ "./node_modules/axios/lib/defaults/index.js");
+/* harmony import */ var _helpers_formDataToJSON_js__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./helpers/formDataToJSON.js */ "./node_modules/axios/lib/helpers/formDataToJSON.js");
+/* harmony import */ var _cancel_CanceledError_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./cancel/CanceledError.js */ "./node_modules/axios/lib/cancel/CanceledError.js");
+/* harmony import */ var _cancel_CancelToken_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./cancel/CancelToken.js */ "./node_modules/axios/lib/cancel/CancelToken.js");
+/* harmony import */ var _cancel_isCancel_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./cancel/isCancel.js */ "./node_modules/axios/lib/cancel/isCancel.js");
+/* harmony import */ var _env_data_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./env/data.js */ "./node_modules/axios/lib/env/data.js");
+/* harmony import */ var _helpers_toFormData_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./helpers/toFormData.js */ "./node_modules/axios/lib/helpers/toFormData.js");
+/* harmony import */ var _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./core/AxiosError.js */ "./node_modules/axios/lib/core/AxiosError.js");
+/* harmony import */ var _helpers_spread_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./helpers/spread.js */ "./node_modules/axios/lib/helpers/spread.js");
+/* harmony import */ var _helpers_isAxiosError_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./helpers/isAxiosError.js */ "./node_modules/axios/lib/helpers/isAxiosError.js");
+/* harmony import */ var _core_AxiosHeaders_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./core/AxiosHeaders.js */ "./node_modules/axios/lib/core/AxiosHeaders.js");
+/* harmony import */ var _adapters_adapters_js__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./adapters/adapters.js */ "./node_modules/axios/lib/adapters/adapters.js");
+/* harmony import */ var _helpers_HttpStatusCode_js__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./helpers/HttpStatusCode.js */ "./node_modules/axios/lib/helpers/HttpStatusCode.js");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * Create an instance of Axios
+ *
+ * @param {Object} defaultConfig The default config for the instance
+ *
+ * @returns {Axios} A new instance of Axios
+ */
+function createInstance(defaultConfig) {
+  const context = new _core_Axios_js__WEBPACK_IMPORTED_MODULE_0__["default"](defaultConfig);
+  const instance = (0,_helpers_bind_js__WEBPACK_IMPORTED_MODULE_1__["default"])(_core_Axios_js__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.request, context);
+
+  // Copy axios.prototype to instance
+  _utils_js__WEBPACK_IMPORTED_MODULE_2__["default"].extend(instance, _core_Axios_js__WEBPACK_IMPORTED_MODULE_0__["default"].prototype, context, {allOwnKeys: true});
+
+  // Copy context to instance
+  _utils_js__WEBPACK_IMPORTED_MODULE_2__["default"].extend(instance, context, null, {allOwnKeys: true});
+
+  // Factory for creating new instances
+  instance.create = function create(instanceConfig) {
+    return createInstance((0,_core_mergeConfig_js__WEBPACK_IMPORTED_MODULE_3__["default"])(defaultConfig, instanceConfig));
+  };
+
+  return instance;
+}
+
+// Create the default instance to be exported
+const axios = createInstance(_defaults_index_js__WEBPACK_IMPORTED_MODULE_4__["default"]);
+
+// Expose Axios class to allow class inheritance
+axios.Axios = _core_Axios_js__WEBPACK_IMPORTED_MODULE_0__["default"];
+
+// Expose Cancel & CancelToken
+axios.CanceledError = _cancel_CanceledError_js__WEBPACK_IMPORTED_MODULE_5__["default"];
+axios.CancelToken = _cancel_CancelToken_js__WEBPACK_IMPORTED_MODULE_6__["default"];
+axios.isCancel = _cancel_isCancel_js__WEBPACK_IMPORTED_MODULE_7__["default"];
+axios.VERSION = _env_data_js__WEBPACK_IMPORTED_MODULE_8__.VERSION;
+axios.toFormData = _helpers_toFormData_js__WEBPACK_IMPORTED_MODULE_9__["default"];
+
+// Expose AxiosError class
+axios.AxiosError = _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_10__["default"];
+
+// alias for CanceledError for backward compatibility
+axios.Cancel = axios.CanceledError;
+
+// Expose all/spread
+axios.all = function all(promises) {
+  return Promise.all(promises);
+};
+
+axios.spread = _helpers_spread_js__WEBPACK_IMPORTED_MODULE_11__["default"];
+
+// Expose isAxiosError
+axios.isAxiosError = _helpers_isAxiosError_js__WEBPACK_IMPORTED_MODULE_12__["default"];
+
+// Expose mergeConfig
+axios.mergeConfig = _core_mergeConfig_js__WEBPACK_IMPORTED_MODULE_3__["default"];
+
+axios.AxiosHeaders = _core_AxiosHeaders_js__WEBPACK_IMPORTED_MODULE_13__["default"];
+
+axios.formToJSON = thing => (0,_helpers_formDataToJSON_js__WEBPACK_IMPORTED_MODULE_14__["default"])(_utils_js__WEBPACK_IMPORTED_MODULE_2__["default"].isHTMLForm(thing) ? new FormData(thing) : thing);
+
+axios.getAdapter = _adapters_adapters_js__WEBPACK_IMPORTED_MODULE_15__["default"].getAdapter;
+
+axios.HttpStatusCode = _helpers_HttpStatusCode_js__WEBPACK_IMPORTED_MODULE_16__["default"];
+
+axios.default = axios;
+
+// this module should only have a default export
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (axios);
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/cancel/CancelToken.js":
+/*!******************************************************!*\
+  !*** ./node_modules/axios/lib/cancel/CancelToken.js ***!
+  \******************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _CanceledError_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CanceledError.js */ "./node_modules/axios/lib/cancel/CanceledError.js");
+
+
+
+
+/**
+ * A `CancelToken` is an object that can be used to request cancellation of an operation.
+ *
+ * @param {Function} executor The executor function.
+ *
+ * @returns {CancelToken}
+ */
+class CancelToken {
+  constructor(executor) {
+    if (typeof executor !== 'function') {
+      throw new TypeError('executor must be a function.');
+    }
+
+    let resolvePromise;
+
+    this.promise = new Promise(function promiseExecutor(resolve) {
+      resolvePromise = resolve;
+    });
+
+    const token = this;
+
+    // eslint-disable-next-line func-names
+    this.promise.then(cancel => {
+      if (!token._listeners) return;
+
+      let i = token._listeners.length;
+
+      while (i-- > 0) {
+        token._listeners[i](cancel);
+      }
+      token._listeners = null;
+    });
+
+    // eslint-disable-next-line func-names
+    this.promise.then = onfulfilled => {
+      let _resolve;
+      // eslint-disable-next-line func-names
+      const promise = new Promise(resolve => {
+        token.subscribe(resolve);
+        _resolve = resolve;
+      }).then(onfulfilled);
+
+      promise.cancel = function reject() {
+        token.unsubscribe(_resolve);
+      };
+
+      return promise;
+    };
+
+    executor(function cancel(message, config, request) {
+      if (token.reason) {
+        // Cancellation has already been requested
+        return;
+      }
+
+      token.reason = new _CanceledError_js__WEBPACK_IMPORTED_MODULE_0__["default"](message, config, request);
+      resolvePromise(token.reason);
+    });
+  }
+
+  /**
+   * Throws a `CanceledError` if cancellation has been requested.
+   */
+  throwIfRequested() {
+    if (this.reason) {
+      throw this.reason;
+    }
+  }
+
+  /**
+   * Subscribe to the cancel signal
+   */
+
+  subscribe(listener) {
+    if (this.reason) {
+      listener(this.reason);
+      return;
+    }
+
+    if (this._listeners) {
+      this._listeners.push(listener);
+    } else {
+      this._listeners = [listener];
+    }
+  }
+
+  /**
+   * Unsubscribe from the cancel signal
+   */
+
+  unsubscribe(listener) {
+    if (!this._listeners) {
+      return;
+    }
+    const index = this._listeners.indexOf(listener);
+    if (index !== -1) {
+      this._listeners.splice(index, 1);
+    }
+  }
+
+  toAbortSignal() {
+    const controller = new AbortController();
+
+    const abort = (err) => {
+      controller.abort(err);
+    };
+
+    this.subscribe(abort);
+
+    controller.signal.unsubscribe = () => this.unsubscribe(abort);
+
+    return controller.signal;
+  }
+
+  /**
+   * Returns an object that contains a new `CancelToken` and a function that, when called,
+   * cancels the `CancelToken`.
+   */
+  static source() {
+    let cancel;
+    const token = new CancelToken(function executor(c) {
+      cancel = c;
+    });
+    return {
+      token,
+      cancel
+    };
+  }
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CancelToken);
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/cancel/CanceledError.js":
+/*!********************************************************!*\
+  !*** ./node_modules/axios/lib/cancel/CanceledError.js ***!
+  \********************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../core/AxiosError.js */ "./node_modules/axios/lib/core/AxiosError.js");
+/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils.js */ "./node_modules/axios/lib/utils.js");
+
+
+
+
+
+/**
+ * A `CanceledError` is an object that is thrown when an operation is canceled.
+ *
+ * @param {string=} message The message.
+ * @param {Object=} config The config.
+ * @param {Object=} request The request.
+ *
+ * @returns {CanceledError} The created error.
+ */
+function CanceledError(message, config, request) {
+  // eslint-disable-next-line no-eq-null,eqeqeq
+  _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_0__["default"].call(this, message == null ? 'canceled' : message, _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_0__["default"].ERR_CANCELED, config, request);
+  this.name = 'CanceledError';
+}
+
+_utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].inherits(CanceledError, _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_0__["default"], {
+  __CANCEL__: true
+});
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CanceledError);
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/cancel/isCancel.js":
+/*!***************************************************!*\
+  !*** ./node_modules/axios/lib/cancel/isCancel.js ***!
+  \***************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ isCancel)
+/* harmony export */ });
+
+
+function isCancel(value) {
+  return !!(value && value.__CANCEL__);
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/core/Axios.js":
+/*!**********************************************!*\
+  !*** ./node_modules/axios/lib/core/Axios.js ***!
+  \**********************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../utils.js */ "./node_modules/axios/lib/utils.js");
+/* harmony import */ var _helpers_buildURL_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../helpers/buildURL.js */ "./node_modules/axios/lib/helpers/buildURL.js");
+/* harmony import */ var _InterceptorManager_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./InterceptorManager.js */ "./node_modules/axios/lib/core/InterceptorManager.js");
+/* harmony import */ var _dispatchRequest_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./dispatchRequest.js */ "./node_modules/axios/lib/core/dispatchRequest.js");
+/* harmony import */ var _mergeConfig_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./mergeConfig.js */ "./node_modules/axios/lib/core/mergeConfig.js");
+/* harmony import */ var _buildFullPath_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./buildFullPath.js */ "./node_modules/axios/lib/core/buildFullPath.js");
+/* harmony import */ var _helpers_validator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../helpers/validator.js */ "./node_modules/axios/lib/helpers/validator.js");
+/* harmony import */ var _AxiosHeaders_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./AxiosHeaders.js */ "./node_modules/axios/lib/core/AxiosHeaders.js");
+
+
+
+
+
+
+
+
+
+
+
+const validators = _helpers_validator_js__WEBPACK_IMPORTED_MODULE_0__["default"].validators;
+
+/**
+ * Create a new instance of Axios
+ *
+ * @param {Object} instanceConfig The default config for the instance
+ *
+ * @return {Axios} A new instance of Axios
+ */
+class Axios {
+  constructor(instanceConfig) {
+    this.defaults = instanceConfig || {};
+    this.interceptors = {
+      request: new _InterceptorManager_js__WEBPACK_IMPORTED_MODULE_1__["default"](),
+      response: new _InterceptorManager_js__WEBPACK_IMPORTED_MODULE_1__["default"]()
+    };
+  }
+
+  /**
+   * Dispatch a request
+   *
+   * @param {String|Object} configOrUrl The config specific for this request (merged with this.defaults)
+   * @param {?Object} config
+   *
+   * @returns {Promise} The Promise to be fulfilled
+   */
+  async request(configOrUrl, config) {
+    try {
+      return await this._request(configOrUrl, config);
+    } catch (err) {
+      if (err instanceof Error) {
+        let dummy = {};
+
+        Error.captureStackTrace ? Error.captureStackTrace(dummy) : (dummy = new Error());
+
+        // slice off the Error: ... line
+        const stack = dummy.stack ? dummy.stack.replace(/^.+\n/, '') : '';
+        try {
+          if (!err.stack) {
+            err.stack = stack;
+            // match without the 2 top stack lines
+          } else if (stack && !String(err.stack).endsWith(stack.replace(/^.+\n.+\n/, ''))) {
+            err.stack += '\n' + stack
+          }
+        } catch (e) {
+          // ignore the case where "stack" is an un-writable property
+        }
+      }
+
+      throw err;
+    }
+  }
+
+  _request(configOrUrl, config) {
+    /*eslint no-param-reassign:0*/
+    // Allow for axios('example/url'[, config]) a la fetch API
+    if (typeof configOrUrl === 'string') {
+      config = config || {};
+      config.url = configOrUrl;
+    } else {
+      config = configOrUrl || {};
+    }
+
+    config = (0,_mergeConfig_js__WEBPACK_IMPORTED_MODULE_2__["default"])(this.defaults, config);
+
+    const {transitional, paramsSerializer, headers} = config;
+
+    if (transitional !== undefined) {
+      _helpers_validator_js__WEBPACK_IMPORTED_MODULE_0__["default"].assertOptions(transitional, {
+        silentJSONParsing: validators.transitional(validators.boolean),
+        forcedJSONParsing: validators.transitional(validators.boolean),
+        clarifyTimeoutError: validators.transitional(validators.boolean)
+      }, false);
+    }
+
+    if (paramsSerializer != null) {
+      if (_utils_js__WEBPACK_IMPORTED_MODULE_3__["default"].isFunction(paramsSerializer)) {
+        config.paramsSerializer = {
+          serialize: paramsSerializer
+        }
+      } else {
+        _helpers_validator_js__WEBPACK_IMPORTED_MODULE_0__["default"].assertOptions(paramsSerializer, {
+          encode: validators.function,
+          serialize: validators.function
+        }, true);
+      }
+    }
+
+    // Set config.allowAbsoluteUrls
+    if (config.allowAbsoluteUrls !== undefined) {
+      // do nothing
+    } else if (this.defaults.allowAbsoluteUrls !== undefined) {
+      config.allowAbsoluteUrls = this.defaults.allowAbsoluteUrls;
+    } else {
+      config.allowAbsoluteUrls = true;
+    }
+
+    _helpers_validator_js__WEBPACK_IMPORTED_MODULE_0__["default"].assertOptions(config, {
+      baseUrl: validators.spelling('baseURL'),
+      withXsrfToken: validators.spelling('withXSRFToken')
+    }, true);
+
+    // Set config.method
+    config.method = (config.method || this.defaults.method || 'get').toLowerCase();
+
+    // Flatten headers
+    let contextHeaders = headers && _utils_js__WEBPACK_IMPORTED_MODULE_3__["default"].merge(
+      headers.common,
+      headers[config.method]
+    );
+
+    headers && _utils_js__WEBPACK_IMPORTED_MODULE_3__["default"].forEach(
+      ['delete', 'get', 'head', 'post', 'put', 'patch', 'common'],
+      (method) => {
+        delete headers[method];
+      }
+    );
+
+    config.headers = _AxiosHeaders_js__WEBPACK_IMPORTED_MODULE_4__["default"].concat(contextHeaders, headers);
+
+    // filter out skipped interceptors
+    const requestInterceptorChain = [];
+    let synchronousRequestInterceptors = true;
+    this.interceptors.request.forEach(function unshiftRequestInterceptors(interceptor) {
+      if (typeof interceptor.runWhen === 'function' && interceptor.runWhen(config) === false) {
+        return;
+      }
+
+      synchronousRequestInterceptors = synchronousRequestInterceptors && interceptor.synchronous;
+
+      requestInterceptorChain.unshift(interceptor.fulfilled, interceptor.rejected);
+    });
+
+    const responseInterceptorChain = [];
+    this.interceptors.response.forEach(function pushResponseInterceptors(interceptor) {
+      responseInterceptorChain.push(interceptor.fulfilled, interceptor.rejected);
+    });
+
+    let promise;
+    let i = 0;
+    let len;
+
+    if (!synchronousRequestInterceptors) {
+      const chain = [_dispatchRequest_js__WEBPACK_IMPORTED_MODULE_5__["default"].bind(this), undefined];
+      chain.unshift.apply(chain, requestInterceptorChain);
+      chain.push.apply(chain, responseInterceptorChain);
+      len = chain.length;
+
+      promise = Promise.resolve(config);
+
+      while (i < len) {
+        promise = promise.then(chain[i++], chain[i++]);
+      }
+
+      return promise;
+    }
+
+    len = requestInterceptorChain.length;
+
+    let newConfig = config;
+
+    i = 0;
+
+    while (i < len) {
+      const onFulfilled = requestInterceptorChain[i++];
+      const onRejected = requestInterceptorChain[i++];
+      try {
+        newConfig = onFulfilled(newConfig);
+      } catch (error) {
+        onRejected.call(this, error);
+        break;
+      }
+    }
+
+    try {
+      promise = _dispatchRequest_js__WEBPACK_IMPORTED_MODULE_5__["default"].call(this, newConfig);
+    } catch (error) {
+      return Promise.reject(error);
+    }
+
+    i = 0;
+    len = responseInterceptorChain.length;
+
+    while (i < len) {
+      promise = promise.then(responseInterceptorChain[i++], responseInterceptorChain[i++]);
+    }
+
+    return promise;
+  }
+
+  getUri(config) {
+    config = (0,_mergeConfig_js__WEBPACK_IMPORTED_MODULE_2__["default"])(this.defaults, config);
+    const fullPath = (0,_buildFullPath_js__WEBPACK_IMPORTED_MODULE_6__["default"])(config.baseURL, config.url, config.allowAbsoluteUrls);
+    return (0,_helpers_buildURL_js__WEBPACK_IMPORTED_MODULE_7__["default"])(fullPath, config.params, config.paramsSerializer);
+  }
+}
+
+// Provide aliases for supported request methods
+_utils_js__WEBPACK_IMPORTED_MODULE_3__["default"].forEach(['delete', 'get', 'head', 'options'], function forEachMethodNoData(method) {
+  /*eslint func-names:0*/
+  Axios.prototype[method] = function(url, config) {
+    return this.request((0,_mergeConfig_js__WEBPACK_IMPORTED_MODULE_2__["default"])(config || {}, {
+      method,
+      url,
+      data: (config || {}).data
+    }));
+  };
+});
+
+_utils_js__WEBPACK_IMPORTED_MODULE_3__["default"].forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
+  /*eslint func-names:0*/
+
+  function generateHTTPMethod(isForm) {
+    return function httpMethod(url, data, config) {
+      return this.request((0,_mergeConfig_js__WEBPACK_IMPORTED_MODULE_2__["default"])(config || {}, {
+        method,
+        headers: isForm ? {
+          'Content-Type': 'multipart/form-data'
+        } : {},
+        url,
+        data
+      }));
+    };
+  }
+
+  Axios.prototype[method] = generateHTTPMethod();
+
+  Axios.prototype[method + 'Form'] = generateHTTPMethod(true);
+});
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Axios);
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/core/AxiosError.js":
+/*!***************************************************!*\
+  !*** ./node_modules/axios/lib/core/AxiosError.js ***!
+  \***************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils.js */ "./node_modules/axios/lib/utils.js");
+
+
+
+
+/**
+ * Create an Error with the specified message, config, error code, request and response.
+ *
+ * @param {string} message The error message.
+ * @param {string} [code] The error code (for example, 'ECONNABORTED').
+ * @param {Object} [config] The config.
+ * @param {Object} [request] The request.
+ * @param {Object} [response] The response.
+ *
+ * @returns {Error} The created error.
+ */
+function AxiosError(message, code, config, request, response) {
+  Error.call(this);
+
+  if (Error.captureStackTrace) {
+    Error.captureStackTrace(this, this.constructor);
+  } else {
+    this.stack = (new Error()).stack;
+  }
+
+  this.message = message;
+  this.name = 'AxiosError';
+  code && (this.code = code);
+  config && (this.config = config);
+  request && (this.request = request);
+  if (response) {
+    this.response = response;
+    this.status = response.status ? response.status : null;
+  }
+}
+
+_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].inherits(AxiosError, Error, {
+  toJSON: function toJSON() {
+    return {
+      // Standard
+      message: this.message,
+      name: this.name,
+      // Microsoft
+      description: this.description,
+      number: this.number,
+      // Mozilla
+      fileName: this.fileName,
+      lineNumber: this.lineNumber,
+      columnNumber: this.columnNumber,
+      stack: this.stack,
+      // Axios
+      config: _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].toJSONObject(this.config),
+      code: this.code,
+      status: this.status
+    };
+  }
+});
+
+const prototype = AxiosError.prototype;
+const descriptors = {};
+
+[
+  'ERR_BAD_OPTION_VALUE',
+  'ERR_BAD_OPTION',
+  'ECONNABORTED',
+  'ETIMEDOUT',
+  'ERR_NETWORK',
+  'ERR_FR_TOO_MANY_REDIRECTS',
+  'ERR_DEPRECATED',
+  'ERR_BAD_RESPONSE',
+  'ERR_BAD_REQUEST',
+  'ERR_CANCELED',
+  'ERR_NOT_SUPPORT',
+  'ERR_INVALID_URL'
+// eslint-disable-next-line func-names
+].forEach(code => {
+  descriptors[code] = {value: code};
+});
+
+Object.defineProperties(AxiosError, descriptors);
+Object.defineProperty(prototype, 'isAxiosError', {value: true});
+
+// eslint-disable-next-line func-names
+AxiosError.from = (error, code, config, request, response, customProps) => {
+  const axiosError = Object.create(prototype);
+
+  _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].toFlatObject(error, axiosError, function filter(obj) {
+    return obj !== Error.prototype;
+  }, prop => {
+    return prop !== 'isAxiosError';
+  });
+
+  AxiosError.call(axiosError, error.message, code, config, request, response);
+
+  axiosError.cause = error;
+
+  axiosError.name = error.name;
+
+  customProps && Object.assign(axiosError, customProps);
+
+  return axiosError;
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AxiosError);
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/core/AxiosHeaders.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/axios/lib/core/AxiosHeaders.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils.js */ "./node_modules/axios/lib/utils.js");
+/* harmony import */ var _helpers_parseHeaders_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../helpers/parseHeaders.js */ "./node_modules/axios/lib/helpers/parseHeaders.js");
+
+
+
+
+
+const $internals = Symbol('internals');
+
+function normalizeHeader(header) {
+  return header && String(header).trim().toLowerCase();
+}
+
+function normalizeValue(value) {
+  if (value === false || value == null) {
+    return value;
+  }
+
+  return _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isArray(value) ? value.map(normalizeValue) : String(value);
+}
+
+function parseTokens(str) {
+  const tokens = Object.create(null);
+  const tokensRE = /([^\s,;=]+)\s*(?:=\s*([^,;]+))?/g;
+  let match;
+
+  while ((match = tokensRE.exec(str))) {
+    tokens[match[1]] = match[2];
+  }
+
+  return tokens;
+}
+
+const isValidHeaderName = (str) => /^[-_a-zA-Z0-9^`|~,!#$%&'*+.]+$/.test(str.trim());
+
+function matchHeaderValue(context, value, header, filter, isHeaderNameFilter) {
+  if (_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isFunction(filter)) {
+    return filter.call(this, value, header);
+  }
+
+  if (isHeaderNameFilter) {
+    value = header;
+  }
+
+  if (!_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isString(value)) return;
+
+  if (_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isString(filter)) {
+    return value.indexOf(filter) !== -1;
+  }
+
+  if (_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isRegExp(filter)) {
+    return filter.test(value);
+  }
+}
+
+function formatHeader(header) {
+  return header.trim()
+    .toLowerCase().replace(/([a-z\d])(\w*)/g, (w, char, str) => {
+      return char.toUpperCase() + str;
+    });
+}
+
+function buildAccessors(obj, header) {
+  const accessorName = _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].toCamelCase(' ' + header);
+
+  ['get', 'set', 'has'].forEach(methodName => {
+    Object.defineProperty(obj, methodName + accessorName, {
+      value: function(arg1, arg2, arg3) {
+        return this[methodName].call(this, header, arg1, arg2, arg3);
+      },
+      configurable: true
+    });
+  });
+}
+
+class AxiosHeaders {
+  constructor(headers) {
+    headers && this.set(headers);
+  }
+
+  set(header, valueOrRewrite, rewrite) {
+    const self = this;
+
+    function setHeader(_value, _header, _rewrite) {
+      const lHeader = normalizeHeader(_header);
+
+      if (!lHeader) {
+        throw new Error('header name must be a non-empty string');
+      }
+
+      const key = _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].findKey(self, lHeader);
+
+      if(!key || self[key] === undefined || _rewrite === true || (_rewrite === undefined && self[key] !== false)) {
+        self[key || _header] = normalizeValue(_value);
+      }
+    }
+
+    const setHeaders = (headers, _rewrite) =>
+      _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].forEach(headers, (_value, _header) => setHeader(_value, _header, _rewrite));
+
+    if (_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isPlainObject(header) || header instanceof this.constructor) {
+      setHeaders(header, valueOrRewrite)
+    } else if(_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isString(header) && (header = header.trim()) && !isValidHeaderName(header)) {
+      setHeaders((0,_helpers_parseHeaders_js__WEBPACK_IMPORTED_MODULE_1__["default"])(header), valueOrRewrite);
+    } else if (_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isObject(header) && _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isIterable(header)) {
+      let obj = {}, dest, key;
+      for (const entry of header) {
+        if (!_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isArray(entry)) {
+          throw TypeError('Object iterator must return a key-value pair');
+        }
+
+        obj[key = entry[0]] = (dest = obj[key]) ?
+          (_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isArray(dest) ? [...dest, entry[1]] : [dest, entry[1]]) : entry[1];
+      }
+
+      setHeaders(obj, valueOrRewrite)
+    } else {
+      header != null && setHeader(valueOrRewrite, header, rewrite);
+    }
+
+    return this;
+  }
+
+  get(header, parser) {
+    header = normalizeHeader(header);
+
+    if (header) {
+      const key = _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].findKey(this, header);
+
+      if (key) {
+        const value = this[key];
+
+        if (!parser) {
+          return value;
+        }
+
+        if (parser === true) {
+          return parseTokens(value);
+        }
+
+        if (_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isFunction(parser)) {
+          return parser.call(this, value, key);
+        }
+
+        if (_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isRegExp(parser)) {
+          return parser.exec(value);
+        }
+
+        throw new TypeError('parser must be boolean|regexp|function');
+      }
+    }
+  }
+
+  has(header, matcher) {
+    header = normalizeHeader(header);
+
+    if (header) {
+      const key = _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].findKey(this, header);
+
+      return !!(key && this[key] !== undefined && (!matcher || matchHeaderValue(this, this[key], key, matcher)));
+    }
+
+    return false;
+  }
+
+  delete(header, matcher) {
+    const self = this;
+    let deleted = false;
+
+    function deleteHeader(_header) {
+      _header = normalizeHeader(_header);
+
+      if (_header) {
+        const key = _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].findKey(self, _header);
+
+        if (key && (!matcher || matchHeaderValue(self, self[key], key, matcher))) {
+          delete self[key];
+
+          deleted = true;
+        }
+      }
+    }
+
+    if (_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isArray(header)) {
+      header.forEach(deleteHeader);
+    } else {
+      deleteHeader(header);
+    }
+
+    return deleted;
+  }
+
+  clear(matcher) {
+    const keys = Object.keys(this);
+    let i = keys.length;
+    let deleted = false;
+
+    while (i--) {
+      const key = keys[i];
+      if(!matcher || matchHeaderValue(this, this[key], key, matcher, true)) {
+        delete this[key];
+        deleted = true;
+      }
+    }
+
+    return deleted;
+  }
+
+  normalize(format) {
+    const self = this;
+    const headers = {};
+
+    _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].forEach(this, (value, header) => {
+      const key = _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].findKey(headers, header);
+
+      if (key) {
+        self[key] = normalizeValue(value);
+        delete self[header];
+        return;
+      }
+
+      const normalized = format ? formatHeader(header) : String(header).trim();
+
+      if (normalized !== header) {
+        delete self[header];
+      }
+
+      self[normalized] = normalizeValue(value);
+
+      headers[normalized] = true;
+    });
+
+    return this;
+  }
+
+  concat(...targets) {
+    return this.constructor.concat(this, ...targets);
+  }
+
+  toJSON(asStrings) {
+    const obj = Object.create(null);
+
+    _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].forEach(this, (value, header) => {
+      value != null && value !== false && (obj[header] = asStrings && _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isArray(value) ? value.join(', ') : value);
+    });
+
+    return obj;
+  }
+
+  [Symbol.iterator]() {
+    return Object.entries(this.toJSON())[Symbol.iterator]();
+  }
+
+  toString() {
+    return Object.entries(this.toJSON()).map(([header, value]) => header + ': ' + value).join('\n');
+  }
+
+  getSetCookie() {
+    return this.get("set-cookie") || [];
+  }
+
+  get [Symbol.toStringTag]() {
+    return 'AxiosHeaders';
+  }
+
+  static from(thing) {
+    return thing instanceof this ? thing : new this(thing);
+  }
+
+  static concat(first, ...targets) {
+    const computed = new this(first);
+
+    targets.forEach((target) => computed.set(target));
+
+    return computed;
+  }
+
+  static accessor(header) {
+    const internals = this[$internals] = (this[$internals] = {
+      accessors: {}
+    });
+
+    const accessors = internals.accessors;
+    const prototype = this.prototype;
+
+    function defineAccessor(_header) {
+      const lHeader = normalizeHeader(_header);
+
+      if (!accessors[lHeader]) {
+        buildAccessors(prototype, _header);
+        accessors[lHeader] = true;
+      }
+    }
+
+    _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isArray(header) ? header.forEach(defineAccessor) : defineAccessor(header);
+
+    return this;
+  }
+}
+
+AxiosHeaders.accessor(['Content-Type', 'Content-Length', 'Accept', 'Accept-Encoding', 'User-Agent', 'Authorization']);
+
+// reserved names hotfix
+_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].reduceDescriptors(AxiosHeaders.prototype, ({value}, key) => {
+  let mapped = key[0].toUpperCase() + key.slice(1); // map `set` => `Set`
+  return {
+    get: () => value,
+    set(headerValue) {
+      this[mapped] = headerValue;
+    }
+  }
+});
+
+_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].freezeMethods(AxiosHeaders);
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AxiosHeaders);
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/core/InterceptorManager.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/axios/lib/core/InterceptorManager.js ***!
+  \***********************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../utils.js */ "./node_modules/axios/lib/utils.js");
+
+
+
+
+class InterceptorManager {
+  constructor() {
+    this.handlers = [];
+  }
+
+  /**
+   * Add a new interceptor to the stack
+   *
+   * @param {Function} fulfilled The function to handle `then` for a `Promise`
+   * @param {Function} rejected The function to handle `reject` for a `Promise`
+   *
+   * @return {Number} An ID used to remove interceptor later
+   */
+  use(fulfilled, rejected, options) {
+    this.handlers.push({
+      fulfilled,
+      rejected,
+      synchronous: options ? options.synchronous : false,
+      runWhen: options ? options.runWhen : null
+    });
+    return this.handlers.length - 1;
+  }
+
+  /**
+   * Remove an interceptor from the stack
+   *
+   * @param {Number} id The ID that was returned by `use`
+   *
+   * @returns {Boolean} `true` if the interceptor was removed, `false` otherwise
+   */
+  eject(id) {
+    if (this.handlers[id]) {
+      this.handlers[id] = null;
+    }
+  }
+
+  /**
+   * Clear all interceptors from the stack
+   *
+   * @returns {void}
+   */
+  clear() {
+    if (this.handlers) {
+      this.handlers = [];
+    }
+  }
+
+  /**
+   * Iterate over all the registered interceptors
+   *
+   * This method is particularly useful for skipping over any
+   * interceptors that may have become `null` calling `eject`.
+   *
+   * @param {Function} fn The function to call for each interceptor
+   *
+   * @returns {void}
+   */
+  forEach(fn) {
+    _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].forEach(this.handlers, function forEachHandler(h) {
+      if (h !== null) {
+        fn(h);
+      }
+    });
+  }
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (InterceptorManager);
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/core/buildFullPath.js":
+/*!******************************************************!*\
+  !*** ./node_modules/axios/lib/core/buildFullPath.js ***!
+  \******************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ buildFullPath)
+/* harmony export */ });
+/* harmony import */ var _helpers_isAbsoluteURL_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../helpers/isAbsoluteURL.js */ "./node_modules/axios/lib/helpers/isAbsoluteURL.js");
+/* harmony import */ var _helpers_combineURLs_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../helpers/combineURLs.js */ "./node_modules/axios/lib/helpers/combineURLs.js");
+
+
+
+
+
+/**
+ * Creates a new URL by combining the baseURL with the requestedURL,
+ * only when the requestedURL is not already an absolute URL.
+ * If the requestURL is absolute, this function returns the requestedURL untouched.
+ *
+ * @param {string} baseURL The base URL
+ * @param {string} requestedURL Absolute or relative URL to combine
+ *
+ * @returns {string} The combined full path
+ */
+function buildFullPath(baseURL, requestedURL, allowAbsoluteUrls) {
+  let isRelativeUrl = !(0,_helpers_isAbsoluteURL_js__WEBPACK_IMPORTED_MODULE_0__["default"])(requestedURL);
+  if (baseURL && (isRelativeUrl || allowAbsoluteUrls == false)) {
+    return (0,_helpers_combineURLs_js__WEBPACK_IMPORTED_MODULE_1__["default"])(baseURL, requestedURL);
+  }
+  return requestedURL;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/core/dispatchRequest.js":
+/*!********************************************************!*\
+  !*** ./node_modules/axios/lib/core/dispatchRequest.js ***!
+  \********************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ dispatchRequest)
+/* harmony export */ });
+/* harmony import */ var _transformData_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./transformData.js */ "./node_modules/axios/lib/core/transformData.js");
+/* harmony import */ var _cancel_isCancel_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../cancel/isCancel.js */ "./node_modules/axios/lib/cancel/isCancel.js");
+/* harmony import */ var _defaults_index_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../defaults/index.js */ "./node_modules/axios/lib/defaults/index.js");
+/* harmony import */ var _cancel_CanceledError_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../cancel/CanceledError.js */ "./node_modules/axios/lib/cancel/CanceledError.js");
+/* harmony import */ var _core_AxiosHeaders_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../core/AxiosHeaders.js */ "./node_modules/axios/lib/core/AxiosHeaders.js");
+/* harmony import */ var _adapters_adapters_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../adapters/adapters.js */ "./node_modules/axios/lib/adapters/adapters.js");
+
+
+
+
+
+
+
+
+
+/**
+ * Throws a `CanceledError` if cancellation has been requested.
+ *
+ * @param {Object} config The config that is to be used for the request
+ *
+ * @returns {void}
+ */
+function throwIfCancellationRequested(config) {
+  if (config.cancelToken) {
+    config.cancelToken.throwIfRequested();
+  }
+
+  if (config.signal && config.signal.aborted) {
+    throw new _cancel_CanceledError_js__WEBPACK_IMPORTED_MODULE_0__["default"](null, config);
+  }
+}
+
+/**
+ * Dispatch a request to the server using the configured adapter.
+ *
+ * @param {object} config The config that is to be used for the request
+ *
+ * @returns {Promise} The Promise to be fulfilled
+ */
+function dispatchRequest(config) {
+  throwIfCancellationRequested(config);
+
+  config.headers = _core_AxiosHeaders_js__WEBPACK_IMPORTED_MODULE_1__["default"].from(config.headers);
+
+  // Transform request data
+  config.data = _transformData_js__WEBPACK_IMPORTED_MODULE_2__["default"].call(
+    config,
+    config.transformRequest
+  );
+
+  if (['post', 'put', 'patch'].indexOf(config.method) !== -1) {
+    config.headers.setContentType('application/x-www-form-urlencoded', false);
+  }
+
+  const adapter = _adapters_adapters_js__WEBPACK_IMPORTED_MODULE_3__["default"].getAdapter(config.adapter || _defaults_index_js__WEBPACK_IMPORTED_MODULE_4__["default"].adapter);
+
+  return adapter(config).then(function onAdapterResolution(response) {
+    throwIfCancellationRequested(config);
+
+    // Transform response data
+    response.data = _transformData_js__WEBPACK_IMPORTED_MODULE_2__["default"].call(
+      config,
+      config.transformResponse,
+      response
+    );
+
+    response.headers = _core_AxiosHeaders_js__WEBPACK_IMPORTED_MODULE_1__["default"].from(response.headers);
+
+    return response;
+  }, function onAdapterRejection(reason) {
+    if (!(0,_cancel_isCancel_js__WEBPACK_IMPORTED_MODULE_5__["default"])(reason)) {
+      throwIfCancellationRequested(config);
+
+      // Transform response data
+      if (reason && reason.response) {
+        reason.response.data = _transformData_js__WEBPACK_IMPORTED_MODULE_2__["default"].call(
+          config,
+          config.transformResponse,
+          reason.response
+        );
+        reason.response.headers = _core_AxiosHeaders_js__WEBPACK_IMPORTED_MODULE_1__["default"].from(reason.response.headers);
+      }
+    }
+
+    return Promise.reject(reason);
+  });
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/core/mergeConfig.js":
+/*!****************************************************!*\
+  !*** ./node_modules/axios/lib/core/mergeConfig.js ***!
+  \****************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ mergeConfig)
+/* harmony export */ });
+/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils.js */ "./node_modules/axios/lib/utils.js");
+/* harmony import */ var _AxiosHeaders_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AxiosHeaders.js */ "./node_modules/axios/lib/core/AxiosHeaders.js");
+
+
+
+
+
+const headersToObject = (thing) => thing instanceof _AxiosHeaders_js__WEBPACK_IMPORTED_MODULE_0__["default"] ? { ...thing } : thing;
+
+/**
+ * Config-specific merge-function which creates a new config-object
+ * by merging two configuration objects together.
+ *
+ * @param {Object} config1
+ * @param {Object} config2
+ *
+ * @returns {Object} New object resulting from merging config2 to config1
+ */
+function mergeConfig(config1, config2) {
+  // eslint-disable-next-line no-param-reassign
+  config2 = config2 || {};
+  const config = {};
+
+  function getMergedValue(target, source, prop, caseless) {
+    if (_utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].isPlainObject(target) && _utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].isPlainObject(source)) {
+      return _utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].merge.call({caseless}, target, source);
+    } else if (_utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].isPlainObject(source)) {
+      return _utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].merge({}, source);
+    } else if (_utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].isArray(source)) {
+      return source.slice();
+    }
+    return source;
+  }
+
+  // eslint-disable-next-line consistent-return
+  function mergeDeepProperties(a, b, prop , caseless) {
+    if (!_utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].isUndefined(b)) {
+      return getMergedValue(a, b, prop , caseless);
+    } else if (!_utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].isUndefined(a)) {
+      return getMergedValue(undefined, a, prop , caseless);
+    }
+  }
+
+  // eslint-disable-next-line consistent-return
+  function valueFromConfig2(a, b) {
+    if (!_utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].isUndefined(b)) {
+      return getMergedValue(undefined, b);
+    }
+  }
+
+  // eslint-disable-next-line consistent-return
+  function defaultToConfig2(a, b) {
+    if (!_utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].isUndefined(b)) {
+      return getMergedValue(undefined, b);
+    } else if (!_utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].isUndefined(a)) {
+      return getMergedValue(undefined, a);
+    }
+  }
+
+  // eslint-disable-next-line consistent-return
+  function mergeDirectKeys(a, b, prop) {
+    if (prop in config2) {
+      return getMergedValue(a, b);
+    } else if (prop in config1) {
+      return getMergedValue(undefined, a);
+    }
+  }
+
+  const mergeMap = {
+    url: valueFromConfig2,
+    method: valueFromConfig2,
+    data: valueFromConfig2,
+    baseURL: defaultToConfig2,
+    transformRequest: defaultToConfig2,
+    transformResponse: defaultToConfig2,
+    paramsSerializer: defaultToConfig2,
+    timeout: defaultToConfig2,
+    timeoutMessage: defaultToConfig2,
+    withCredentials: defaultToConfig2,
+    withXSRFToken: defaultToConfig2,
+    adapter: defaultToConfig2,
+    responseType: defaultToConfig2,
+    xsrfCookieName: defaultToConfig2,
+    xsrfHeaderName: defaultToConfig2,
+    onUploadProgress: defaultToConfig2,
+    onDownloadProgress: defaultToConfig2,
+    decompress: defaultToConfig2,
+    maxContentLength: defaultToConfig2,
+    maxBodyLength: defaultToConfig2,
+    beforeRedirect: defaultToConfig2,
+    transport: defaultToConfig2,
+    httpAgent: defaultToConfig2,
+    httpsAgent: defaultToConfig2,
+    cancelToken: defaultToConfig2,
+    socketPath: defaultToConfig2,
+    responseEncoding: defaultToConfig2,
+    validateStatus: mergeDirectKeys,
+    headers: (a, b , prop) => mergeDeepProperties(headersToObject(a), headersToObject(b),prop, true)
+  };
+
+  _utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].forEach(Object.keys(Object.assign({}, config1, config2)), function computeConfigValue(prop) {
+    const merge = mergeMap[prop] || mergeDeepProperties;
+    const configValue = merge(config1[prop], config2[prop], prop);
+    (_utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].isUndefined(configValue) && merge !== mergeDirectKeys) || (config[prop] = configValue);
+  });
+
+  return config;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/core/settle.js":
+/*!***********************************************!*\
+  !*** ./node_modules/axios/lib/core/settle.js ***!
+  \***********************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ settle)
+/* harmony export */ });
+/* harmony import */ var _AxiosError_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AxiosError.js */ "./node_modules/axios/lib/core/AxiosError.js");
+
+
+
+
+/**
+ * Resolve or reject a Promise based on response status.
+ *
+ * @param {Function} resolve A function that resolves the promise.
+ * @param {Function} reject A function that rejects the promise.
+ * @param {object} response The response.
+ *
+ * @returns {object} The response.
+ */
+function settle(resolve, reject, response) {
+  const validateStatus = response.config.validateStatus;
+  if (!response.status || !validateStatus || validateStatus(response.status)) {
+    resolve(response);
+  } else {
+    reject(new _AxiosError_js__WEBPACK_IMPORTED_MODULE_0__["default"](
+      'Request failed with status code ' + response.status,
+      [_AxiosError_js__WEBPACK_IMPORTED_MODULE_0__["default"].ERR_BAD_REQUEST, _AxiosError_js__WEBPACK_IMPORTED_MODULE_0__["default"].ERR_BAD_RESPONSE][Math.floor(response.status / 100) - 4],
+      response.config,
+      response.request,
+      response
+    ));
+  }
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/core/transformData.js":
+/*!******************************************************!*\
+  !*** ./node_modules/axios/lib/core/transformData.js ***!
+  \******************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ transformData)
+/* harmony export */ });
+/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../utils.js */ "./node_modules/axios/lib/utils.js");
+/* harmony import */ var _defaults_index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../defaults/index.js */ "./node_modules/axios/lib/defaults/index.js");
+/* harmony import */ var _core_AxiosHeaders_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../core/AxiosHeaders.js */ "./node_modules/axios/lib/core/AxiosHeaders.js");
+
+
+
+
+
+
+/**
+ * Transform the data for a request or a response
+ *
+ * @param {Array|Function} fns A single function or Array of functions
+ * @param {?Object} response The response object
+ *
+ * @returns {*} The resulting transformed data
+ */
+function transformData(fns, response) {
+  const config = this || _defaults_index_js__WEBPACK_IMPORTED_MODULE_0__["default"];
+  const context = response || config;
+  const headers = _core_AxiosHeaders_js__WEBPACK_IMPORTED_MODULE_1__["default"].from(context.headers);
+  let data = context.data;
+
+  _utils_js__WEBPACK_IMPORTED_MODULE_2__["default"].forEach(fns, function transform(fn) {
+    data = fn.call(config, data, headers.normalize(), response ? response.status : undefined);
+  });
+
+  headers.normalize();
+
+  return data;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/defaults/index.js":
+/*!**************************************************!*\
+  !*** ./node_modules/axios/lib/defaults/index.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils.js */ "./node_modules/axios/lib/utils.js");
+/* harmony import */ var _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../core/AxiosError.js */ "./node_modules/axios/lib/core/AxiosError.js");
+/* harmony import */ var _transitional_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./transitional.js */ "./node_modules/axios/lib/defaults/transitional.js");
+/* harmony import */ var _helpers_toFormData_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../helpers/toFormData.js */ "./node_modules/axios/lib/helpers/toFormData.js");
+/* harmony import */ var _helpers_toURLEncodedForm_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../helpers/toURLEncodedForm.js */ "./node_modules/axios/lib/helpers/toURLEncodedForm.js");
+/* harmony import */ var _platform_index_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../platform/index.js */ "./node_modules/axios/lib/platform/index.js");
+/* harmony import */ var _helpers_formDataToJSON_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../helpers/formDataToJSON.js */ "./node_modules/axios/lib/helpers/formDataToJSON.js");
+
+
+
+
+
+
+
+
+
+
+/**
+ * It takes a string, tries to parse it, and if it fails, it returns the stringified version
+ * of the input
+ *
+ * @param {any} rawValue - The value to be stringified.
+ * @param {Function} parser - A function that parses a string into a JavaScript object.
+ * @param {Function} encoder - A function that takes a value and returns a string.
+ *
+ * @returns {string} A stringified version of the rawValue.
+ */
+function stringifySafely(rawValue, parser, encoder) {
+  if (_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isString(rawValue)) {
+    try {
+      (parser || JSON.parse)(rawValue);
+      return _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].trim(rawValue);
+    } catch (e) {
+      if (e.name !== 'SyntaxError') {
+        throw e;
+      }
+    }
+  }
+
+  return (encoder || JSON.stringify)(rawValue);
+}
+
+const defaults = {
+
+  transitional: _transitional_js__WEBPACK_IMPORTED_MODULE_1__["default"],
+
+  adapter: ['xhr', 'http', 'fetch'],
+
+  transformRequest: [function transformRequest(data, headers) {
+    const contentType = headers.getContentType() || '';
+    const hasJSONContentType = contentType.indexOf('application/json') > -1;
+    const isObjectPayload = _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isObject(data);
+
+    if (isObjectPayload && _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isHTMLForm(data)) {
+      data = new FormData(data);
+    }
+
+    const isFormData = _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isFormData(data);
+
+    if (isFormData) {
+      return hasJSONContentType ? JSON.stringify((0,_helpers_formDataToJSON_js__WEBPACK_IMPORTED_MODULE_2__["default"])(data)) : data;
+    }
+
+    if (_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isArrayBuffer(data) ||
+      _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isBuffer(data) ||
+      _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isStream(data) ||
+      _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isFile(data) ||
+      _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isBlob(data) ||
+      _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isReadableStream(data)
+    ) {
+      return data;
+    }
+    if (_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isArrayBufferView(data)) {
+      return data.buffer;
+    }
+    if (_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isURLSearchParams(data)) {
+      headers.setContentType('application/x-www-form-urlencoded;charset=utf-8', false);
+      return data.toString();
+    }
+
+    let isFileList;
+
+    if (isObjectPayload) {
+      if (contentType.indexOf('application/x-www-form-urlencoded') > -1) {
+        return (0,_helpers_toURLEncodedForm_js__WEBPACK_IMPORTED_MODULE_3__["default"])(data, this.formSerializer).toString();
+      }
+
+      if ((isFileList = _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isFileList(data)) || contentType.indexOf('multipart/form-data') > -1) {
+        const _FormData = this.env && this.env.FormData;
+
+        return (0,_helpers_toFormData_js__WEBPACK_IMPORTED_MODULE_4__["default"])(
+          isFileList ? {'files[]': data} : data,
+          _FormData && new _FormData(),
+          this.formSerializer
+        );
+      }
+    }
+
+    if (isObjectPayload || hasJSONContentType ) {
+      headers.setContentType('application/json', false);
+      return stringifySafely(data);
+    }
+
+    return data;
+  }],
+
+  transformResponse: [function transformResponse(data) {
+    const transitional = this.transitional || defaults.transitional;
+    const forcedJSONParsing = transitional && transitional.forcedJSONParsing;
+    const JSONRequested = this.responseType === 'json';
+
+    if (_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isResponse(data) || _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isReadableStream(data)) {
+      return data;
+    }
+
+    if (data && _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isString(data) && ((forcedJSONParsing && !this.responseType) || JSONRequested)) {
+      const silentJSONParsing = transitional && transitional.silentJSONParsing;
+      const strictJSONParsing = !silentJSONParsing && JSONRequested;
+
+      try {
+        return JSON.parse(data);
+      } catch (e) {
+        if (strictJSONParsing) {
+          if (e.name === 'SyntaxError') {
+            throw _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_5__["default"].from(e, _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_5__["default"].ERR_BAD_RESPONSE, this, null, this.response);
+          }
+          throw e;
+        }
+      }
+    }
+
+    return data;
+  }],
+
+  /**
+   * A timeout in milliseconds to abort a request. If set to 0 (default) a
+   * timeout is not created.
+   */
+  timeout: 0,
+
+  xsrfCookieName: 'XSRF-TOKEN',
+  xsrfHeaderName: 'X-XSRF-TOKEN',
+
+  maxContentLength: -1,
+  maxBodyLength: -1,
+
+  env: {
+    FormData: _platform_index_js__WEBPACK_IMPORTED_MODULE_6__["default"].classes.FormData,
+    Blob: _platform_index_js__WEBPACK_IMPORTED_MODULE_6__["default"].classes.Blob
+  },
+
+  validateStatus: function validateStatus(status) {
+    return status >= 200 && status < 300;
+  },
+
+  headers: {
+    common: {
+      'Accept': 'application/json, text/plain, */*',
+      'Content-Type': undefined
+    }
+  }
+};
+
+_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].forEach(['delete', 'get', 'head', 'post', 'put', 'patch'], (method) => {
+  defaults.headers[method] = {};
+});
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (defaults);
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/defaults/transitional.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/axios/lib/defaults/transitional.js ***!
+  \*********************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  silentJSONParsing: true,
+  forcedJSONParsing: true,
+  clarifyTimeoutError: false
+});
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/env/data.js":
+/*!********************************************!*\
+  !*** ./node_modules/axios/lib/env/data.js ***!
+  \********************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   VERSION: () => (/* binding */ VERSION)
+/* harmony export */ });
+const VERSION = "1.9.0";
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/helpers/AxiosURLSearchParams.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/AxiosURLSearchParams.js ***!
+  \****************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _toFormData_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./toFormData.js */ "./node_modules/axios/lib/helpers/toFormData.js");
+
+
+
+
+/**
+ * It encodes a string by replacing all characters that are not in the unreserved set with
+ * their percent-encoded equivalents
+ *
+ * @param {string} str - The string to encode.
+ *
+ * @returns {string} The encoded string.
+ */
+function encode(str) {
+  const charMap = {
+    '!': '%21',
+    "'": '%27',
+    '(': '%28',
+    ')': '%29',
+    '~': '%7E',
+    '%20': '+',
+    '%00': '\x00'
+  };
+  return encodeURIComponent(str).replace(/[!'()~]|%20|%00/g, function replacer(match) {
+    return charMap[match];
+  });
+}
+
+/**
+ * It takes a params object and converts it to a FormData object
+ *
+ * @param {Object<string, any>} params - The parameters to be converted to a FormData object.
+ * @param {Object<string, any>} options - The options object passed to the Axios constructor.
+ *
+ * @returns {void}
+ */
+function AxiosURLSearchParams(params, options) {
+  this._pairs = [];
+
+  params && (0,_toFormData_js__WEBPACK_IMPORTED_MODULE_0__["default"])(params, this, options);
+}
+
+const prototype = AxiosURLSearchParams.prototype;
+
+prototype.append = function append(name, value) {
+  this._pairs.push([name, value]);
+};
+
+prototype.toString = function toString(encoder) {
+  const _encode = encoder ? function(value) {
+    return encoder.call(this, value, encode);
+  } : encode;
+
+  return this._pairs.map(function each(pair) {
+    return _encode(pair[0]) + '=' + _encode(pair[1]);
+  }, '').join('&');
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AxiosURLSearchParams);
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/helpers/HttpStatusCode.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/HttpStatusCode.js ***!
+  \**********************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+const HttpStatusCode = {
+  Continue: 100,
+  SwitchingProtocols: 101,
+  Processing: 102,
+  EarlyHints: 103,
+  Ok: 200,
+  Created: 201,
+  Accepted: 202,
+  NonAuthoritativeInformation: 203,
+  NoContent: 204,
+  ResetContent: 205,
+  PartialContent: 206,
+  MultiStatus: 207,
+  AlreadyReported: 208,
+  ImUsed: 226,
+  MultipleChoices: 300,
+  MovedPermanently: 301,
+  Found: 302,
+  SeeOther: 303,
+  NotModified: 304,
+  UseProxy: 305,
+  Unused: 306,
+  TemporaryRedirect: 307,
+  PermanentRedirect: 308,
+  BadRequest: 400,
+  Unauthorized: 401,
+  PaymentRequired: 402,
+  Forbidden: 403,
+  NotFound: 404,
+  MethodNotAllowed: 405,
+  NotAcceptable: 406,
+  ProxyAuthenticationRequired: 407,
+  RequestTimeout: 408,
+  Conflict: 409,
+  Gone: 410,
+  LengthRequired: 411,
+  PreconditionFailed: 412,
+  PayloadTooLarge: 413,
+  UriTooLong: 414,
+  UnsupportedMediaType: 415,
+  RangeNotSatisfiable: 416,
+  ExpectationFailed: 417,
+  ImATeapot: 418,
+  MisdirectedRequest: 421,
+  UnprocessableEntity: 422,
+  Locked: 423,
+  FailedDependency: 424,
+  TooEarly: 425,
+  UpgradeRequired: 426,
+  PreconditionRequired: 428,
+  TooManyRequests: 429,
+  RequestHeaderFieldsTooLarge: 431,
+  UnavailableForLegalReasons: 451,
+  InternalServerError: 500,
+  NotImplemented: 501,
+  BadGateway: 502,
+  ServiceUnavailable: 503,
+  GatewayTimeout: 504,
+  HttpVersionNotSupported: 505,
+  VariantAlsoNegotiates: 506,
+  InsufficientStorage: 507,
+  LoopDetected: 508,
+  NotExtended: 510,
+  NetworkAuthenticationRequired: 511,
+};
+
+Object.entries(HttpStatusCode).forEach(([key, value]) => {
+  HttpStatusCode[value] = key;
+});
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (HttpStatusCode);
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/helpers/bind.js":
+/*!************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/bind.js ***!
+  \************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ bind)
+/* harmony export */ });
+
+
+function bind(fn, thisArg) {
+  return function wrap() {
+    return fn.apply(thisArg, arguments);
+  };
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/helpers/buildURL.js":
+/*!****************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/buildURL.js ***!
+  \****************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ buildURL)
+/* harmony export */ });
+/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils.js */ "./node_modules/axios/lib/utils.js");
+/* harmony import */ var _helpers_AxiosURLSearchParams_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../helpers/AxiosURLSearchParams.js */ "./node_modules/axios/lib/helpers/AxiosURLSearchParams.js");
+
+
+
+
+
+/**
+ * It replaces all instances of the characters `:`, `$`, `,`, `+`, `[`, and `]` with their
+ * URI encoded counterparts
+ *
+ * @param {string} val The value to be encoded.
+ *
+ * @returns {string} The encoded value.
+ */
+function encode(val) {
+  return encodeURIComponent(val).
+    replace(/%3A/gi, ':').
+    replace(/%24/g, '$').
+    replace(/%2C/gi, ',').
+    replace(/%20/g, '+').
+    replace(/%5B/gi, '[').
+    replace(/%5D/gi, ']');
+}
+
+/**
+ * Build a URL by appending params to the end
+ *
+ * @param {string} url The base of the url (e.g., http://www.google.com)
+ * @param {object} [params] The params to be appended
+ * @param {?(object|Function)} options
+ *
+ * @returns {string} The formatted url
+ */
+function buildURL(url, params, options) {
+  /*eslint no-param-reassign:0*/
+  if (!params) {
+    return url;
+  }
+  
+  const _encode = options && options.encode || encode;
+
+  if (_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isFunction(options)) {
+    options = {
+      serialize: options
+    };
+  } 
+
+  const serializeFn = options && options.serialize;
+
+  let serializedParams;
+
+  if (serializeFn) {
+    serializedParams = serializeFn(params, options);
+  } else {
+    serializedParams = _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isURLSearchParams(params) ?
+      params.toString() :
+      new _helpers_AxiosURLSearchParams_js__WEBPACK_IMPORTED_MODULE_1__["default"](params, options).toString(_encode);
+  }
+
+  if (serializedParams) {
+    const hashmarkIndex = url.indexOf("#");
+
+    if (hashmarkIndex !== -1) {
+      url = url.slice(0, hashmarkIndex);
+    }
+    url += (url.indexOf('?') === -1 ? '?' : '&') + serializedParams;
+  }
+
+  return url;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/helpers/combineURLs.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/combineURLs.js ***!
+  \*******************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ combineURLs)
+/* harmony export */ });
+
+
+/**
+ * Creates a new URL by combining the specified URLs
+ *
+ * @param {string} baseURL The base URL
+ * @param {string} relativeURL The relative URL
+ *
+ * @returns {string} The combined URL
+ */
+function combineURLs(baseURL, relativeURL) {
+  return relativeURL
+    ? baseURL.replace(/\/?\/$/, '') + '/' + relativeURL.replace(/^\/+/, '')
+    : baseURL;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/helpers/composeSignals.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/composeSignals.js ***!
+  \**********************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _cancel_CanceledError_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../cancel/CanceledError.js */ "./node_modules/axios/lib/cancel/CanceledError.js");
+/* harmony import */ var _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../core/AxiosError.js */ "./node_modules/axios/lib/core/AxiosError.js");
+/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils.js */ "./node_modules/axios/lib/utils.js");
+
+
+
+
+const composeSignals = (signals, timeout) => {
+  const {length} = (signals = signals ? signals.filter(Boolean) : []);
+
+  if (timeout || length) {
+    let controller = new AbortController();
+
+    let aborted;
+
+    const onabort = function (reason) {
+      if (!aborted) {
+        aborted = true;
+        unsubscribe();
+        const err = reason instanceof Error ? reason : this.reason;
+        controller.abort(err instanceof _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_0__["default"] ? err : new _cancel_CanceledError_js__WEBPACK_IMPORTED_MODULE_1__["default"](err instanceof Error ? err.message : err));
+      }
+    }
+
+    let timer = timeout && setTimeout(() => {
+      timer = null;
+      onabort(new _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_0__["default"](`timeout ${timeout} of ms exceeded`, _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_0__["default"].ETIMEDOUT))
+    }, timeout)
+
+    const unsubscribe = () => {
+      if (signals) {
+        timer && clearTimeout(timer);
+        timer = null;
+        signals.forEach(signal => {
+          signal.unsubscribe ? signal.unsubscribe(onabort) : signal.removeEventListener('abort', onabort);
+        });
+        signals = null;
+      }
+    }
+
+    signals.forEach((signal) => signal.addEventListener('abort', onabort));
+
+    const {signal} = controller;
+
+    signal.unsubscribe = () => _utils_js__WEBPACK_IMPORTED_MODULE_2__["default"].asap(unsubscribe);
+
+    return signal;
+  }
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (composeSignals);
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/helpers/cookies.js":
+/*!***************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/cookies.js ***!
+  \***************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../utils.js */ "./node_modules/axios/lib/utils.js");
+/* harmony import */ var _platform_index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../platform/index.js */ "./node_modules/axios/lib/platform/index.js");
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_platform_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].hasStandardBrowserEnv ?
+
+  // Standard browser envs support document.cookie
+  {
+    write(name, value, expires, path, domain, secure) {
+      const cookie = [name + '=' + encodeURIComponent(value)];
+
+      _utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].isNumber(expires) && cookie.push('expires=' + new Date(expires).toGMTString());
+
+      _utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].isString(path) && cookie.push('path=' + path);
+
+      _utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].isString(domain) && cookie.push('domain=' + domain);
+
+      secure === true && cookie.push('secure');
+
+      document.cookie = cookie.join('; ');
+    },
+
+    read(name) {
+      const match = document.cookie.match(new RegExp('(^|;\\s*)(' + name + ')=([^;]*)'));
+      return (match ? decodeURIComponent(match[3]) : null);
+    },
+
+    remove(name) {
+      this.write(name, '', Date.now() - 86400000);
+    }
+  }
+
+  :
+
+  // Non-standard browser env (web workers, react-native) lack needed support.
+  {
+    write() {},
+    read() {
+      return null;
+    },
+    remove() {}
+  });
+
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/helpers/formDataToJSON.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/formDataToJSON.js ***!
+  \**********************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils.js */ "./node_modules/axios/lib/utils.js");
+
+
+
+
+/**
+ * It takes a string like `foo[x][y][z]` and returns an array like `['foo', 'x', 'y', 'z']
+ *
+ * @param {string} name - The name of the property to get.
+ *
+ * @returns An array of strings.
+ */
+function parsePropPath(name) {
+  // foo[x][y][z]
+  // foo.x.y.z
+  // foo-x-y-z
+  // foo x y z
+  return _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].matchAll(/\w+|\[(\w*)]/g, name).map(match => {
+    return match[0] === '[]' ? '' : match[1] || match[0];
+  });
+}
+
+/**
+ * Convert an array to an object.
+ *
+ * @param {Array<any>} arr - The array to convert to an object.
+ *
+ * @returns An object with the same keys and values as the array.
+ */
+function arrayToObject(arr) {
+  const obj = {};
+  const keys = Object.keys(arr);
+  let i;
+  const len = keys.length;
+  let key;
+  for (i = 0; i < len; i++) {
+    key = keys[i];
+    obj[key] = arr[key];
+  }
+  return obj;
+}
+
+/**
+ * It takes a FormData object and returns a JavaScript object
+ *
+ * @param {string} formData The FormData object to convert to JSON.
+ *
+ * @returns {Object<string, any> | null} The converted object.
+ */
+function formDataToJSON(formData) {
+  function buildPath(path, value, target, index) {
+    let name = path[index++];
+
+    if (name === '__proto__') return true;
+
+    const isNumericKey = Number.isFinite(+name);
+    const isLast = index >= path.length;
+    name = !name && _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isArray(target) ? target.length : name;
+
+    if (isLast) {
+      if (_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].hasOwnProp(target, name)) {
+        target[name] = [target[name], value];
+      } else {
+        target[name] = value;
+      }
+
+      return !isNumericKey;
+    }
+
+    if (!target[name] || !_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isObject(target[name])) {
+      target[name] = [];
+    }
+
+    const result = buildPath(path, value, target[name], index);
+
+    if (result && _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isArray(target[name])) {
+      target[name] = arrayToObject(target[name]);
+    }
+
+    return !isNumericKey;
+  }
+
+  if (_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isFormData(formData) && _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isFunction(formData.entries)) {
+    const obj = {};
+
+    _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].forEachEntry(formData, (name, value) => {
+      buildPath(parsePropPath(name), value, obj, 0);
+    });
+
+    return obj;
+  }
+
+  return null;
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (formDataToJSON);
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/helpers/isAbsoluteURL.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/isAbsoluteURL.js ***!
+  \*********************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ isAbsoluteURL)
+/* harmony export */ });
+
+
+/**
+ * Determines whether the specified URL is absolute
+ *
+ * @param {string} url The URL to test
+ *
+ * @returns {boolean} True if the specified URL is absolute, otherwise false
+ */
+function isAbsoluteURL(url) {
+  // A URL is considered absolute if it begins with "<scheme>://" or "//" (protocol-relative URL).
+  // RFC 3986 defines scheme name as a sequence of characters beginning with a letter and followed
+  // by any combination of letters, digits, plus, period, or hyphen.
+  return /^([a-z][a-z\d+\-.]*:)?\/\//i.test(url);
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/helpers/isAxiosError.js":
+/*!********************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/isAxiosError.js ***!
+  \********************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ isAxiosError)
+/* harmony export */ });
+/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../utils.js */ "./node_modules/axios/lib/utils.js");
+
+
+
+
+/**
+ * Determines whether the payload is an error thrown by Axios
+ *
+ * @param {*} payload The value to test
+ *
+ * @returns {boolean} True if the payload is an error thrown by Axios, otherwise false
+ */
+function isAxiosError(payload) {
+  return _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isObject(payload) && (payload.isAxiosError === true);
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/helpers/isURLSameOrigin.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/isURLSameOrigin.js ***!
+  \***********************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _platform_index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../platform/index.js */ "./node_modules/axios/lib/platform/index.js");
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_platform_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].hasStandardBrowserEnv ? ((origin, isMSIE) => (url) => {
+  url = new URL(url, _platform_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].origin);
+
+  return (
+    origin.protocol === url.protocol &&
+    origin.host === url.host &&
+    (isMSIE || origin.port === url.port)
+  );
+})(
+  new URL(_platform_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].origin),
+  _platform_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].navigator && /(msie|trident)/i.test(_platform_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].navigator.userAgent)
+) : () => true);
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/helpers/null.js":
+/*!************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/null.js ***!
+  \************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+// eslint-disable-next-line strict
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (null);
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/helpers/parseHeaders.js":
+/*!********************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/parseHeaders.js ***!
+  \********************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../utils.js */ "./node_modules/axios/lib/utils.js");
+
+
+
+
+// RawAxiosHeaders whose duplicates are ignored by node
+// c.f. https://nodejs.org/api/http.html#http_message_headers
+const ignoreDuplicateOf = _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].toObjectSet([
+  'age', 'authorization', 'content-length', 'content-type', 'etag',
+  'expires', 'from', 'host', 'if-modified-since', 'if-unmodified-since',
+  'last-modified', 'location', 'max-forwards', 'proxy-authorization',
+  'referer', 'retry-after', 'user-agent'
+]);
+
+/**
+ * Parse headers into an object
+ *
+ * ```
+ * Date: Wed, 27 Aug 2014 08:58:49 GMT
+ * Content-Type: application/json
+ * Connection: keep-alive
+ * Transfer-Encoding: chunked
+ * ```
+ *
+ * @param {String} rawHeaders Headers needing to be parsed
+ *
+ * @returns {Object} Headers parsed into an object
+ */
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (rawHeaders => {
+  const parsed = {};
+  let key;
+  let val;
+  let i;
+
+  rawHeaders && rawHeaders.split('\n').forEach(function parser(line) {
+    i = line.indexOf(':');
+    key = line.substring(0, i).trim().toLowerCase();
+    val = line.substring(i + 1).trim();
+
+    if (!key || (parsed[key] && ignoreDuplicateOf[key])) {
+      return;
+    }
+
+    if (key === 'set-cookie') {
+      if (parsed[key]) {
+        parsed[key].push(val);
+      } else {
+        parsed[key] = [val];
+      }
+    } else {
+      parsed[key] = parsed[key] ? parsed[key] + ', ' + val : val;
+    }
+  });
+
+  return parsed;
+});
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/helpers/parseProtocol.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/parseProtocol.js ***!
+  \*********************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ parseProtocol)
+/* harmony export */ });
+
+
+function parseProtocol(url) {
+  const match = /^([-+\w]{1,25})(:?\/\/|:)/.exec(url);
+  return match && match[1] || '';
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/helpers/progressEventReducer.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/progressEventReducer.js ***!
+  \****************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   asyncDecorator: () => (/* binding */ asyncDecorator),
+/* harmony export */   progressEventDecorator: () => (/* binding */ progressEventDecorator),
+/* harmony export */   progressEventReducer: () => (/* binding */ progressEventReducer)
+/* harmony export */ });
+/* harmony import */ var _speedometer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./speedometer.js */ "./node_modules/axios/lib/helpers/speedometer.js");
+/* harmony import */ var _throttle_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./throttle.js */ "./node_modules/axios/lib/helpers/throttle.js");
+/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils.js */ "./node_modules/axios/lib/utils.js");
+
+
+
+
+const progressEventReducer = (listener, isDownloadStream, freq = 3) => {
+  let bytesNotified = 0;
+  const _speedometer = (0,_speedometer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(50, 250);
+
+  return (0,_throttle_js__WEBPACK_IMPORTED_MODULE_1__["default"])(e => {
+    const loaded = e.loaded;
+    const total = e.lengthComputable ? e.total : undefined;
+    const progressBytes = loaded - bytesNotified;
+    const rate = _speedometer(progressBytes);
+    const inRange = loaded <= total;
+
+    bytesNotified = loaded;
+
+    const data = {
+      loaded,
+      total,
+      progress: total ? (loaded / total) : undefined,
+      bytes: progressBytes,
+      rate: rate ? rate : undefined,
+      estimated: rate && total && inRange ? (total - loaded) / rate : undefined,
+      event: e,
+      lengthComputable: total != null,
+      [isDownloadStream ? 'download' : 'upload']: true
+    };
+
+    listener(data);
+  }, freq);
+}
+
+const progressEventDecorator = (total, throttled) => {
+  const lengthComputable = total != null;
+
+  return [(loaded) => throttled[0]({
+    lengthComputable,
+    total,
+    loaded
+  }), throttled[1]];
+}
+
+const asyncDecorator = (fn) => (...args) => _utils_js__WEBPACK_IMPORTED_MODULE_2__["default"].asap(() => fn(...args));
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/helpers/resolveConfig.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/resolveConfig.js ***!
+  \*********************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _platform_index_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../platform/index.js */ "./node_modules/axios/lib/platform/index.js");
+/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utils.js */ "./node_modules/axios/lib/utils.js");
+/* harmony import */ var _isURLSameOrigin_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./isURLSameOrigin.js */ "./node_modules/axios/lib/helpers/isURLSameOrigin.js");
+/* harmony import */ var _cookies_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./cookies.js */ "./node_modules/axios/lib/helpers/cookies.js");
+/* harmony import */ var _core_buildFullPath_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../core/buildFullPath.js */ "./node_modules/axios/lib/core/buildFullPath.js");
+/* harmony import */ var _core_mergeConfig_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../core/mergeConfig.js */ "./node_modules/axios/lib/core/mergeConfig.js");
+/* harmony import */ var _core_AxiosHeaders_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../core/AxiosHeaders.js */ "./node_modules/axios/lib/core/AxiosHeaders.js");
+/* harmony import */ var _buildURL_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./buildURL.js */ "./node_modules/axios/lib/helpers/buildURL.js");
+
+
+
+
+
+
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((config) => {
+  const newConfig = (0,_core_mergeConfig_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, config);
+
+  let {data, withXSRFToken, xsrfHeaderName, xsrfCookieName, headers, auth} = newConfig;
+
+  newConfig.headers = headers = _core_AxiosHeaders_js__WEBPACK_IMPORTED_MODULE_1__["default"].from(headers);
+
+  newConfig.url = (0,_buildURL_js__WEBPACK_IMPORTED_MODULE_2__["default"])((0,_core_buildFullPath_js__WEBPACK_IMPORTED_MODULE_3__["default"])(newConfig.baseURL, newConfig.url, newConfig.allowAbsoluteUrls), config.params, config.paramsSerializer);
+
+  // HTTP basic authentication
+  if (auth) {
+    headers.set('Authorization', 'Basic ' +
+      btoa((auth.username || '') + ':' + (auth.password ? unescape(encodeURIComponent(auth.password)) : ''))
+    );
+  }
+
+  let contentType;
+
+  if (_utils_js__WEBPACK_IMPORTED_MODULE_4__["default"].isFormData(data)) {
+    if (_platform_index_js__WEBPACK_IMPORTED_MODULE_5__["default"].hasStandardBrowserEnv || _platform_index_js__WEBPACK_IMPORTED_MODULE_5__["default"].hasStandardBrowserWebWorkerEnv) {
+      headers.setContentType(undefined); // Let the browser set it
+    } else if ((contentType = headers.getContentType()) !== false) {
+      // fix semicolon duplication issue for ReactNative FormData implementation
+      const [type, ...tokens] = contentType ? contentType.split(';').map(token => token.trim()).filter(Boolean) : [];
+      headers.setContentType([type || 'multipart/form-data', ...tokens].join('; '));
+    }
+  }
+
+  // Add xsrf header
+  // This is only done if running in a standard browser environment.
+  // Specifically not if we're in a web worker, or react-native.
+
+  if (_platform_index_js__WEBPACK_IMPORTED_MODULE_5__["default"].hasStandardBrowserEnv) {
+    withXSRFToken && _utils_js__WEBPACK_IMPORTED_MODULE_4__["default"].isFunction(withXSRFToken) && (withXSRFToken = withXSRFToken(newConfig));
+
+    if (withXSRFToken || (withXSRFToken !== false && (0,_isURLSameOrigin_js__WEBPACK_IMPORTED_MODULE_6__["default"])(newConfig.url))) {
+      // Add xsrf header
+      const xsrfValue = xsrfHeaderName && xsrfCookieName && _cookies_js__WEBPACK_IMPORTED_MODULE_7__["default"].read(xsrfCookieName);
+
+      if (xsrfValue) {
+        headers.set(xsrfHeaderName, xsrfValue);
+      }
+    }
+  }
+
+  return newConfig;
+});
+
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/helpers/speedometer.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/speedometer.js ***!
+  \*******************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+
+
+/**
+ * Calculate data maxRate
+ * @param {Number} [samplesCount= 10]
+ * @param {Number} [min= 1000]
+ * @returns {Function}
+ */
+function speedometer(samplesCount, min) {
+  samplesCount = samplesCount || 10;
+  const bytes = new Array(samplesCount);
+  const timestamps = new Array(samplesCount);
+  let head = 0;
+  let tail = 0;
+  let firstSampleTS;
+
+  min = min !== undefined ? min : 1000;
+
+  return function push(chunkLength) {
+    const now = Date.now();
+
+    const startedAt = timestamps[tail];
+
+    if (!firstSampleTS) {
+      firstSampleTS = now;
+    }
+
+    bytes[head] = chunkLength;
+    timestamps[head] = now;
+
+    let i = tail;
+    let bytesCount = 0;
+
+    while (i !== head) {
+      bytesCount += bytes[i++];
+      i = i % samplesCount;
+    }
+
+    head = (head + 1) % samplesCount;
+
+    if (head === tail) {
+      tail = (tail + 1) % samplesCount;
+    }
+
+    if (now - firstSampleTS < min) {
+      return;
+    }
+
+    const passed = startedAt && now - startedAt;
+
+    return passed ? Math.round(bytesCount * 1000 / passed) : undefined;
+  };
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (speedometer);
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/helpers/spread.js":
+/*!**************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/spread.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ spread)
+/* harmony export */ });
+
+
+/**
+ * Syntactic sugar for invoking a function and expanding an array for arguments.
+ *
+ * Common use case would be to use `Function.prototype.apply`.
+ *
+ *  ```js
+ *  function f(x, y, z) {}
+ *  var args = [1, 2, 3];
+ *  f.apply(null, args);
+ *  ```
+ *
+ * With `spread` this example can be re-written.
+ *
+ *  ```js
+ *  spread(function(x, y, z) {})([1, 2, 3]);
+ *  ```
+ *
+ * @param {Function} callback
+ *
+ * @returns {Function}
+ */
+function spread(callback) {
+  return function wrap(arr) {
+    return callback.apply(null, arr);
+  };
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/helpers/throttle.js":
+/*!****************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/throttle.js ***!
+  \****************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/**
+ * Throttle decorator
+ * @param {Function} fn
+ * @param {Number} freq
+ * @return {Function}
+ */
+function throttle(fn, freq) {
+  let timestamp = 0;
+  let threshold = 1000 / freq;
+  let lastArgs;
+  let timer;
+
+  const invoke = (args, now = Date.now()) => {
+    timestamp = now;
+    lastArgs = null;
+    if (timer) {
+      clearTimeout(timer);
+      timer = null;
+    }
+    fn.apply(null, args);
+  }
+
+  const throttled = (...args) => {
+    const now = Date.now();
+    const passed = now - timestamp;
+    if ( passed >= threshold) {
+      invoke(args, now);
+    } else {
+      lastArgs = args;
+      if (!timer) {
+        timer = setTimeout(() => {
+          timer = null;
+          invoke(lastArgs)
+        }, threshold - passed);
+      }
+    }
+  }
+
+  const flush = () => lastArgs && invoke(lastArgs);
+
+  return [throttled, flush];
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (throttle);
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/helpers/toFormData.js":
+/*!******************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/toFormData.js ***!
+  \******************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils.js */ "./node_modules/axios/lib/utils.js");
+/* harmony import */ var _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../core/AxiosError.js */ "./node_modules/axios/lib/core/AxiosError.js");
+/* harmony import */ var _platform_node_classes_FormData_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../platform/node/classes/FormData.js */ "./node_modules/axios/lib/helpers/null.js");
+
+
+
+
+// temporary hotfix to avoid circular references until AxiosURLSearchParams is refactored
+
+
+/**
+ * Determines if the given thing is a array or js object.
+ *
+ * @param {string} thing - The object or array to be visited.
+ *
+ * @returns {boolean}
+ */
+function isVisitable(thing) {
+  return _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isPlainObject(thing) || _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isArray(thing);
+}
+
+/**
+ * It removes the brackets from the end of a string
+ *
+ * @param {string} key - The key of the parameter.
+ *
+ * @returns {string} the key without the brackets.
+ */
+function removeBrackets(key) {
+  return _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].endsWith(key, '[]') ? key.slice(0, -2) : key;
+}
+
+/**
+ * It takes a path, a key, and a boolean, and returns a string
+ *
+ * @param {string} path - The path to the current key.
+ * @param {string} key - The key of the current object being iterated over.
+ * @param {string} dots - If true, the key will be rendered with dots instead of brackets.
+ *
+ * @returns {string} The path to the current key.
+ */
+function renderKey(path, key, dots) {
+  if (!path) return key;
+  return path.concat(key).map(function each(token, i) {
+    // eslint-disable-next-line no-param-reassign
+    token = removeBrackets(token);
+    return !dots && i ? '[' + token + ']' : token;
+  }).join(dots ? '.' : '');
+}
+
+/**
+ * If the array is an array and none of its elements are visitable, then it's a flat array.
+ *
+ * @param {Array<any>} arr - The array to check
+ *
+ * @returns {boolean}
+ */
+function isFlatArray(arr) {
+  return _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isArray(arr) && !arr.some(isVisitable);
+}
+
+const predicates = _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].toFlatObject(_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"], {}, null, function filter(prop) {
+  return /^is[A-Z]/.test(prop);
+});
+
+/**
+ * Convert a data object to FormData
+ *
+ * @param {Object} obj
+ * @param {?Object} [formData]
+ * @param {?Object} [options]
+ * @param {Function} [options.visitor]
+ * @param {Boolean} [options.metaTokens = true]
+ * @param {Boolean} [options.dots = false]
+ * @param {?Boolean} [options.indexes = false]
+ *
+ * @returns {Object}
+ **/
+
+/**
+ * It converts an object into a FormData object
+ *
+ * @param {Object<any, any>} obj - The object to convert to form data.
+ * @param {string} formData - The FormData object to append to.
+ * @param {Object<string, any>} options
+ *
+ * @returns
+ */
+function toFormData(obj, formData, options) {
+  if (!_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isObject(obj)) {
+    throw new TypeError('target must be an object');
+  }
+
+  // eslint-disable-next-line no-param-reassign
+  formData = formData || new (_platform_node_classes_FormData_js__WEBPACK_IMPORTED_MODULE_1__["default"] || FormData)();
+
+  // eslint-disable-next-line no-param-reassign
+  options = _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].toFlatObject(options, {
+    metaTokens: true,
+    dots: false,
+    indexes: false
+  }, false, function defined(option, source) {
+    // eslint-disable-next-line no-eq-null,eqeqeq
+    return !_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isUndefined(source[option]);
+  });
+
+  const metaTokens = options.metaTokens;
+  // eslint-disable-next-line no-use-before-define
+  const visitor = options.visitor || defaultVisitor;
+  const dots = options.dots;
+  const indexes = options.indexes;
+  const _Blob = options.Blob || typeof Blob !== 'undefined' && Blob;
+  const useBlob = _Blob && _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isSpecCompliantForm(formData);
+
+  if (!_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isFunction(visitor)) {
+    throw new TypeError('visitor must be a function');
+  }
+
+  function convertValue(value) {
+    if (value === null) return '';
+
+    if (_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isDate(value)) {
+      return value.toISOString();
+    }
+
+    if (!useBlob && _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isBlob(value)) {
+      throw new _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_2__["default"]('Blob is not supported. Use a Buffer instead.');
+    }
+
+    if (_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isArrayBuffer(value) || _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isTypedArray(value)) {
+      return useBlob && typeof Blob === 'function' ? new Blob([value]) : Buffer.from(value);
+    }
+
+    return value;
+  }
+
+  /**
+   * Default visitor.
+   *
+   * @param {*} value
+   * @param {String|Number} key
+   * @param {Array<String|Number>} path
+   * @this {FormData}
+   *
+   * @returns {boolean} return true to visit the each prop of the value recursively
+   */
+  function defaultVisitor(value, key, path) {
+    let arr = value;
+
+    if (value && !path && typeof value === 'object') {
+      if (_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].endsWith(key, '{}')) {
+        // eslint-disable-next-line no-param-reassign
+        key = metaTokens ? key : key.slice(0, -2);
+        // eslint-disable-next-line no-param-reassign
+        value = JSON.stringify(value);
+      } else if (
+        (_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isArray(value) && isFlatArray(value)) ||
+        ((_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isFileList(value) || _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].endsWith(key, '[]')) && (arr = _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].toArray(value))
+        )) {
+        // eslint-disable-next-line no-param-reassign
+        key = removeBrackets(key);
+
+        arr.forEach(function each(el, index) {
+          !(_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isUndefined(el) || el === null) && formData.append(
+            // eslint-disable-next-line no-nested-ternary
+            indexes === true ? renderKey([key], index, dots) : (indexes === null ? key : key + '[]'),
+            convertValue(el)
+          );
+        });
+        return false;
+      }
+    }
+
+    if (isVisitable(value)) {
+      return true;
+    }
+
+    formData.append(renderKey(path, key, dots), convertValue(value));
+
+    return false;
+  }
+
+  const stack = [];
+
+  const exposedHelpers = Object.assign(predicates, {
+    defaultVisitor,
+    convertValue,
+    isVisitable
+  });
+
+  function build(value, path) {
+    if (_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isUndefined(value)) return;
+
+    if (stack.indexOf(value) !== -1) {
+      throw Error('Circular reference detected in ' + path.join('.'));
+    }
+
+    stack.push(value);
+
+    _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].forEach(value, function each(el, key) {
+      const result = !(_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isUndefined(el) || el === null) && visitor.call(
+        formData, el, _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isString(key) ? key.trim() : key, path, exposedHelpers
+      );
+
+      if (result === true) {
+        build(el, path ? path.concat(key) : [key]);
+      }
+    });
+
+    stack.pop();
+  }
+
+  if (!_utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].isObject(obj)) {
+    throw new TypeError('data must be an object');
+  }
+
+  build(obj);
+
+  return formData;
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (toFormData);
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/helpers/toURLEncodedForm.js":
+/*!************************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/toURLEncodedForm.js ***!
+  \************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ toURLEncodedForm)
+/* harmony export */ });
+/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils.js */ "./node_modules/axios/lib/utils.js");
+/* harmony import */ var _toFormData_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./toFormData.js */ "./node_modules/axios/lib/helpers/toFormData.js");
+/* harmony import */ var _platform_index_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../platform/index.js */ "./node_modules/axios/lib/platform/index.js");
+
+
+
+
+
+
+function toURLEncodedForm(data, options) {
+  return (0,_toFormData_js__WEBPACK_IMPORTED_MODULE_0__["default"])(data, new _platform_index_js__WEBPACK_IMPORTED_MODULE_1__["default"].classes.URLSearchParams(), Object.assign({
+    visitor: function(value, key, path, helpers) {
+      if (_platform_index_js__WEBPACK_IMPORTED_MODULE_1__["default"].isNode && _utils_js__WEBPACK_IMPORTED_MODULE_2__["default"].isBuffer(value)) {
+        this.append(key, value.toString('base64'));
+        return false;
+      }
+
+      return helpers.defaultVisitor.apply(this, arguments);
+    }
+  }, options));
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/helpers/trackStream.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/trackStream.js ***!
+  \*******************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   readBytes: () => (/* binding */ readBytes),
+/* harmony export */   streamChunk: () => (/* binding */ streamChunk),
+/* harmony export */   trackStream: () => (/* binding */ trackStream)
+/* harmony export */ });
+
+const streamChunk = function* (chunk, chunkSize) {
+  let len = chunk.byteLength;
+
+  if (!chunkSize || len < chunkSize) {
+    yield chunk;
+    return;
+  }
+
+  let pos = 0;
+  let end;
+
+  while (pos < len) {
+    end = pos + chunkSize;
+    yield chunk.slice(pos, end);
+    pos = end;
+  }
+}
+
+const readBytes = async function* (iterable, chunkSize) {
+  for await (const chunk of readStream(iterable)) {
+    yield* streamChunk(chunk, chunkSize);
+  }
+}
+
+const readStream = async function* (stream) {
+  if (stream[Symbol.asyncIterator]) {
+    yield* stream;
+    return;
+  }
+
+  const reader = stream.getReader();
+  try {
+    for (;;) {
+      const {done, value} = await reader.read();
+      if (done) {
+        break;
+      }
+      yield value;
+    }
+  } finally {
+    await reader.cancel();
+  }
+}
+
+const trackStream = (stream, chunkSize, onProgress, onFinish) => {
+  const iterator = readBytes(stream, chunkSize);
+
+  let bytes = 0;
+  let done;
+  let _onFinish = (e) => {
+    if (!done) {
+      done = true;
+      onFinish && onFinish(e);
+    }
+  }
+
+  return new ReadableStream({
+    async pull(controller) {
+      try {
+        const {done, value} = await iterator.next();
+
+        if (done) {
+         _onFinish();
+          controller.close();
+          return;
+        }
+
+        let len = value.byteLength;
+        if (onProgress) {
+          let loadedBytes = bytes += len;
+          onProgress(loadedBytes);
+        }
+        controller.enqueue(new Uint8Array(value));
+      } catch (err) {
+        _onFinish(err);
+        throw err;
+      }
+    },
+    cancel(reason) {
+      _onFinish(reason);
+      return iterator.return();
+    }
+  }, {
+    highWaterMark: 2
+  })
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/helpers/validator.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/validator.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _env_data_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../env/data.js */ "./node_modules/axios/lib/env/data.js");
+/* harmony import */ var _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../core/AxiosError.js */ "./node_modules/axios/lib/core/AxiosError.js");
+
+
+
+
+
+const validators = {};
+
+// eslint-disable-next-line func-names
+['object', 'boolean', 'number', 'function', 'string', 'symbol'].forEach((type, i) => {
+  validators[type] = function validator(thing) {
+    return typeof thing === type || 'a' + (i < 1 ? 'n ' : ' ') + type;
+  };
+});
+
+const deprecatedWarnings = {};
+
+/**
+ * Transitional option validator
+ *
+ * @param {function|boolean?} validator - set to false if the transitional option has been removed
+ * @param {string?} version - deprecated version / removed since version
+ * @param {string?} message - some message with additional info
+ *
+ * @returns {function}
+ */
+validators.transitional = function transitional(validator, version, message) {
+  function formatMessage(opt, desc) {
+    return '[Axios v' + _env_data_js__WEBPACK_IMPORTED_MODULE_0__.VERSION + '] Transitional option \'' + opt + '\'' + desc + (message ? '. ' + message : '');
+  }
+
+  // eslint-disable-next-line func-names
+  return (value, opt, opts) => {
+    if (validator === false) {
+      throw new _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_1__["default"](
+        formatMessage(opt, ' has been removed' + (version ? ' in ' + version : '')),
+        _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_1__["default"].ERR_DEPRECATED
+      );
+    }
+
+    if (version && !deprecatedWarnings[opt]) {
+      deprecatedWarnings[opt] = true;
+      // eslint-disable-next-line no-console
+      console.warn(
+        formatMessage(
+          opt,
+          ' has been deprecated since v' + version + ' and will be removed in the near future'
+        )
+      );
+    }
+
+    return validator ? validator(value, opt, opts) : true;
+  };
+};
+
+validators.spelling = function spelling(correctSpelling) {
+  return (value, opt) => {
+    // eslint-disable-next-line no-console
+    console.warn(`${opt} is likely a misspelling of ${correctSpelling}`);
+    return true;
+  }
+};
+
+/**
+ * Assert object's properties type
+ *
+ * @param {object} options
+ * @param {object} schema
+ * @param {boolean?} allowUnknown
+ *
+ * @returns {object}
+ */
+
+function assertOptions(options, schema, allowUnknown) {
+  if (typeof options !== 'object') {
+    throw new _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_1__["default"]('options must be an object', _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_1__["default"].ERR_BAD_OPTION_VALUE);
+  }
+  const keys = Object.keys(options);
+  let i = keys.length;
+  while (i-- > 0) {
+    const opt = keys[i];
+    const validator = schema[opt];
+    if (validator) {
+      const value = options[opt];
+      const result = value === undefined || validator(value, opt, options);
+      if (result !== true) {
+        throw new _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_1__["default"]('option ' + opt + ' must be ' + result, _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_1__["default"].ERR_BAD_OPTION_VALUE);
+      }
+      continue;
+    }
+    if (allowUnknown !== true) {
+      throw new _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_1__["default"]('Unknown option ' + opt, _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_1__["default"].ERR_BAD_OPTION);
+    }
+  }
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  assertOptions,
+  validators
+});
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/platform/browser/classes/Blob.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/axios/lib/platform/browser/classes/Blob.js ***!
+  \*****************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (typeof Blob !== 'undefined' ? Blob : null);
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/platform/browser/classes/FormData.js":
+/*!*********************************************************************!*\
+  !*** ./node_modules/axios/lib/platform/browser/classes/FormData.js ***!
+  \*********************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (typeof FormData !== 'undefined' ? FormData : null);
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/platform/browser/classes/URLSearchParams.js":
+/*!****************************************************************************!*\
+  !*** ./node_modules/axios/lib/platform/browser/classes/URLSearchParams.js ***!
+  \****************************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _helpers_AxiosURLSearchParams_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../helpers/AxiosURLSearchParams.js */ "./node_modules/axios/lib/helpers/AxiosURLSearchParams.js");
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (typeof URLSearchParams !== 'undefined' ? URLSearchParams : _helpers_AxiosURLSearchParams_js__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/platform/browser/index.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/axios/lib/platform/browser/index.js ***!
+  \**********************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _classes_URLSearchParams_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./classes/URLSearchParams.js */ "./node_modules/axios/lib/platform/browser/classes/URLSearchParams.js");
+/* harmony import */ var _classes_FormData_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./classes/FormData.js */ "./node_modules/axios/lib/platform/browser/classes/FormData.js");
+/* harmony import */ var _classes_Blob_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./classes/Blob.js */ "./node_modules/axios/lib/platform/browser/classes/Blob.js");
+
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  isBrowser: true,
+  classes: {
+    URLSearchParams: _classes_URLSearchParams_js__WEBPACK_IMPORTED_MODULE_0__["default"],
+    FormData: _classes_FormData_js__WEBPACK_IMPORTED_MODULE_1__["default"],
+    Blob: _classes_Blob_js__WEBPACK_IMPORTED_MODULE_2__["default"]
+  },
+  protocols: ['http', 'https', 'file', 'blob', 'url', 'data']
+});
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/platform/common/utils.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/axios/lib/platform/common/utils.js ***!
+  \*********************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   hasBrowserEnv: () => (/* binding */ hasBrowserEnv),
+/* harmony export */   hasStandardBrowserEnv: () => (/* binding */ hasStandardBrowserEnv),
+/* harmony export */   hasStandardBrowserWebWorkerEnv: () => (/* binding */ hasStandardBrowserWebWorkerEnv),
+/* harmony export */   navigator: () => (/* binding */ _navigator),
+/* harmony export */   origin: () => (/* binding */ origin)
+/* harmony export */ });
+const hasBrowserEnv = typeof window !== 'undefined' && typeof document !== 'undefined';
+
+const _navigator = typeof navigator === 'object' && navigator || undefined;
+
+/**
+ * Determine if we're running in a standard browser environment
+ *
+ * This allows axios to run in a web worker, and react-native.
+ * Both environments support XMLHttpRequest, but not fully standard globals.
+ *
+ * web workers:
+ *  typeof window -> undefined
+ *  typeof document -> undefined
+ *
+ * react-native:
+ *  navigator.product -> 'ReactNative'
+ * nativescript
+ *  navigator.product -> 'NativeScript' or 'NS'
+ *
+ * @returns {boolean}
+ */
+const hasStandardBrowserEnv = hasBrowserEnv &&
+  (!_navigator || ['ReactNative', 'NativeScript', 'NS'].indexOf(_navigator.product) < 0);
+
+/**
+ * Determine if we're running in a standard browser webWorker environment
+ *
+ * Although the `isStandardBrowserEnv` method indicates that
+ * `allows axios to run in a web worker`, the WebWorker will still be
+ * filtered out due to its judgment standard
+ * `typeof window !== 'undefined' && typeof document !== 'undefined'`.
+ * This leads to a problem when axios post `FormData` in webWorker
+ */
+const hasStandardBrowserWebWorkerEnv = (() => {
+  return (
+    typeof WorkerGlobalScope !== 'undefined' &&
+    // eslint-disable-next-line no-undef
+    self instanceof WorkerGlobalScope &&
+    typeof self.importScripts === 'function'
+  );
+})();
+
+const origin = hasBrowserEnv && window.location.href || 'http://localhost';
+
+
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/platform/index.js":
+/*!**************************************************!*\
+  !*** ./node_modules/axios/lib/platform/index.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_index_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./node/index.js */ "./node_modules/axios/lib/platform/browser/index.js");
+/* harmony import */ var _common_utils_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./common/utils.js */ "./node_modules/axios/lib/platform/common/utils.js");
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  ..._common_utils_js__WEBPACK_IMPORTED_MODULE_0__,
+  ..._node_index_js__WEBPACK_IMPORTED_MODULE_1__["default"]
+});
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/utils.js":
+/*!*****************************************!*\
+  !*** ./node_modules/axios/lib/utils.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _helpers_bind_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./helpers/bind.js */ "./node_modules/axios/lib/helpers/bind.js");
+/* provided dependency */ var process = __webpack_require__(/*! ./node_modules/process/browser.js */ "./node_modules/process/browser.js");
+
+
+
+
+// utils is a library of generic helper functions non-specific to axios
+
+const {toString} = Object.prototype;
+const {getPrototypeOf} = Object;
+const {iterator, toStringTag} = Symbol;
+
+const kindOf = (cache => thing => {
+    const str = toString.call(thing);
+    return cache[str] || (cache[str] = str.slice(8, -1).toLowerCase());
+})(Object.create(null));
+
+const kindOfTest = (type) => {
+  type = type.toLowerCase();
+  return (thing) => kindOf(thing) === type
+}
+
+const typeOfTest = type => thing => typeof thing === type;
+
+/**
+ * Determine if a value is an Array
+ *
+ * @param {Object} val The value to test
+ *
+ * @returns {boolean} True if value is an Array, otherwise false
+ */
+const {isArray} = Array;
+
+/**
+ * Determine if a value is undefined
+ *
+ * @param {*} val The value to test
+ *
+ * @returns {boolean} True if the value is undefined, otherwise false
+ */
+const isUndefined = typeOfTest('undefined');
+
+/**
+ * Determine if a value is a Buffer
+ *
+ * @param {*} val The value to test
+ *
+ * @returns {boolean} True if value is a Buffer, otherwise false
+ */
+function isBuffer(val) {
+  return val !== null && !isUndefined(val) && val.constructor !== null && !isUndefined(val.constructor)
+    && isFunction(val.constructor.isBuffer) && val.constructor.isBuffer(val);
+}
+
+/**
+ * Determine if a value is an ArrayBuffer
+ *
+ * @param {*} val The value to test
+ *
+ * @returns {boolean} True if value is an ArrayBuffer, otherwise false
+ */
+const isArrayBuffer = kindOfTest('ArrayBuffer');
+
+
+/**
+ * Determine if a value is a view on an ArrayBuffer
+ *
+ * @param {*} val The value to test
+ *
+ * @returns {boolean} True if value is a view on an ArrayBuffer, otherwise false
+ */
+function isArrayBufferView(val) {
+  let result;
+  if ((typeof ArrayBuffer !== 'undefined') && (ArrayBuffer.isView)) {
+    result = ArrayBuffer.isView(val);
+  } else {
+    result = (val) && (val.buffer) && (isArrayBuffer(val.buffer));
+  }
+  return result;
+}
+
+/**
+ * Determine if a value is a String
+ *
+ * @param {*} val The value to test
+ *
+ * @returns {boolean} True if value is a String, otherwise false
+ */
+const isString = typeOfTest('string');
+
+/**
+ * Determine if a value is a Function
+ *
+ * @param {*} val The value to test
+ * @returns {boolean} True if value is a Function, otherwise false
+ */
+const isFunction = typeOfTest('function');
+
+/**
+ * Determine if a value is a Number
+ *
+ * @param {*} val The value to test
+ *
+ * @returns {boolean} True if value is a Number, otherwise false
+ */
+const isNumber = typeOfTest('number');
+
+/**
+ * Determine if a value is an Object
+ *
+ * @param {*} thing The value to test
+ *
+ * @returns {boolean} True if value is an Object, otherwise false
+ */
+const isObject = (thing) => thing !== null && typeof thing === 'object';
+
+/**
+ * Determine if a value is a Boolean
+ *
+ * @param {*} thing The value to test
+ * @returns {boolean} True if value is a Boolean, otherwise false
+ */
+const isBoolean = thing => thing === true || thing === false;
+
+/**
+ * Determine if a value is a plain Object
+ *
+ * @param {*} val The value to test
+ *
+ * @returns {boolean} True if value is a plain Object, otherwise false
+ */
+const isPlainObject = (val) => {
+  if (kindOf(val) !== 'object') {
+    return false;
+  }
+
+  const prototype = getPrototypeOf(val);
+  return (prototype === null || prototype === Object.prototype || Object.getPrototypeOf(prototype) === null) && !(toStringTag in val) && !(iterator in val);
+}
+
+/**
+ * Determine if a value is a Date
+ *
+ * @param {*} val The value to test
+ *
+ * @returns {boolean} True if value is a Date, otherwise false
+ */
+const isDate = kindOfTest('Date');
+
+/**
+ * Determine if a value is a File
+ *
+ * @param {*} val The value to test
+ *
+ * @returns {boolean} True if value is a File, otherwise false
+ */
+const isFile = kindOfTest('File');
+
+/**
+ * Determine if a value is a Blob
+ *
+ * @param {*} val The value to test
+ *
+ * @returns {boolean} True if value is a Blob, otherwise false
+ */
+const isBlob = kindOfTest('Blob');
+
+/**
+ * Determine if a value is a FileList
+ *
+ * @param {*} val The value to test
+ *
+ * @returns {boolean} True if value is a File, otherwise false
+ */
+const isFileList = kindOfTest('FileList');
+
+/**
+ * Determine if a value is a Stream
+ *
+ * @param {*} val The value to test
+ *
+ * @returns {boolean} True if value is a Stream, otherwise false
+ */
+const isStream = (val) => isObject(val) && isFunction(val.pipe);
+
+/**
+ * Determine if a value is a FormData
+ *
+ * @param {*} thing The value to test
+ *
+ * @returns {boolean} True if value is an FormData, otherwise false
+ */
+const isFormData = (thing) => {
+  let kind;
+  return thing && (
+    (typeof FormData === 'function' && thing instanceof FormData) || (
+      isFunction(thing.append) && (
+        (kind = kindOf(thing)) === 'formdata' ||
+        // detect form-data instance
+        (kind === 'object' && isFunction(thing.toString) && thing.toString() === '[object FormData]')
+      )
+    )
+  )
+}
+
+/**
+ * Determine if a value is a URLSearchParams object
+ *
+ * @param {*} val The value to test
+ *
+ * @returns {boolean} True if value is a URLSearchParams object, otherwise false
+ */
+const isURLSearchParams = kindOfTest('URLSearchParams');
+
+const [isReadableStream, isRequest, isResponse, isHeaders] = ['ReadableStream', 'Request', 'Response', 'Headers'].map(kindOfTest);
+
+/**
+ * Trim excess whitespace off the beginning and end of a string
+ *
+ * @param {String} str The String to trim
+ *
+ * @returns {String} The String freed of excess whitespace
+ */
+const trim = (str) => str.trim ?
+  str.trim() : str.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '');
+
+/**
+ * Iterate over an Array or an Object invoking a function for each item.
+ *
+ * If `obj` is an Array callback will be called passing
+ * the value, index, and complete array for each item.
+ *
+ * If 'obj' is an Object callback will be called passing
+ * the value, key, and complete object for each property.
+ *
+ * @param {Object|Array} obj The object to iterate
+ * @param {Function} fn The callback to invoke for each item
+ *
+ * @param {Boolean} [allOwnKeys = false]
+ * @returns {any}
+ */
+function forEach(obj, fn, {allOwnKeys = false} = {}) {
+  // Don't bother if no value provided
+  if (obj === null || typeof obj === 'undefined') {
+    return;
+  }
+
+  let i;
+  let l;
+
+  // Force an array if not already something iterable
+  if (typeof obj !== 'object') {
+    /*eslint no-param-reassign:0*/
+    obj = [obj];
+  }
+
+  if (isArray(obj)) {
+    // Iterate over array values
+    for (i = 0, l = obj.length; i < l; i++) {
+      fn.call(null, obj[i], i, obj);
+    }
+  } else {
+    // Iterate over object keys
+    const keys = allOwnKeys ? Object.getOwnPropertyNames(obj) : Object.keys(obj);
+    const len = keys.length;
+    let key;
+
+    for (i = 0; i < len; i++) {
+      key = keys[i];
+      fn.call(null, obj[key], key, obj);
+    }
+  }
+}
+
+function findKey(obj, key) {
+  key = key.toLowerCase();
+  const keys = Object.keys(obj);
+  let i = keys.length;
+  let _key;
+  while (i-- > 0) {
+    _key = keys[i];
+    if (key === _key.toLowerCase()) {
+      return _key;
+    }
+  }
+  return null;
+}
+
+const _global = (() => {
+  /*eslint no-undef:0*/
+  if (typeof globalThis !== "undefined") return globalThis;
+  return typeof self !== "undefined" ? self : (typeof window !== 'undefined' ? window : global)
+})();
+
+const isContextDefined = (context) => !isUndefined(context) && context !== _global;
+
+/**
+ * Accepts varargs expecting each argument to be an object, then
+ * immutably merges the properties of each object and returns result.
+ *
+ * When multiple objects contain the same key the later object in
+ * the arguments list will take precedence.
+ *
+ * Example:
+ *
+ * ```js
+ * var result = merge({foo: 123}, {foo: 456});
+ * console.log(result.foo); // outputs 456
+ * ```
+ *
+ * @param {Object} obj1 Object to merge
+ *
+ * @returns {Object} Result of all merge properties
+ */
+function merge(/* obj1, obj2, obj3, ... */) {
+  const {caseless} = isContextDefined(this) && this || {};
+  const result = {};
+  const assignValue = (val, key) => {
+    const targetKey = caseless && findKey(result, key) || key;
+    if (isPlainObject(result[targetKey]) && isPlainObject(val)) {
+      result[targetKey] = merge(result[targetKey], val);
+    } else if (isPlainObject(val)) {
+      result[targetKey] = merge({}, val);
+    } else if (isArray(val)) {
+      result[targetKey] = val.slice();
+    } else {
+      result[targetKey] = val;
+    }
+  }
+
+  for (let i = 0, l = arguments.length; i < l; i++) {
+    arguments[i] && forEach(arguments[i], assignValue);
+  }
+  return result;
+}
+
+/**
+ * Extends object a by mutably adding to it the properties of object b.
+ *
+ * @param {Object} a The object to be extended
+ * @param {Object} b The object to copy properties from
+ * @param {Object} thisArg The object to bind function to
+ *
+ * @param {Boolean} [allOwnKeys]
+ * @returns {Object} The resulting value of object a
+ */
+const extend = (a, b, thisArg, {allOwnKeys}= {}) => {
+  forEach(b, (val, key) => {
+    if (thisArg && isFunction(val)) {
+      a[key] = (0,_helpers_bind_js__WEBPACK_IMPORTED_MODULE_0__["default"])(val, thisArg);
+    } else {
+      a[key] = val;
+    }
+  }, {allOwnKeys});
+  return a;
+}
+
+/**
+ * Remove byte order marker. This catches EF BB BF (the UTF-8 BOM)
+ *
+ * @param {string} content with BOM
+ *
+ * @returns {string} content value without BOM
+ */
+const stripBOM = (content) => {
+  if (content.charCodeAt(0) === 0xFEFF) {
+    content = content.slice(1);
+  }
+  return content;
+}
+
+/**
+ * Inherit the prototype methods from one constructor into another
+ * @param {function} constructor
+ * @param {function} superConstructor
+ * @param {object} [props]
+ * @param {object} [descriptors]
+ *
+ * @returns {void}
+ */
+const inherits = (constructor, superConstructor, props, descriptors) => {
+  constructor.prototype = Object.create(superConstructor.prototype, descriptors);
+  constructor.prototype.constructor = constructor;
+  Object.defineProperty(constructor, 'super', {
+    value: superConstructor.prototype
+  });
+  props && Object.assign(constructor.prototype, props);
+}
+
+/**
+ * Resolve object with deep prototype chain to a flat object
+ * @param {Object} sourceObj source object
+ * @param {Object} [destObj]
+ * @param {Function|Boolean} [filter]
+ * @param {Function} [propFilter]
+ *
+ * @returns {Object}
+ */
+const toFlatObject = (sourceObj, destObj, filter, propFilter) => {
+  let props;
+  let i;
+  let prop;
+  const merged = {};
+
+  destObj = destObj || {};
+  // eslint-disable-next-line no-eq-null,eqeqeq
+  if (sourceObj == null) return destObj;
+
+  do {
+    props = Object.getOwnPropertyNames(sourceObj);
+    i = props.length;
+    while (i-- > 0) {
+      prop = props[i];
+      if ((!propFilter || propFilter(prop, sourceObj, destObj)) && !merged[prop]) {
+        destObj[prop] = sourceObj[prop];
+        merged[prop] = true;
+      }
+    }
+    sourceObj = filter !== false && getPrototypeOf(sourceObj);
+  } while (sourceObj && (!filter || filter(sourceObj, destObj)) && sourceObj !== Object.prototype);
+
+  return destObj;
+}
+
+/**
+ * Determines whether a string ends with the characters of a specified string
+ *
+ * @param {String} str
+ * @param {String} searchString
+ * @param {Number} [position= 0]
+ *
+ * @returns {boolean}
+ */
+const endsWith = (str, searchString, position) => {
+  str = String(str);
+  if (position === undefined || position > str.length) {
+    position = str.length;
+  }
+  position -= searchString.length;
+  const lastIndex = str.indexOf(searchString, position);
+  return lastIndex !== -1 && lastIndex === position;
+}
+
+
+/**
+ * Returns new array from array like object or null if failed
+ *
+ * @param {*} [thing]
+ *
+ * @returns {?Array}
+ */
+const toArray = (thing) => {
+  if (!thing) return null;
+  if (isArray(thing)) return thing;
+  let i = thing.length;
+  if (!isNumber(i)) return null;
+  const arr = new Array(i);
+  while (i-- > 0) {
+    arr[i] = thing[i];
+  }
+  return arr;
+}
+
+/**
+ * Checking if the Uint8Array exists and if it does, it returns a function that checks if the
+ * thing passed in is an instance of Uint8Array
+ *
+ * @param {TypedArray}
+ *
+ * @returns {Array}
+ */
+// eslint-disable-next-line func-names
+const isTypedArray = (TypedArray => {
+  // eslint-disable-next-line func-names
+  return thing => {
+    return TypedArray && thing instanceof TypedArray;
+  };
+})(typeof Uint8Array !== 'undefined' && getPrototypeOf(Uint8Array));
+
+/**
+ * For each entry in the object, call the function with the key and value.
+ *
+ * @param {Object<any, any>} obj - The object to iterate over.
+ * @param {Function} fn - The function to call for each entry.
+ *
+ * @returns {void}
+ */
+const forEachEntry = (obj, fn) => {
+  const generator = obj && obj[iterator];
+
+  const _iterator = generator.call(obj);
+
+  let result;
+
+  while ((result = _iterator.next()) && !result.done) {
+    const pair = result.value;
+    fn.call(obj, pair[0], pair[1]);
+  }
+}
+
+/**
+ * It takes a regular expression and a string, and returns an array of all the matches
+ *
+ * @param {string} regExp - The regular expression to match against.
+ * @param {string} str - The string to search.
+ *
+ * @returns {Array<boolean>}
+ */
+const matchAll = (regExp, str) => {
+  let matches;
+  const arr = [];
+
+  while ((matches = regExp.exec(str)) !== null) {
+    arr.push(matches);
+  }
+
+  return arr;
+}
+
+/* Checking if the kindOfTest function returns true when passed an HTMLFormElement. */
+const isHTMLForm = kindOfTest('HTMLFormElement');
+
+const toCamelCase = str => {
+  return str.toLowerCase().replace(/[-_\s]([a-z\d])(\w*)/g,
+    function replacer(m, p1, p2) {
+      return p1.toUpperCase() + p2;
+    }
+  );
+};
+
+/* Creating a function that will check if an object has a property. */
+const hasOwnProperty = (({hasOwnProperty}) => (obj, prop) => hasOwnProperty.call(obj, prop))(Object.prototype);
+
+/**
+ * Determine if a value is a RegExp object
+ *
+ * @param {*} val The value to test
+ *
+ * @returns {boolean} True if value is a RegExp object, otherwise false
+ */
+const isRegExp = kindOfTest('RegExp');
+
+const reduceDescriptors = (obj, reducer) => {
+  const descriptors = Object.getOwnPropertyDescriptors(obj);
+  const reducedDescriptors = {};
+
+  forEach(descriptors, (descriptor, name) => {
+    let ret;
+    if ((ret = reducer(descriptor, name, obj)) !== false) {
+      reducedDescriptors[name] = ret || descriptor;
+    }
+  });
+
+  Object.defineProperties(obj, reducedDescriptors);
+}
+
+/**
+ * Makes all methods read-only
+ * @param {Object} obj
+ */
+
+const freezeMethods = (obj) => {
+  reduceDescriptors(obj, (descriptor, name) => {
+    // skip restricted props in strict mode
+    if (isFunction(obj) && ['arguments', 'caller', 'callee'].indexOf(name) !== -1) {
+      return false;
+    }
+
+    const value = obj[name];
+
+    if (!isFunction(value)) return;
+
+    descriptor.enumerable = false;
+
+    if ('writable' in descriptor) {
+      descriptor.writable = false;
+      return;
+    }
+
+    if (!descriptor.set) {
+      descriptor.set = () => {
+        throw Error('Can not rewrite read-only method \'' + name + '\'');
+      };
+    }
+  });
+}
+
+const toObjectSet = (arrayOrString, delimiter) => {
+  const obj = {};
+
+  const define = (arr) => {
+    arr.forEach(value => {
+      obj[value] = true;
+    });
+  }
+
+  isArray(arrayOrString) ? define(arrayOrString) : define(String(arrayOrString).split(delimiter));
+
+  return obj;
+}
+
+const noop = () => {}
+
+const toFiniteNumber = (value, defaultValue) => {
+  return value != null && Number.isFinite(value = +value) ? value : defaultValue;
+}
+
+/**
+ * If the thing is a FormData object, return true, otherwise return false.
+ *
+ * @param {unknown} thing - The thing to check.
+ *
+ * @returns {boolean}
+ */
+function isSpecCompliantForm(thing) {
+  return !!(thing && isFunction(thing.append) && thing[toStringTag] === 'FormData' && thing[iterator]);
+}
+
+const toJSONObject = (obj) => {
+  const stack = new Array(10);
+
+  const visit = (source, i) => {
+
+    if (isObject(source)) {
+      if (stack.indexOf(source) >= 0) {
+        return;
+      }
+
+      if(!('toJSON' in source)) {
+        stack[i] = source;
+        const target = isArray(source) ? [] : {};
+
+        forEach(source, (value, key) => {
+          const reducedValue = visit(value, i + 1);
+          !isUndefined(reducedValue) && (target[key] = reducedValue);
+        });
+
+        stack[i] = undefined;
+
+        return target;
+      }
+    }
+
+    return source;
+  }
+
+  return visit(obj, 0);
+}
+
+const isAsyncFn = kindOfTest('AsyncFunction');
+
+const isThenable = (thing) =>
+  thing && (isObject(thing) || isFunction(thing)) && isFunction(thing.then) && isFunction(thing.catch);
+
+// original code
+// https://github.com/DigitalBrainJS/AxiosPromise/blob/16deab13710ec09779922131f3fa5954320f83ab/lib/utils.js#L11-L34
+
+const _setImmediate = ((setImmediateSupported, postMessageSupported) => {
+  if (setImmediateSupported) {
+    return setImmediate;
+  }
+
+  return postMessageSupported ? ((token, callbacks) => {
+    _global.addEventListener("message", ({source, data}) => {
+      if (source === _global && data === token) {
+        callbacks.length && callbacks.shift()();
+      }
+    }, false);
+
+    return (cb) => {
+      callbacks.push(cb);
+      _global.postMessage(token, "*");
+    }
+  })(`axios@${Math.random()}`, []) : (cb) => setTimeout(cb);
+})(
+  typeof setImmediate === 'function',
+  isFunction(_global.postMessage)
+);
+
+const asap = typeof queueMicrotask !== 'undefined' ?
+  queueMicrotask.bind(_global) : ( typeof process !== 'undefined' && process.nextTick || _setImmediate);
+
+// *********************
+
+
+const isIterable = (thing) => thing != null && isFunction(thing[iterator]);
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  isArray,
+  isArrayBuffer,
+  isBuffer,
+  isFormData,
+  isArrayBufferView,
+  isString,
+  isNumber,
+  isBoolean,
+  isObject,
+  isPlainObject,
+  isReadableStream,
+  isRequest,
+  isResponse,
+  isHeaders,
+  isUndefined,
+  isDate,
+  isFile,
+  isBlob,
+  isRegExp,
+  isFunction,
+  isStream,
+  isURLSearchParams,
+  isTypedArray,
+  isFileList,
+  forEach,
+  merge,
+  extend,
+  trim,
+  stripBOM,
+  inherits,
+  toFlatObject,
+  kindOf,
+  kindOfTest,
+  endsWith,
+  toArray,
+  forEachEntry,
+  matchAll,
+  isHTMLForm,
+  hasOwnProperty,
+  hasOwnProp: hasOwnProperty, // an alias to avoid ESLint no-prototype-builtins detection
+  reduceDescriptors,
+  freezeMethods,
+  toObjectSet,
+  toCamelCase,
+  noop,
+  toFiniteNumber,
+  findKey,
+  global: _global,
+  isContextDefined,
+  isSpecCompliantForm,
+  toJSONObject,
+  isAsyncFn,
+  isThenable,
+  setImmediate: _setImmediate,
+  asap,
+  isIterable
+});
+
+
+/***/ }),
+
+/***/ "./node_modules/process/browser.js":
+/*!*****************************************!*\
+  !*** ./node_modules/process/browser.js ***!
+  \*****************************************/
+/***/ ((module) => {
+
+// shim for using process in browser
+var process = module.exports = {};
+
+// cached from whatever global is present so that test runners that stub it
+// don't break things.  But we need to wrap it in a try catch in case it is
+// wrapped in strict mode code which doesn't define any globals.  It's inside a
+// function because try/catches deoptimize in certain engines.
+
+var cachedSetTimeout;
+var cachedClearTimeout;
+
+function defaultSetTimout() {
+    throw new Error('setTimeout has not been defined');
+}
+function defaultClearTimeout () {
+    throw new Error('clearTimeout has not been defined');
+}
+(function () {
+    try {
+        if (typeof setTimeout === 'function') {
+            cachedSetTimeout = setTimeout;
+        } else {
+            cachedSetTimeout = defaultSetTimout;
+        }
+    } catch (e) {
+        cachedSetTimeout = defaultSetTimout;
+    }
+    try {
+        if (typeof clearTimeout === 'function') {
+            cachedClearTimeout = clearTimeout;
+        } else {
+            cachedClearTimeout = defaultClearTimeout;
+        }
+    } catch (e) {
+        cachedClearTimeout = defaultClearTimeout;
+    }
+} ())
+function runTimeout(fun) {
+    if (cachedSetTimeout === setTimeout) {
+        //normal enviroments in sane situations
+        return setTimeout(fun, 0);
+    }
+    // if setTimeout wasn't available but was latter defined
+    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
+        cachedSetTimeout = setTimeout;
+        return setTimeout(fun, 0);
+    }
+    try {
+        // when when somebody has screwed with setTimeout but no I.E. maddness
+        return cachedSetTimeout(fun, 0);
+    } catch(e){
+        try {
+            // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
+            return cachedSetTimeout.call(null, fun, 0);
+        } catch(e){
+            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
+            return cachedSetTimeout.call(this, fun, 0);
+        }
+    }
+
+
+}
+function runClearTimeout(marker) {
+    if (cachedClearTimeout === clearTimeout) {
+        //normal enviroments in sane situations
+        return clearTimeout(marker);
+    }
+    // if clearTimeout wasn't available but was latter defined
+    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
+        cachedClearTimeout = clearTimeout;
+        return clearTimeout(marker);
+    }
+    try {
+        // when when somebody has screwed with setTimeout but no I.E. maddness
+        return cachedClearTimeout(marker);
+    } catch (e){
+        try {
+            // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
+            return cachedClearTimeout.call(null, marker);
+        } catch (e){
+            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
+            // Some versions of I.E. have different rules for clearTimeout vs setTimeout
+            return cachedClearTimeout.call(this, marker);
+        }
+    }
+
+
+
+}
+var queue = [];
+var draining = false;
+var currentQueue;
+var queueIndex = -1;
+
+function cleanUpNextTick() {
+    if (!draining || !currentQueue) {
+        return;
+    }
+    draining = false;
+    if (currentQueue.length) {
+        queue = currentQueue.concat(queue);
+    } else {
+        queueIndex = -1;
+    }
+    if (queue.length) {
+        drainQueue();
+    }
+}
+
+function drainQueue() {
+    if (draining) {
+        return;
+    }
+    var timeout = runTimeout(cleanUpNextTick);
+    draining = true;
+
+    var len = queue.length;
+    while(len) {
+        currentQueue = queue;
+        queue = [];
+        while (++queueIndex < len) {
+            if (currentQueue) {
+                currentQueue[queueIndex].run();
+            }
+        }
+        queueIndex = -1;
+        len = queue.length;
+    }
+    currentQueue = null;
+    draining = false;
+    runClearTimeout(timeout);
+}
+
+process.nextTick = function (fun) {
+    var args = new Array(arguments.length - 1);
+    if (arguments.length > 1) {
+        for (var i = 1; i < arguments.length; i++) {
+            args[i - 1] = arguments[i];
+        }
+    }
+    queue.push(new Item(fun, args));
+    if (queue.length === 1 && !draining) {
+        runTimeout(drainQueue);
+    }
+};
+
+// v8 likes predictible objects
+function Item(fun, array) {
+    this.fun = fun;
+    this.array = array;
+}
+Item.prototype.run = function () {
+    this.fun.apply(null, this.array);
+};
+process.title = 'browser';
+process.browser = true;
+process.env = {};
+process.argv = [];
+process.version = ''; // empty string to avoid regexp issues
+process.versions = {};
+
+function noop() {}
+
+process.on = noop;
+process.addListener = noop;
+process.once = noop;
+process.off = noop;
+process.removeListener = noop;
+process.removeAllListeners = noop;
+process.emit = noop;
+process.prependListener = noop;
+process.prependOnceListener = noop;
+
+process.listeners = function (name) { return [] }
+
+process.binding = function (name) {
+    throw new Error('process.binding is not supported');
+};
+
+process.cwd = function () { return '/' };
+process.chdir = function (dir) {
+    throw new Error('process.chdir is not supported');
+};
+process.umask = function() { return 0; };
+
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+var __webpack_exports__ = {};
+// This entry needs to be wrapped in an IIFE because it needs to be in strict mode.
+(() => {
+"use strict";
+/*!*******************************!*\
+  !*** ./src/templateWidget.js ***!
+  \*******************************/
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _nextcloud_initial_state__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @nextcloud/initial-state */ "./node_modules/@nextcloud/initial-state/dist/index.mjs");
+/* harmony import */ var _nextcloud_axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @nextcloud/axios */ "./node_modules/@nextcloud/axios/dist/index.mjs");
+/* harmony import */ var _nextcloud_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @nextcloud/router */ "./node_modules/@nextcloud/router/dist/index.mjs");
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  OCA.Dashboard.register('hass-template-widget', (el, {
+    widget
+  }) => {
+    el.innerHTML = nl2br((0,_nextcloud_initial_state__WEBPACK_IMPORTED_MODULE_0__.loadState)('integration_homeassistant', 'dashboard-template-widget'));
+    if (!el.innerHTML) el.innerHTML = emptyMsg();
+    el.parentElement.style.overflow = 'auto';
+    const refreshInterval = parseInt((0,_nextcloud_initial_state__WEBPACK_IMPORTED_MODULE_0__.loadState)('integration_homeassistant', 'dashboard-template-widget-refresh-interval'));
+    if (refreshInterval > 0) {
+      setInterval(async () => {
+        el.innerHTML = nl2br((await _nextcloud_axios__WEBPACK_IMPORTED_MODULE_1__["default"].post((0,_nextcloud_router__WEBPACK_IMPORTED_MODULE_2__.generateUrl)('/apps/integration_homeassistant/template'))).data[0]);
+        if (!el.innerHTML) el.innerHTML = emptyMsg();
+      }, refreshInterval * 1000);
+    }
+  });
+});
+
+/**
+ * Replace line breaks with <br>
+ * @param {string} s The variable to convert
+ */
+function nl2br(s) {
+  return s.toString().replace(/(?:\r\n|\r|\n)/g, '<br>');
+}
+
+/**
+ * Prints guide
+ */
+function emptyMsg() {
+  return 'Nothing to show ::)<br><br>Go to "Administrator settings" > "Home assistant integration" to get started.';
+}
+})();
+
+/******/ })()
+;
 //# sourceMappingURL=integration_homeassistant-templateWidget.js.map

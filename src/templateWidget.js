@@ -28,4 +28,4 @@ function nl2br(s) {
 /**
  * Prints guide
  */
-function emptyMsg() { return 'Nothing to show :))<br><br>Go to "Administrator settings" > "Home assistant integration" to get started.' }
+function emptyMsg() { return 'Nothing to show ::)<br><br>Go to "Administrator settings" > "Home assistant integration" to get started.' }

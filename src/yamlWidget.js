@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		const url = new URL(loadState('integration_homeassistant', 'dashboard-base-url'))
 		const auth = createLongLivedTokenAuth(
 			`${url.protocol}//${url.host}`,
-			loadState('integration_homeassistant', 'dashboard-long-lived-access-token'),
+			loadState('integration_homeassistant', 'dashboard-long-lived-access-token').trim(),
 		)
 		createConnection({ auth })
 			.then((connection) => subscribeEntities(connection, (entities) => {
