@@ -29,7 +29,11 @@ class TemplateWidget implements IAPIWidget {
 	}
 
 	public function getId(): string { return 'hass-template-widget'; }
-	public function getTitle(): string { return $this->l10n->t('Template widget'); }
+	public function getTitle(): string { 
+		$title = $this->config->getAppValue(Application::APP_ID, 'template_widget_title', '');
+		if (!$title) $title = 'Template widget';
+		return $this->l10n->t($title);
+	}
 	public function getOrder(): int { return 10; }
 	public function getIconClass(): string { return 'icon-hasswidget'; }
 	public function getUrl(): ?string { return null; }

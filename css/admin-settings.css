@@ -3,7 +3,7 @@
 }
 
 #integration_homeassistant label {
-	clear: both;
+	display: block;
 }
 
 #integration_homeassistant input,

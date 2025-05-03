@@ -42156,8 +42156,10 @@ document.addEventListener('DOMContentLoaded', function () {
   };
   document.querySelector('#base_url').addEventListener('change', inputHandler);
   document.querySelector('#long_lived_access_token').addEventListener('change', inputHandler);
+  document.querySelector('#template_widget_title').addEventListener('change', inputHandler);
   document.querySelector('#template_widget').addEventListener('change', inputHandler);
   document.querySelector('#template_widget_refresh_interval').addEventListener('change', inputHandler);
+  document.querySelector('#yaml_widget_title').addEventListener('change', inputHandler);
   document.querySelector('#yaml_widget').addEventListener('change', inputHandler);
   setupTabs();
 });

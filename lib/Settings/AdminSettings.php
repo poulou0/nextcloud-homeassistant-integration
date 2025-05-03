@@ -21,8 +21,10 @@ class AdminSettings implements ISettings {
 		return new TemplateResponse(Application::APP_ID, 'admin-settings', [
 			'base_url' => $this->config->getAppValue(Application::APP_ID, 'base_url', ''),
 			'long_lived_access_token' => $this->config->getAppValue(Application::APP_ID, 'long_lived_access_token', ''),
+			'template_widget_title' => $this->config->getAppValue(Application::APP_ID, 'template_widget_title', ''),
 			'template_widget_refresh_interval' => $this->config->getAppValue(Application::APP_ID, 'template_widget_refresh_interval', 30),
 			'template_widget' => $this->config->getAppValue(Application::APP_ID, 'template_widget', ''),
+			'yaml_widget_title' => $this->config->getAppValue(Application::APP_ID, 'yaml_widget_title', ''),
 			'yaml_widget' => $this->config->getAppValue(Application::APP_ID, 'yaml_widget', ''),
 		], '');
 	}

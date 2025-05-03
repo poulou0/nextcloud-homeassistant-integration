@@ -35,9 +35,14 @@ style(Application::APP_ID, 'admin-settings');
 			<button class="tablinks" data-target="yaml_widget_tab"><?php p($l->t('YAML widget (beta)')); ?></button>
 		</div>
 		<div id="jinja2_widget_tab" class="tabcontent">
-			<div><?php p($l->t('Template widget refresh interval (in seconds)')); ?></div>
+			<label for="template_widget_title"><?php p($l->t('Template widget title')); ?>:</label>
+			<input id="template_widget_title" value="<?php p($_['template_widget_title']) ?>"
+				placeholder="Template widget" />
+			<label
+				for="template_widget_refresh_interval"><?php p($l->t('Template widget refresh interval (in seconds)')); ?>:</label>
 			<input id="template_widget_refresh_interval" value="<?php p($_['template_widget_refresh_interval']) ?>"
 				placeholder="0" type="number" min="0" step="1" />
+			<label for="template_widget">Template widget body:</label>
 			<textarea id="template_widget" placeholder="Add your Jinja2 template here.."
 				spellcheck="false"><?php p($_['template_widget']) ?></textarea>
 			<p>Templates are rendered using the Jinja2 template engine with some Home Assistant specific extensions.</p>
@@ -53,6 +58,10 @@ style(Application::APP_ID, 'admin-settings');
 			</ul>
 		</div>
 		<div id="yaml_widget_tab" class="tabcontent">
+			<label for="yaml_widget_title"><?php p($l->t('YAML widget title')); ?>:</label>
+			<input id="yaml_widget_title" value="<?php p($_['yaml_widget_title']) ?>"
+				placeholder="YAML widget (beta)" />
+			<label for="template_widget">Template widget body:</label>
 			<textarea id="yaml_widget" placeholder="Add your entites widget YAML here.."
 				spellcheck="false"><?php p($_['yaml_widget']) ?></textarea>
 			<ul>

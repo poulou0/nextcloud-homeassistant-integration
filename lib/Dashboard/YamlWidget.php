@@ -36,7 +36,9 @@ class YamlWidget implements IAPIWidget
 	}
 	public function getTitle(): string
 	{
-		return $this->l10n->t('YAML widget (beta)');
+		$title = $this->config->getAppValue(Application::APP_ID, 'yaml_widget_title', '');
+		if (!$title) $title = 'YAML widget (beta)';
+		return $this->l10n->t($title);
 	}
 	public function getOrder(): int
 	{
