@@ -1,7 +1,7 @@
 {
   "name": "integration_homeassistant",
   "description": "A dashboard widget for a home-assistant instance",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "author": "Poulou <poulou.0@gmail.com>",
   "contributors": [],
   "bugs": {
@@ -43,7 +43,7 @@
     "@nextcloud/eslint-plugin": "^2.0.0",
     "@nextcloud/stylelint-config": "^3.0.1",
     "@nextcloud/webpack-vue-config": "^5.5.1",
-    "babel-loader": "^10.0.0",
+    "babel-loader": "^9.2.1",
     "eslint": "^8.57.1",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-jsdoc": "^46.10.1",
