@@ -3,7 +3,6 @@
 namespace OCA\HassIntegration\Dashboard;
 
 use OCA\HassIntegration\Service\HassIntegrationService;
-use OCP\AppFramework\Http\EmptyContentSecurityPolicy;
 use OCP\AppFramework\Services\IInitialState;
 use OCP\Dashboard\IAPIWidget;
 use OCP\IL10N;
@@ -55,16 +54,6 @@ class YamlWidget implements IAPIWidget
 
 	public function load(): void
 	{
-		$baseURL = $this->config->getAppValue(Application::APP_ID, 'base_url', '');
-		$policy = new EmptyContentSecurityPolicy();
-		$url = parse_url($baseURL);
-		if ($url) {
-			$policy->addAllowedConnectDomain('ws://' . $url['host'] . (isset($url['port']) ? ":$url[port]" : ''));
-			$policy->addAllowedConnectDomain('wss://' . $url['host'] . (isset($url['port']) ? ":$url[port]" : ''));
-		}
-		$manager = \OC::$server->getContentSecurityPolicyManager();
-		$manager->addDefaultPolicy($policy);
-
 		Util::addScript(Application::APP_ID, Application::APP_ID . '-yamlWidget');
 		Util::addStyle(Application::APP_ID, 'dashboard');
 
