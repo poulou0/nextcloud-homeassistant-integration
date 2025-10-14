@@ -148,6 +148,11 @@ appstore:
 		--exclude="../$(app_name)/.*" \
 		--exclude="../$(app_name)/js/.*" \
 		--exclude="../$(app_name)/node_modules" \
+		--exclude="../$(app_name)/vendor" \
+		--exclude="../$(app_name)/src" \
+		--exclude="../$(app_name)/stylelint.config.js" \
+		--exclude="../$(app_name)/webpack.config.js" \
+		--exclude="../$(app_name)/package-lock.json" \
 	../$(app_name)
 
 .PHONY: test
