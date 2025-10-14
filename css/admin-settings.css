@@ -32,6 +32,14 @@
 }
 
 /* Style tabs */
+.tablinks.active,
+.tablinks.active:active,
+.tablinks.active:hover,
+.tablinks.active:focus {
+	background-color: var(--color-primary-element);
+	color: var(--color-primary-element-text);
+}
+
 .tab {
 	overflow: hidden;
 }

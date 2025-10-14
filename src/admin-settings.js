@@ -43,8 +43,6 @@ const saveSetting = async (key, value) => {
  */
 const setupTabs = () => {
 	const tablinks = document.querySelectorAll('.tablinks')
-	// eslint-disable-next-line no-console
-	console.log(tablinks)
 	const tabcontent = document.querySelectorAll('.tabcontent')
 	const openTab = (evt, tabId) => {
 		tablinks.forEach((link) => link.classList.remove('active'))
