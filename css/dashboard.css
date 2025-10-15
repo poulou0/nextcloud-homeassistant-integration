@@ -25,8 +25,7 @@
 	position: absolute;
 	cursor: pointer;
 	top: 0;
-	left: 0;
-	right: 0;
+	inset-inline: 0;
 	bottom: 0;
 	background-color: #4c4c4c;
 	-webkit-transition: .4s;
@@ -47,7 +46,7 @@ input[disabled]+.slider:before {
 	content: "";
 	height: 26px;
 	width: 26px;
-	left: 0;
+	inset-inline-start: 0;
 	bottom: 0;
 	background-color: white;
 	-webkit-transition: .4s;

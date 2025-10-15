@@ -28,13 +28,13 @@
 	display: inline-block;
 	vertical-align: middle;
 	height: auto;
-	margin-left: 5px;
+	margin-inline-start: 5px;
 }
 
 
 #integration_homeassistant li {
 	list-style: circle;
-	margin-left: 15px;
+	margin-inline-start: 15px;
 }
 
 #integration_homeassistant .icon {
