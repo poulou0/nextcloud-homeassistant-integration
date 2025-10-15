@@ -14,6 +14,9 @@ document.addEventListener('DOMContentLoaded', function() {
 	document.querySelector('#template_widget_refresh_interval').addEventListener('change', inputHandler)
 	document.querySelector('#yaml_widget_title').addEventListener('change', inputHandler)
 	document.querySelector('#yaml_widget').addEventListener('change', inputHandler)
+	document.querySelector('#yaml_widget_websockets_enabled').addEventListener('change', ({ target: { id, checked } }) => {
+		saveSetting(id, checked)
+	})
 
 	setupTabs()
 })

@@ -61,6 +61,11 @@ style(Application::APP_ID, 'admin-settings');
 			<label for="yaml_widget_title"><?php p($l->t('YAML widget title')); ?>:</label>
 			<input id="yaml_widget_title" value="<?php p($_['yaml_widget_title']) ?>"
 				placeholder="YAML widget (beta)" />
+			<div>
+				<label class="inline"
+					for="yaml_widget_websockets_enabled"><?php p($l->t('YAML widget WebSockets enabled')); ?>:</label>
+				<input type="checkbox" id="yaml_widget_websockets_enabled" <?php p($_['yaml_widget_websockets_enabled'] === "true" ? "checked" : "") ?> />
+			</div>
 			<label for="template_widget">Template widget body:</label>
 			<textarea id="yaml_widget" placeholder="Add your entites widget YAML here.."
 				spellcheck="false"><?php p($_['yaml_widget']) ?></textarea>

@@ -7,17 +7,20 @@ use OCP\AppFramework\Http\TemplateResponse;
 use OCP\IConfig;
 use OCP\Settings\ISettings;
 
-class AdminSettings implements ISettings {
+class AdminSettings implements ISettings
+{
 	private IConfig $config;
 
-	public function __construct(IConfig $config) {
+	public function __construct(IConfig $config)
+	{
 		$this->config = $config;
 	}
 
 	/**
 	 * @return TemplateResponse
 	 */
-	public function getForm() {
+	public function getForm()
+	{
 		return new TemplateResponse(Application::APP_ID, 'admin-settings', [
 			'base_url' => $this->config->getAppValue(Application::APP_ID, 'base_url', ''),
 			'long_lived_access_token' => $this->config->getAppValue(Application::APP_ID, 'long_lived_access_token', ''),
@@ -26,10 +29,12 @@ class AdminSettings implements ISettings {
 			'template_widget' => $this->config->getAppValue(Application::APP_ID, 'template_widget', ''),
 			'yaml_widget_title' => $this->config->getAppValue(Application::APP_ID, 'yaml_widget_title', ''),
 			'yaml_widget' => $this->config->getAppValue(Application::APP_ID, 'yaml_widget', ''),
+			'yaml_widget_websockets_enabled' => $this->config->getAppValue(Application::APP_ID, 'yaml_widget_websockets_enabled', 'true'),
 		], '');
 	}
 
-	public function getSection() {
+	public function getSection()
+	{
 		return HAssAdmin::SETTINGS_SECTION; // Name of the previously created section.
 	}
 
@@ -40,5 +45,8 @@ class AdminSettings implements ISettings {
 	 *
 	 * E.g.: 70
 	 */
-	public function getPriority() { return 70; }
+	public function getPriority()
+	{
+		return 70;
+	}
 }

@@ -41,26 +41,11 @@ class HassIntegrationController extends Controller
 	 *
 	 * @return DataResponse
 	 */
-	public function turnOnPost()
+	public function togglePost()
 	{
 		$entityId = $this->request->getParam("entity_id");
 		$pathPart = str_contains($entityId, 'switch') ? 'switch' : 'light';
-		return new DataResponse($this->hassIntegrationService->post("/services/{$pathPart}/turn_on", [
-			"entity_id" => $entityId
-		]));
-	}
-
-	/**
-	 * @NoAdminRequired
-	 * @NoCSRFRequired
-	 *
-	 * @return DataResponse
-	 */
-	public function turnOffPost()
-	{
-		$entityId = $this->request->getParam("entity_id");
-		$pathPart = str_contains($entityId, 'switch') ? 'switch' : 'light';
-		return new DataResponse($this->hassIntegrationService->post("/services/{$pathPart}/turn_off", [
+		return new DataResponse($this->hassIntegrationService->post("/services/{$pathPart}/toggle", [
 			"entity_id" => $entityId
 		]));
 	}

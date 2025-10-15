@@ -10,6 +10,7 @@ import { generateUrl } from '@nextcloud/router'
 
 document.addEventListener('DOMContentLoaded', () => {
 	OCA.Dashboard.register('hass-yaml-widget', (el, { widget }) => {
+		const webSocketsEnabled = loadState('integration_homeassistant', 'dashboard-yaml-widget-websockets-enabled') === 'true'
 		try {
 			const yamlEntities = YAML.parse(loadState('integration_homeassistant', 'dashboard-yaml-widget'))
 			if (yamlEntities.type !== 'entities') {
@@ -26,7 +27,11 @@ document.addEventListener('DOMContentLoaded', () => {
 					const name = entry.name ?? entry.entity
 					let handler = ''
 					if (entry.entity.startsWith('light') || entry.entity.startsWith('switch')) {
-						handler = `<label class="switch"><input type="checkbox" data-entity-id="${entry.entity}"><span class="slider round"></span></label>`
+						if (webSocketsEnabled) {
+							handler = `<label class="switch"><input type="checkbox" data-entity-id="${entry.entity}"><span class="slider round"></span></label>`
+						} else {
+							handler = `<input type="button" data-entity-id="${entry.entity}" value="⬤">`
+						}
 					} else if (entry.entity.startsWith('media_player') || entry.entity.startsWith('sensor')) {
 						handler = `<span data-entity-id="${entry.entity}"> - &nbsp; &nbsp;</span>`
 					} else if (entry.entity.startsWith('script')) {
@@ -40,6 +45,9 @@ document.addEventListener('DOMContentLoaded', () => {
 				? JSON.stringify(e)
 				: 'Nothing to show :))<br><br>Go to "Administrator settings" > "Home assistant integration" to get started.'
 		}
+
+		if (!webSocketsEnabled) return
+
 		const url = new URL(loadState('integration_homeassistant', 'dashboard-base-url'))
 		const auth = createLongLivedTokenAuth(
 			`${url.protocol}//${url.host}`,
@@ -63,16 +71,16 @@ document.addEventListener('DOMContentLoaded', () => {
 						nameP.setAttribute('title', name)
 					}
 				})
-			})).catch(() => { el.innerHTML = 'Cannot connect to websocket server!<br><br>' + el.innerHTML })
-
+			}))
+			.catch(() => { el.innerHTML = 'Cannot connect to websocket server!<br><br>' + el.innerHTML })
 	})
 })
 
 document.addEventListener('click', async (e) => {
 	if (!e.target.dataset.entityId) return
-	const { checked, dataset: { entityId } } = e.target
+	const { entityId } = e.target.dataset
 	if (entityId.startsWith('light') || entityId.startsWith('switch')) {
-		await axios.post(generateUrl(`/apps/integration_homeassistant/turn_${checked ? 'on' : 'off'}`), { entity_id: entityId })
+		await axios.post(generateUrl('/apps/integration_homeassistant/toggle'), { entity_id: entityId })
 	} else if (entityId.startsWith('script')) {
 		await axios.post(generateUrl('/apps/integration_homeassistant/run_script'), { entity_id: entityId })
 	}

@@ -36,7 +36,8 @@ class YamlWidget implements IAPIWidget
 	public function getTitle(): string
 	{
 		$title = $this->config->getAppValue(Application::APP_ID, 'yaml_widget_title', '');
-		if (!$title) $title = 'YAML widget (beta)';
+		if (!$title)
+			$title = 'YAML widget (beta)';
 		return $this->l10n->t($title);
 	}
 	public function getOrder(): int
@@ -58,6 +59,9 @@ class YamlWidget implements IAPIWidget
 		Util::addStyle(Application::APP_ID, 'dashboard');
 
 		$this->initialStateService->provideInitialState('dashboard-yaml-widget', $this->getItems()[0]);
+
+		$webSocketsEnabled = $this->config->getAppValue(Application::APP_ID, 'yaml_widget_websockets_enabled', 'true');
+		$this->initialStateService->provideInitialState('dashboard-yaml-widget-websockets-enabled', $webSocketsEnabled);
 	}
 
 	public function getItems(string $userId = null, ?string $since = null, int $limit = 7): array

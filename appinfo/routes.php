@@ -14,8 +14,7 @@ declare(strict_types=1);
 return [
 	'routes' => [
 		['name' => 'hassIntegration#templatePost', 'url' => '/template', 'verb' => 'POST'],
-		['name' => 'hassIntegration#turnOnPost', 'url' => '/turn_on', 'verb' => 'POST'],
-		['name' => 'hassIntegration#turnOffPost', 'url' => '/turn_off', 'verb' => 'POST'],
+		['name' => 'hassIntegration#togglePost', 'url' => '/toggle', 'verb' => 'POST'],
 		['name' => 'hassIntegration#runScriptPost', 'url' => '/run_script', 'verb' => 'POST'],
 	],
 ];
