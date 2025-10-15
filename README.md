@@ -35,6 +35,7 @@ git clone git@github.com:poulou0/nextcloud-homeassistant-integration.git workspa
 cd workspace/server/apps-extra/integration_homeassistant/
 npm install
 make
+npm run watch
 ```
 
 ## Publish to App Store

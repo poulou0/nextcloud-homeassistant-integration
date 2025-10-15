@@ -14,11 +14,12 @@ Video examples can be found here:
 * [Jinja2 template widget](https://youtu.be/XE_LRTAfVjA)
 * [YAML widget](https://youtu.be/PjWH53rqYe8)
 ]]></description>
-    <version>0.0.6</version>
+    <version>0.0.7</version>
     <licence>agpl</licence>
     <author mail="poulou.0@gmail.com" homepage="https://poulou.gr">Poulou</author>
     <namespace>HassIntegration</namespace>
     <category>dashboard</category>
+    <category>integration</category>
 	<website>https://github.com/poulou0/nextcloud-homeassistant-integration</website>
     <bugs>https://github.com/poulou0/nextcloud-homeassistant-integration/issues</bugs>
 	<screenshot>https://github.com/poulou0/nextcloud-homeassistant-integration/raw/main/img/screenshot2.jpg</screenshot>
