@@ -77,6 +77,10 @@ input:checked+.slider:before {
  * Yaml widget 
  */
 
+div.panel--content:has(> div[data-id="hass-yaml-widget"]) {
+	overflow: auto;
+}
+
 .entity-line {
 	display: flex;
 	justify-content: space-between;

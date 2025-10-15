@@ -10,35 +10,29 @@ import { generateUrl } from '@nextcloud/router'
 
 document.addEventListener('DOMContentLoaded', () => {
 	OCA.Dashboard.register('hass-yaml-widget', (el, { widget }) => {
-		el.parentElement.style.overflow = 'auto'
 		try {
 			const yamlEntities = YAML.parse(loadState('integration_homeassistant', 'dashboard-yaml-widget'))
 			if (yamlEntities.type !== 'entities') {
 				el.innerHTML = 'YAML is not of "type: entities"'
 			}
-			const checkboxHTML = (entityId) => {
-				return `<label class="switch"><input type="checkbox" data-entity-id="${entityId}"><span class="slider round"></span></label>`
-			}
-			const sensorHTML = (entityId) => {
-				return `<span data-entity-id="${entityId}"> - &nbsp; &nbsp;</span>`
-			}
 			Object.values(yamlEntities.entities).forEach(entry => {
 				if (entry.type === 'divider') {
 					el.innerHTML += '<div class="entity-line type-divider"><hr style="width: 100%"></div>'
-					return
 				} if (entry.type === 'section') {
 					el.innerHTML += `<hr style="width: 100%"><div class="entity-line type-section">${entry.label}</div>`
-					return
 				} if (entry.type === 'weblink') {
 					el.innerHTML += `<div class="entity-line type-weblink"><a target="_blank" href="${entry.url}">${entry.name}</a</div>`
-
 				} else if (entry.entity) {
-					const isLightOrSensor = entry.entity.startsWith('light') || entry.entity.startsWith('switch')
 					const name = entry.name ?? entry.entity
-					el.innerHTML += `<div class="entity-line entity">
-						<div><p data-init-name="${entry.name ?? ''}" title="${name}">${name}</p></div>
-						<div>${isLightOrSensor ? checkboxHTML(entry.entity) : sensorHTML(entry.entity)}</div>
-					</div>`
+					let handler = ''
+					if (entry.entity.startsWith('light') || entry.entity.startsWith('switch')) {
+						handler = `<label class="switch"><input type="checkbox" data-entity-id="${entry.entity}"><span class="slider round"></span></label>`
+					} else if (entry.entity.startsWith('media_player') || entry.entity.startsWith('sensor')) {
+						handler = `<span data-entity-id="${entry.entity}"> - &nbsp; &nbsp;</span>`
+					} else if (entry.entity.startsWith('script')) {
+						handler = `<input type="button" data-entity-id="${entry.entity}" value="RUN">`
+					}
+					el.innerHTML += `<div class="entity-line entity"><div><p title="${name}">${name}</p></div><div>${handler}</div></div>`
 				 }
 			})
 		} catch (e) {
@@ -54,8 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		createConnection({ auth })
 			.then((connection) => subscribeEntities(connection, (entities) => {
 				document.querySelectorAll('[data-entity-id]').forEach(element => {
-					const entityId = element.dataset.entityId
-					const entity = entities[entityId]
+					const entity = entities[element.dataset.entityId]
 					if (element.tagName === 'INPUT' && element.getAttribute('type') === 'checkbox') {
 						element.checked = entity?.state === 'on'
 						element.disabled = entity?.state === 'unavailable' || !entity
@@ -77,5 +70,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 document.addEventListener('click', async (e) => {
 	if (!e.target.dataset.entityId) return
-	await axios.post(generateUrl(`/apps/integration_homeassistant/turn_${e.target.checked ? 'on' : 'off'}`), { entity_id: e.target.dataset.entityId })
+	const { checked, dataset: { entityId } } = e.target
+	if (entityId.startsWith('light') || entityId.startsWith('switch')) {
+		await axios.post(generateUrl(`/apps/integration_homeassistant/turn_${checked ? 'on' : 'off'}`), { entity_id: entityId })
+	} else if (entityId.startsWith('script')) {
+		await axios.post(generateUrl('/apps/integration_homeassistant/run_script'), { entity_id: entityId })
+	}
 }, false)
