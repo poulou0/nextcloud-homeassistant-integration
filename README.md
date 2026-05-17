@@ -21,7 +21,7 @@ cd ~/Projects
 git clone https://github.com/juliushaertl/nextcloud-docker-dev
 cd nextcloud-docker-dev
 ./bootstrap.sh
-docker-compose up nextcloud
+docker compose up nextcloud
 ```
 go to `http://nextcloud.local` (`admin:admin` for credentials)
 ### App dev

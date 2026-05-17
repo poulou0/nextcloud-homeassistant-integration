@@ -64,7 +64,7 @@ class YamlWidget implements IAPIWidget
 		$this->initialStateService->provideInitialState('dashboard-yaml-widget-websockets-enabled', $webSocketsEnabled);
 	}
 
-	public function getItems(string $userId = null, ?string $since = null, int $limit = 7): array
+	public function getItems(?string $userId = null, ?string $since = null, int $limit = 7): array
 	{
 		return $this->hassIntegrationService->getYamlWidget();
 	}

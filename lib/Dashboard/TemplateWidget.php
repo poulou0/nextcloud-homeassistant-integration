@@ -29,7 +29,7 @@ class TemplateWidget implements IAPIWidget {
 	}
 
 	public function getId(): string { return 'hass-template-widget'; }
-	public function getTitle(): string { 
+	public function getTitle(): string {
 		$title = $this->config->getAppValue(Application::APP_ID, 'template_widget_title', '');
 		if (!$title) $title = 'Template widget';
 		return $this->l10n->t($title);
@@ -54,7 +54,7 @@ class TemplateWidget implements IAPIWidget {
 		Util::addStyle(Application::APP_ID, 'dashboard');
 	}
 
-	public function getItems(string $userId = null, ?string $since = null, int $limit = 7): array {
+	public function getItems(?string $userId = null, ?string $since = null, int $limit = 7): array {
 		$template = $this->config->getAppValue(Application::APP_ID, 'template_widget', '');
 		return $this->hassIntegrationService->post('/template', [
 			"template" => $template
