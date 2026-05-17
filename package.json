@@ -50,7 +50,7 @@
     "eslint-plugin-n": "^16.6.0",
     "eslint-plugin-vue": "^9.11.0",
     "eslint-webpack-plugin": "^4.0.1",
-    "stylelint": "^16.6.0",
+    "stylelint": "^17.11.1",
     "stylelint-webpack-plugin": "^5.0.1",
     "vue-loader": "^15.11.1",
     "webpack": "^5.79.0",
